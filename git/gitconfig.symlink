@@ -72,6 +72,8 @@
 [help]
         # correct typos
         autocorrect = 1
+[fetch]
+	prune = true
 [push]
        # push easily. http://stackoverflow.com/a/23918418/89484
         default = current
