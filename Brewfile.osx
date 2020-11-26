@@ -1,7 +1,7 @@
 cask_args "no-quarantine": true
 cask_args appdir: '/Applications'
 
-tap 'caskroom/cask'
+tap 'homebrew/cask'
 tap 'getantibody/tap'
 tap 'homebrew/cask-versions'
 tap 'AdoptOpenJDK/openjdk'
@@ -14,6 +14,7 @@ mas '1password', id: 1333542190
 mas 'dato', id: 1470584107
 mas 'jiffy', id: 1502527999
 mas 'magnet', id: 441258766
+mas 'yubico-authenticator', id: 1497506650
 
 brew 'getantibody/tap/antibody' # linuxbrew doesn't support antibody
 brew 'git'
@@ -21,7 +22,7 @@ brew 'heroku'
 brew 'reattach-to-user-namespace' # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 brew 'tmux'
 brew 'bash'
-brew 'Schniz/tap/fnm' # nvm alternative to manage node versions
+# brew 'Schniz/tap/fnm' # nvm alternative to manage node versions
 brew 'pinentry-mac'
 # driver for postgres for use with MySQL Workbench
 brew 'psqlODBC'
@@ -41,11 +42,11 @@ cask 'hyperdock'
 cask 'iterm2'
 cask 'kap'
 cask 'jetbrains-toolbox'
-cask 'minikube'
+# cask 'minikube'
 cask 'mysqlworkbench'
 cask 'owasp-zap' # Security attack proxy
 cask 'private-internet-access'
-cask 'podman'
+# cask 'podman'
 cask 'rescuetime'
 cask 'safari-technology-preview'
 cask 'sensiblesidebuttons'

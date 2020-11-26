@@ -65,3 +65,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Enable to capture load time information
 # zprof
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/charlie.briggs/.sdkman"
+[[ -s "/Users/charlie.briggs/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/charlie.briggs/.sdkman/bin/sdkman-init.sh"

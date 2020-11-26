@@ -1,4 +1,4 @@
-export PATH=”$HOME/.jenv/bin:$PATH”
+export PATH=”$HOME/.jenv/bin:$HOME/.jetbrains:$PATH”
 export SCALA_HOME="/usr/local/opt/scala/idea"
 export JAVA_OPTS="${JAVA_OPTS} -Djava.net.useSystemProxies=true"
 

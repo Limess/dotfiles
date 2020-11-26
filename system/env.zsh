@@ -14,3 +14,4 @@ ulimit -n 9999
 alias ls=exa
 alias cat="bat"
 alias grep=rg
+alias wrk=wrk2

@@ -6,4 +6,5 @@ export PATH=$PATH:$(python -c "import site; print(site.USER_BASE)")/bin/
 export PATH=$HOME/.poetry/bin:$PATH
 if command -v pyenv 1>/dev/null 2>&1; then
 	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
 fi

@@ -1,4 +1,7 @@
 .DS_Store
 *~
 *.swp
-.vscode
+.vscode/settings.json
+.calva
+.lein-env
+.nrepl-port

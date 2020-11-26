@@ -48,6 +48,8 @@
         added = green
         changed = yellow
         untracked = cyan
+[diff]
+	colorMoved = dimmed-zebra
 [merge]
         # git mergetool
 	# tool = opendiff
