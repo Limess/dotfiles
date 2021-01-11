@@ -16,7 +16,7 @@ robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/ripgrep
 robbyrussell/oh-my-zsh path:plugins/yarn
 robbyrussell/oh-my-zsh path:plugins/z
-zchee/zsh-completions path:src/go
+zchee/zsh-completions path:src/go branch:main
 fishtown-analytics/dbt-completion.bash path:dbt-completion.bash
 docker/cli path:contrib/completion/zsh kind:fpath
 

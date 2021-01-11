@@ -14,5 +14,4 @@ function npm_install {
 }
 alias ni=npm_install
 alias nvm=fnm
-
-
+alias jest="nocorrect jest"

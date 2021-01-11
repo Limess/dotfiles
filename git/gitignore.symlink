@@ -2,6 +2,9 @@
 *~
 *.swp
 .vscode/settings.json
+.vscode/snipsnap.*
 .calva
 .lein-env
+.lsp
+.clj-kondo/cache
 .nrepl-port
