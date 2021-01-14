@@ -63,6 +63,9 @@ unset config_files updated_at
 # load iterm2 shell integration if iterm2 exists
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# load fasd
+eval "$(fasd --init auto)"
+
 # Enable to capture load time information
 # zprof
 

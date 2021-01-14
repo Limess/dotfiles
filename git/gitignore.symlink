@@ -8,3 +8,4 @@
 .lsp
 .clj-kondo/cache
 .nrepl-port
+.clj-kondo/.cache
