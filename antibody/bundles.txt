@@ -20,6 +20,6 @@ fishtown-analytics/dbt-completion.bash path:dbt-completion.bash
 docker/cli path:contrib/completion/zsh kind:fpath
 
 # these should be at last!
-sindresorhus/pure
+sindresorhus/pure branch:main
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search

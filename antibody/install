@@ -1,5 +1,7 @@
 if [ "$(uname)" != "Darwin" ]; then	
 	curl -sL https://git.io/antibody | sh -s
 fi
+
+antibody list | awk '{print $1}' | xargs -I bundle antibody purge bundle
 antibody bundle <"$DOTFILES/antibody/bundles.txt" >~/.zsh_plugins.sh
 antibody update
