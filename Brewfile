@@ -16,8 +16,9 @@ brew 'exa'
 brew 'fasd'
 brew 'findutils'
 brew 'gnu-sed'
+# disabled as it causes autocomplete to not work with make
+# brew 'grc'
 brew 'go'
-brew 'grc'
 brew 'gnupg'
 brew 'httpstat'
 brew "httpie"
