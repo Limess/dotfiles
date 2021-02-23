@@ -20,6 +20,7 @@ brew 'gnu-sed'
 # brew 'grc'
 brew 'go'
 brew 'gnupg'
+brew 'hadolint'
 brew 'httpstat'
 brew "httpie"
 brew 'hub'
