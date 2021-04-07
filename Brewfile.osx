@@ -15,6 +15,7 @@ mas 'dato', id: 1470584107
 mas 'jiffy', id: 1502527999
 mas 'magnet', id: 441258766
 mas 'yubico-authenticator', id: 1497506650
+mas 'wireguard', id: 1451685025
 
 brew 'getantibody/tap/antibody' # linuxbrew doesn't support antibody
 brew 'git'

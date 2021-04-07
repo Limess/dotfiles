@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+echo "Connecting to VPN..."
+signal vpn -u "$(id -un)" -k signal-ai:wireguard-prod
+
+echo
+echo "Fetching AWS credentials for \"signal-prod\" account..."
+signal awsmfa prod --console

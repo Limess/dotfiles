@@ -99,6 +99,7 @@
         prereleaseSuffix = -rc
         prereleaseSuffix = .rc
 [init]
+	defaultBranch = main
         # templatedir = ~/.git_template
 [filter "lfs"]
         clean = git-lfs clean %f
