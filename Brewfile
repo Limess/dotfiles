@@ -3,8 +3,6 @@ tap 'heroku/brew'
 tap 'candid82/brew' # joker
 
 brew 'ag'
-brew "ansible"
-brew "ansible-lint"
 brew 'bat' # cat alternative https://github.com/sharkdp/bat
 brew 'diff-so-fancy'
 brew 'joker'

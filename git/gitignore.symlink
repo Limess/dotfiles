@@ -5,8 +5,11 @@
 .vscode/snipsnap.*
 .calva
 .lein-env
-.lsp
-.clj-kondo/cache
+.lsp/*
+!.lsp/config.edn
+.clj-kondo/*
+!.clj-kondo/hooks
+!.clj-kondo/config.edn
 .nrepl-port
 .clj-kondo/.cache
 .classpath
