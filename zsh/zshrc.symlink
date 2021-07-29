@@ -69,9 +69,9 @@ eval "$(fasd --init auto)"
 # Enable to capture load time information
 # zprof
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/charlie.briggs/.sdkman"
-[[ -s "/Users/charlie.briggs/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/charlie.briggs/.sdkman/bin/sdkman-init.sh"
-
 # Created by `userpath` on 2021-02-15 15:06:11
 export PATH="$PATH:/Users/charlie.briggs/.local/bin"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

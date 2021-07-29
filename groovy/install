@@ -1,8 +1,5 @@
 ### Install sdkman (formally gvm) http://sdkman.io/
-### This doesn't work on WSL
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    if [ ! -d ~/.sdkman/bin ]; then
-        echo "Installing sdkman"
-        curl -s http://get.sdkman.io | bash > /dev/null
-    fi
+if [ ! -d ~/.sdkman/bin ]; then
+    echo "Installing sdkman"
+    curl -s http://get.sdkman.io | bash > /dev/null
 fi
