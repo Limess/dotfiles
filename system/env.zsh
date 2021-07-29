@@ -9,7 +9,9 @@ export MANPAGER='less -X';
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-ulimit -n 9999
+if [ "$(uname)" != "Darwin" ]; then
+    ulimit -n 9999
+fi
 
 alias ls=exa
 alias cat="bat"
