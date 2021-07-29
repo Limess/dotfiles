@@ -9,7 +9,7 @@ export MANPAGER='less -X';
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-if [ "$(uname)" != "Darwin" ]; then
+if [ "$(uname)" == "Darwin" ]; then
     ulimit -n 9999
 fi
 
