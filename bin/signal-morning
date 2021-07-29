@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 echo "Connecting to VPN..."
 signal vpn -u "$(id -un)" -k signal-ai:wireguard-prod

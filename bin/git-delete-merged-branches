@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 branches_to_die=$(git branch --no-color --merged origin/master | grep -v '^[\* ] master')
 echo "Branches to be deleted:"
