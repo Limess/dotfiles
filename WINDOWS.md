@@ -16,8 +16,8 @@ This has slight security implications, but it's a 5x increase in most IO operati
 
 After trying a few terminals (conemu/cmder, git bash, the default terminal) and reading very negative things about others (hyper) I've currently settled on:
 
-* [Terminus](https://eugeny.github.io/terminus/) - Nice interface, slightly buggy settings, seems to have input lag, no native terminal splitting
-* [wsltty](https://github.com/mintty/wsltty) - Fast, lightweight, customisable, doesn't take over other terminals and lead to long startup times (I'm looking at you conemu)
+-   [Terminus](https://eugeny.github.io/terminus/) - Nice interface, slightly buggy settings, seems to have input lag, no native terminal splitting
+-   [wsltty](https://github.com/mintty/wsltty) - Fast, lightweight, customisable, doesn't take over other terminals and lead to long startup times (I'm looking at you conemu)
 
 For the moment I'm trying both, but may settle one one (more likely wsltty with tmux for splitting if I want full productivity).
 
@@ -42,4 +42,3 @@ Use [ssh-agent-wsl](https://github.com/rupor-github/ssh-agent-wsl). Start the ag
 ## Package manager
 
 I'm currently using [brew](https://brew.sh/). Linuxbrew is now part of brewcore and vaguely works with non-terrible performance. This is a means of convenience to dual-run OSX and Windows setups, if I was a linux user at work I'd no-doubt use `apt` rather than brew but right now finding packages for both is a pain. Early days of WSL this had horrible perf issues but it seems to have improved.
-

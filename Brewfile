@@ -1,11 +1,9 @@
 tap 'homebrew/bundle'
 tap 'heroku/brew'
-tap 'candid82/brew' # joker
 
 brew 'ag'
 brew 'bat' # cat alternative https://github.com/sharkdp/bat
 brew 'diff-so-fancy'
-brew 'joker'
 brew 'chamber'
 brew 'coreutils'
 brew 'clojure'
