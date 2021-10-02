@@ -58,11 +58,13 @@ EOF
     sudo systemctl disable systemd-resolved
     sudo systemctl mask systemd-resolved
 
-    sudo cp $(dirname $0)/dnsmasq.service /etc/systemd/system/dnsmasq.service
-    sudo cp $(dirname $0)/dnsmasq.conf /etc/dnsmasq.conf
+    sudo cp $(dirname $0)/configs/dnsmasq.service /etc/systemd/system/dnsmasq.service
+    sudo cp $(dirname $0)/configs/dnsmasq.conf /etc/dnsmasq.conf
     sudo bash -c 'cat << EOF > /etc/resolve.conf
 nameserver 127.0.0.1
 EOF'
+
+    sudo cp $(dirname $0)/configs/genie.ini /etc/genie.ini
 
     # disable units incompatibel with genie
     # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL
