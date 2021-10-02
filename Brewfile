@@ -11,6 +11,7 @@ brew "doitlive"
 brew 'exa'
 brew 'fasd'
 brew 'findutils'
+brew 'gh'
 brew 'gnu-sed'
 # disabled as it causes autocomplete to not work with make
 # brew 'grc'
