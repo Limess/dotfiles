@@ -60,7 +60,7 @@ EOF
 
     sudo cp $(dirname $0)/configs/dnsmasq.service /etc/systemd/system/dnsmasq.service
     sudo cp $(dirname $0)/configs/dnsmasq.conf /etc/dnsmasq.conf
-    sudo bash -c 'cat << EOF > /etc/resolve.conf
+    sudo bash -c 'cat << EOF > /etc/resolv.conf
 nameserver 127.0.0.1
 EOF'
 
