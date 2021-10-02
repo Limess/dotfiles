@@ -66,6 +66,9 @@ EOF'
 
     sudo cp $(dirname $0)/configs/genie.ini /etc/genie.ini
 
+    # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL#systemd-remount-fsservice
+    sudo e2label $(findmnt -n -o SOURCE /) cloudimg-rootfs
+
     # disable units incompatibel with genie
     # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL
     sudo systemctl disable multipathd
