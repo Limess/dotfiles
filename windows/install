@@ -3,8 +3,26 @@
 if [[ "${IS_WSL}" -eq 1 ]]; then
     echo "Detected WSL, Installing linux packages"
 
+    # required for systemd-genie
+    # https://docs.microsoft.com/en-us/dotnet/core/install/linux
+    echo "Adding microsoft package repository"
+    wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
+    rm packages-microsoft-prod.deb
+
+    # https://github.com/arkane-systems/genie
+    echo "Adding wsl-transdebian repository for systemd-genie"
+    wget -O /etc/apt/trusted.gpg.d/wsl-transdebian.gpg https://arkane-systems.github.io/wsl-transdebian/apt/wsl-transdebian.gpg
+    chmod a+r /etc/apt/trusted.gpg.d/wsl-transdebian.gpg
+    cat << EOF > /etc/apt/sources.list.d/wsl-transdebian.list
+deb https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
+deb-src https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
+EOF
+
     set -x
 
+    sudo apt-get update
+    sudo apt-get install -y apt-transport-https
     sudo apt-get update
     sudo apt-get upgrade -y
     sudo apt-get dist-upgrade -y
@@ -32,5 +50,7 @@ if [[ "${IS_WSL}" -eq 1 ]]; then
         libxml2-dev \
         libxmlsec1-dev \
         libffi-dev \
-        liblzma-dev
+        liblzma-dev \
+        dotnet-runtime-5.0 \
+        systemd-genie
 fi

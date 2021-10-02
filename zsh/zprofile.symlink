@@ -1,0 +1,8 @@
+# Are we in the bottle?
+export IS_WSL=$(uname -a | grep -i -c "microsoft")
+
+if [[ "${IS_WSL}" -eq 1 ]]; then
+    # if [[ ! -v INSIDE_GENIE ]]; then
+    #     exec /usr/bin/genie -s
+    # fi
+fi
