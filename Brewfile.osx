@@ -19,11 +19,9 @@ mas 'wireguard', id: 1451685025
 
 brew 'getantibody/tap/antibody' # linuxbrew doesn't support antibody
 brew 'git'
-brew 'heroku'
 brew 'reattach-to-user-namespace' # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 brew 'tmux'
 brew 'bash'
-# brew 'Schniz/tap/fnm' # nvm alternative to manage node versions
 brew 'pinentry-mac'
 # driver for postgres for use with MySQL Workbench
 brew 'psqlODBC'
