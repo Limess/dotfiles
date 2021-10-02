@@ -19,8 +19,7 @@ deb https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) mai
 deb-src https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
 EOF
 
-    set -x
-
+    echo "Installing packages"
     sudo apt-get update
     sudo apt-get install -y apt-transport-https
     sudo apt-get update
@@ -52,5 +51,24 @@ EOF
         libffi-dev \
         liblzma-dev \
         dotnet-runtime-5.0 \
-        systemd-genie
+        systemd-genie \
+        dnsmasq
+
+    echo "Configuring dnsmasq"
+    sudo systemctl disable systemd-resolved
+    sudo systemctl mask systemd-resolved
+
+    sudo cp $(dirname $0)/dnsmasq.service /etc/systemd/system/dnsmasq.service
+    sudo cp $(dirname $0)/dnsmasq.conf /etc/dnsmasq.conf
+    sudo bash -c 'cat << EOF > /etc/resolve.conf
+nameserver 127.0.0.1
+EOF'
+
+    # disable units incompatibel with genie
+    # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL
+    sudo systemctl disable multipathd
+    sudo systemctl mask multipathd
+
+    sudo systemctl disable systemd-modules-load
+    sudo systemctl mask systemd-modules-load
 fi
