@@ -2,3 +2,4 @@ elm
 gzip-size-cli
 pretty-bytes-cli
 npmrc
+wsl-open
