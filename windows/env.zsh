@@ -5,3 +5,4 @@ if [[ "${IS_WSL}" -eq 1 ]]; then
 
     alias open="$BROWSER $1"
 fi
+

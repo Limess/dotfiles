@@ -11,4 +11,4 @@ curl -sS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bas
 # ensure that compinit directories have 0755 permissions
 # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
 autoload -U +X compinit && compinit
-compaudit | xargs sudo chmod go-w
+# compaudit | xargs sudo chmod go-w
