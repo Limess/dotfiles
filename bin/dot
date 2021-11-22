@@ -7,13 +7,6 @@
 export ZSH=$HOME/.dotfiles
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  read -p "Update OSX defaults? [y/n]" -n 1 -r
-  echo
-  if [[ ! $REPLY =~ ^[Nn]$ ]]
-  then
-      # Set OS X defaults
-      bash -c $ZSH/osx/set-defaults
-  fi
   # Install homebrew
   bash -c $ZSH/homebrew/install 2>&1
 else

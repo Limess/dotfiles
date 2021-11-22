@@ -21,5 +21,5 @@ docker/cli path:contrib/completion/zsh kind:fpath
 
 # these should be at last!
 sindresorhus/pure branch:main
-zdharma/fast-syntax-highlighting
+zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
