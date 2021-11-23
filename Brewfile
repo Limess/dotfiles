@@ -26,7 +26,6 @@ brew 'jp2a'
 brew 'kubernetes-cli'
 brew 'kubernetes-helm'
 brew 'libgit2'
-brew 'moreutils'
 brew 'node'
 brew 'nmap' # Security network tool
 brew "pgcli"
