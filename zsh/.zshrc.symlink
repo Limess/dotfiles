@@ -40,15 +40,29 @@ for file in ${${config_files:#*/(path|env).zsh}:#*/completion.zsh}; do
   source "$file"
 done
 
+# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
+_zpcompinit_custom() {
+  setopt extendedglob local_options
+  autoload -Uz compinit
+  autoload -U +X bashcompinit && bashcompinit
+  local zcd=${ZDOTDIR:-$HOME}/.zcompdump
+  local zcdc="$zcd.zwc"
+  # Compile the completion dump to increase startup speed, if dump is newer or doesn't exist,
+  # in the background as this is doesn't affect the current session
+  if [[ -f "$zcd"(#qN.m+1) ]]; then
+    compinit -i -d "$zcd"
+    { rm -f "$zcdc" && zcompile "$zcd" } &!
+  else
+    # for now always load completions as for some reason makefile completions don't load when loading from cache on WSL
+    # FIXME: work out a better fix for this so we can use cache
+    # compinit -C -d "$zcd"
+    compinit -d "$zcd"
+    { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
+  fi
+}
+
 # load autocomplete
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
-autoload -U +X bashcompinit && bashcompinit
+_zpcompinit_custom
 
 # load antibody plugins
 source ~/.zsh_plugins.sh

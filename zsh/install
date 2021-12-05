@@ -7,8 +7,3 @@ export BASH_COMPLETIONS_DIR=~/.local/share/bash-completion/completions
 mkdir -p $BASH_COMPLETIONS_DIR
 
 curl -sS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/dbt-completion.bash > $BASH_COMPLETIONS_DIR/dbt.bash
-
-# ensure that compinit directories have 0755 permissions
-# https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
-autoload -U +X compinit && compinit
-# compaudit | xargs sudo chmod go-w
