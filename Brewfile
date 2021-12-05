@@ -2,12 +2,14 @@ tap 'homebrew/bundle'
 tap 'heroku/brew'
 
 brew 'ag'
-brew 'bat' # cat alternative https://github.com/sharkdp/bat
+# cat alternative https://github.com/sharkdp/bat
+brew 'bat'
 brew 'diff-so-fancy'
 brew 'chamber'
 brew 'coreutils'
 brew 'clojure'
 brew "doitlive"
+# better lsh
 brew 'exa'
 brew 'fasd'
 brew 'findutils'
@@ -24,10 +26,11 @@ brew 'python'
 brew 'jq'
 brew 'jp2a'
 brew 'kubernetes-cli'
-brew 'kubernetes-helm'
+brew 'helm'
 brew 'libgit2'
 brew 'node'
-brew 'nmap' # Security network tool
+# Security network tool
+brew 'nmap'
 brew "pgcli"
 brew 'pipenv'
 brew 'pyenv'

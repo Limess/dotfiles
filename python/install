@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+DOTFILES_ROOT=$(pwd -P)
+
 if [[ $(uname -s) == "Linux" ]]; then
   if ! dpkg -s python-setuptools &> /dev/null; then
     sudo apt-get update && sudo apt-get install -y python-setuptools python3-pip
@@ -11,4 +13,7 @@ fi
 export PATH="$(pyenv root)/libexec/pyenv:$PATH"
 # Install pipx then install shared packages via pipx
 python3 -m pip install --user  pipx
-pipx install -r $(pwd)/python/requirements.txt
+pipx install -r $DOTFILES_ROOT/python/requirements.txt
+
+mkdir -p $DOTFILES_ROOT/python/completions
+register-python-argcomplete pipx > completions/pipx.zsh

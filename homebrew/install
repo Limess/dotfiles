@@ -5,6 +5,8 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
+DOTFILES_ROOT=$(pwd -P)
+
 # Check for Homebrew
 if test ! $(which brew)
 then
@@ -21,5 +23,9 @@ then
   fi
 
 fi
+
+HOMEBREW_DIR=$(brew --repo homebrew/core)
+mkdir -p $HOMEBREW_DIR/.git/hooks
+cp $DOTFILES_ROOT/homebrew/terragrunt_workaround_post_merge.sh $HOMEBREW_DIR/.git/hooks/post-merge
 
 exit 0
