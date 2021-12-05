@@ -1,20 +1,8 @@
 #!/usr/bin/env zsh
 set -e
 
-if [ ! -d "$HOME/.jenv" ]; then
-    git clone https://github.com/jenv/jenv.git $HOME/.jenv
-fi
-
-if [ -d "$HOME/.jenv/.git" ]; then
-    cd "$HOME/.jenv"
-    git pull &> /dev/null
-    cd -
-fi
-
-if [ -d "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk" ]; then
-    jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-fi
-
-if [ -d "/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk" ]; then
-    jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+### Install sdkman (formally gvm) http://sdkman.io/
+if [ ! -d ~/.sdkman/bin ]; then
+    echo "Installing sdkman"
+    curl -s http://get.sdkman.io | bash > /dev/null
 fi

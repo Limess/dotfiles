@@ -28,7 +28,7 @@ fail () {
 }
 
 setup_gitconfig () {
-  if ! [ -f git/gitconfig.local.symlink ]
+  if ! [ -f git/.gitconfig.local.symlink ]
   then
     info 'setup gitconfig'
 
@@ -120,6 +120,7 @@ link_file () {
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
+    mkdir -p "$(dirname $2)"
     ln -s "$1" "$2"
     success "linked $1 to $2"
   fi
@@ -130,9 +131,11 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  # Move any files ending in .symlink to their corresponding directory, ignoring their top level directory
+  # e.g. $DOTFILES_ROOT/jvm/.sdkman/etc/config.symlink -> ~/.sdkman/etc/config.symlink
+  for src in $(find -H "$DOTFILES_ROOT" -name '*.symlink' -not -path '*.git/*')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
+    dst="$HOME/$(realpath --relative-to="$DOTFILES_ROOT" "${src%.*}" | cut -d'/' -f2-)"
     link_file "$src" "$dst"
   done
 }

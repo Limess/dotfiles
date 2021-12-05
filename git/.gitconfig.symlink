@@ -52,7 +52,7 @@
 	colorMoved = dimmed-zebra
 [merge]
         # git mergetool
-	# tool = opendiff
+	# tool = opendiff
         # present 3 way conflict editor
 	# conflictstyle = diff3
 # rewrites of repo paths
