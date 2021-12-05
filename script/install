@@ -23,4 +23,9 @@ export IS_WSL=$(uname -a | grep -i -c "microsoft")
 # find the installers and run them iteratively
 find . -name install -not \( -path "./script/*" -prune \) | while read installer ; do echo "Running $installer" && bash -c "${installer}" ; done
 
-chsh -s $(which zsh)
+if [ ! -n "$ZSH_VERSION" ]; then
+  echo "Setting shell to zsh"
+  chsh -s $(which zsh)
+fi
+
+echo "Done!"

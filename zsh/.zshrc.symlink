@@ -86,7 +86,6 @@ __wt_osc9_9 () {
 if [ -n "$WT_SESSION" ] ; then
     if ((!precmd_functions[(I)__wt_osc9_9])); then
         precmd_functions=(__wt_osc9_9 "${precmd_functions[@]}")
-        echo $precmd_functions
     fi
 fi
 

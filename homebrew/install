@@ -30,6 +30,6 @@ source $DOTFILES_HOMEBREW_SCRIPT_DIR/env.zsh
 
 HOMEBREW_DIR=$(brew --repo homebrew/core)
 mkdir -p $HOMEBREW_DIR/.git/hooks
-cp $DOTFILES_HOMEBREW_SCRIPT_DIR/homebrew/terragrunt_workaround_post_merge.sh $HOMEBREW_DIR/.git/hooks/post-merge
+cp $DOTFILES_HOMEBREW_SCRIPT_DIR/terragrunt_workaround_post_merge.sh $HOMEBREW_DIR/.git/hooks/post-merge
 
 exit 0
