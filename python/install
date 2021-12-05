@@ -2,11 +2,13 @@
 
 if [[ $(uname -s) == "Linux" ]]; then
   if ! dpkg -s python-setuptools &> /dev/null; then
-    sudo apt-get update && sudo apt-get install -y python-setuptools python3-pip 
+    sudo apt-get update && sudo apt-get install -y python-setuptools python3-pip
   fi
 else
   sudo easy_install pip
 fi
 
 export PATH="$(pyenv root)/libexec/pyenv:$PATH"
-python3 -m pip install --user -r $(pwd)/python/requirements.txt
+# Install pipx then install shared packages via pipx
+python3 -m pip install --user  pipx
+pipx install -r $(pwd)/python/requirements.txt
