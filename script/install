@@ -7,7 +7,7 @@ set -e
 cd "$(dirname $0)"/..
 
 # ensure brew is available
-source homebrew/env.zsh
+source $PWD/homebrew/env.zsh
 
 # Run Homebrew through the Brewfile
 echo "› brew bundle"
@@ -22,3 +22,5 @@ export IS_WSL=$(uname -a | grep -i -c "microsoft")
 
 # find the installers and run them iteratively
 find . -name install -not \( -path "./script/*" -prune \) | while read installer ; do echo "Running $installer" && bash -c "${installer}" ; done
+
+chsh -s $(which zsh)

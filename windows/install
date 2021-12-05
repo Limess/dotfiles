@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 configure_genie_sytemd () {
     # required for systemd-genie
@@ -24,12 +24,6 @@ EOF
 
     sudo systemctl disable systemd-resolved
     sudo systemctl mask systemd-resolved
-
-    sudo cp $(dirname $0)/configs/dnsmasq.service /etc/systemd/system/dnsmasq.service
-    sudo cp $(dirname $0)/configs/dnsmasq.conf /etc/dnsmasq.conf
-    sudo bash -c 'cat << EOF > /etc/resolv.conf
-nameserver 127.0.0.1
-EOF'
 
     sudo cp $(dirname $0)/configs/genie.ini /etc/genie.ini
 
@@ -78,11 +72,16 @@ if [[ "${IS_WSL}" -eq 1 ]]; then
         libxml2-dev \
         libxmlsec1-dev \
         libffi-dev \
-        liblzma-dev
+        liblzma-dev \
+        zsh
 
     echo "Configuring dnsmasq"
+    sudo cp $(dirname $0)/configs/dnsmasq.service /etc/systemd/system/dnsmasq.service
     sudo cp $(dirname $0)/configs/dnsmasq.conf /etc/dnsmasq.conf
     sudo bash -c 'cat << EOF > /etc/resolv.conf
 nameserver 127.0.0.1
 EOF'
 fi
+
+echo "Copying wsl config"
+sudo cp $(dirname $0)/configs/wsl.conf /etc/wsl.conf

@@ -1,5 +1,4 @@
 tap 'homebrew/bundle'
-tap 'heroku/brew'
 
 brew 'ag'
 # cat alternative https://github.com/sharkdp/bat
@@ -25,8 +24,6 @@ brew 'imagemagick'
 brew 'python'
 brew 'jq'
 brew 'jp2a'
-brew 'kubernetes-cli'
-brew 'helm'
 brew 'libgit2'
 brew 'node'
 # Security network tool

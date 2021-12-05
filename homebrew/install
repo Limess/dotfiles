@@ -1,11 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Homebrew
 #
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
-DOTFILES_ROOT=$(pwd -P)
+set -e
+
+DOTFILES_HOMEBREW_SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+
+# ensure PATH is setup correctly as we need to call brew
+source $DOTFILES_HOMEBREW_SCRIPT_DIR/env.zsh
 
 # Check for Homebrew
 if test ! $(which brew)
@@ -20,8 +25,11 @@ then
   bash -c "$(curl -fsSL  https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# if we had to install brew, load the path again
+source $DOTFILES_HOMEBREW_SCRIPT_DIR/env.zsh
+
 HOMEBREW_DIR=$(brew --repo homebrew/core)
 mkdir -p $HOMEBREW_DIR/.git/hooks
-cp $DOTFILES_ROOT/homebrew/terragrunt_workaround_post_merge.sh $HOMEBREW_DIR/.git/hooks/post-merge
+cp $DOTFILES_HOMEBREW_SCRIPT_DIR/homebrew/terragrunt_workaround_post_merge.sh $HOMEBREW_DIR/.git/hooks/post-merge
 
 exit 0

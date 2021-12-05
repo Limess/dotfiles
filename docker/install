@@ -37,11 +37,11 @@ sudo add-apt-repository \
 # Update the apt package index.
 sudo apt-get update
 
-# Install the latest version of Docker CE.
-sudo apt-get install -y docker-ce
+# # Install the latest version of Docker CE.
+# sudo apt-get install -y docker-ce
 
-# Allow your user to access the Docker CLI without needing root.
-sudo usermod -aG docker charlie_briggs
+# # Allow your user to access the Docker CLI without needing root.
+# sudo usermod -aG docker charlie_briggs
 
-# Install Docker Compose.
-sudo wget https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
+# # Install Docker Compose.
+# sudo wget https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
