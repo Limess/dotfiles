@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 export IS_WSL=$(uname -a | grep -i -c "microsoft")
 
 if [[ "${IS_WSL}" -eq 1 ]]; then
@@ -18,11 +20,9 @@ fi
 # Simple alternative to background tasks on startup rather than having to run fakesystemd
 # check with ps first as we need sudo to actually check status
 dnsmasq_running=$(ps -fC dnsmasq)
-if ("$?" == "1") then
+if [ $? -eq 1 ]; then
 	sudo service dnsmasq status
-	if ("$?" == "0") then
-		# dnsmasq is running
-	else
-		sudo service dnsmasq start
-	endif
-endif
+	if [ $? -eq 1 ]; then
+		sudo service dnsmasq restart
+	fi
+fi
