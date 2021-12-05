@@ -1,8 +1,13 @@
 #!/usr/bin/env zsh
 set -e
 
+SCRIPT_PATH="$(dirname "$(realpath "$0")")"
+
 ### Install sdkman (formally gvm) http://sdkman.io/
 if [ ! -d ~/.sdkman/bin ]; then
     echo "Installing sdkman"
     curl -s http://get.sdkman.io | bash > /dev/null
+
+    # don't use normal symlink mechanism as sdkman install just checks for the presence of ~/.sdkman
+    ln -sf $SCRIPT_PATH/.sdkman/etc/config ~/.sdkman/etc/config
 fi
