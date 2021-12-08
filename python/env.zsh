@@ -11,3 +11,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
 fi
+
+IS_WSL=$(uname -a | grep -i -c "microsoft")
+
+if [[ "${IS_WSL}" -eq 1 ]]; then
+    # ensure sysdtem install of libffi is used for pyenv compilation rather than homebrew version
+    export LDFLAGS="-L /usr/lib/x86_64-linux-gnu"
+fi
