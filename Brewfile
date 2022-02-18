@@ -39,7 +39,7 @@ brew 'roundup'
 brew 'stunnel'
 brew 'shellcheck'
 brew "terragrunt", args: ["ignore-dependencies"]
-brew 'tfenv'
+brew 'tfenv', args: ["ignore-dependencies"]
 brew 'tree'
 brew 'unzip'
 brew 'vim'

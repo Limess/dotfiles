@@ -9,11 +9,11 @@ zsh-users/zsh-completions
 # additional completions
 lukechilds/zsh-better-npm-completion
 robbyrussell/oh-my-zsh path:plugins/aws
-robbyrussell/oh-my-zsh path:plugins/cargo
 robbyrussell/oh-my-zsh path:plugins/docker-compose
 robbyrussell/oh-my-zsh path:plugins/httpie
 robbyrussell/oh-my-zsh path:plugins/pip
 robbyrussell/oh-my-zsh path:plugins/ripgrep
+robbyrussell/oh-my-zsh path:plugins/rust
 robbyrussell/oh-my-zsh path:plugins/yarn
 zchee/zsh-completions path:src/go branch:main
 fishtown-analytics/dbt-completion.bash path:dbt-completion.bash

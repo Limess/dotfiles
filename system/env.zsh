@@ -17,3 +17,6 @@ alias ls=exa
 alias cat="bat"
 alias grep=rg
 alias wrk=wrk2
+
+# used by https://warrensbox.github.io/tgswitch/
+export PATH=$PATH:/home/charlie_briggs/bin
