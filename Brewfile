@@ -12,6 +12,8 @@ brew "doitlive"
 brew 'exa'
 brew 'fasd'
 brew 'findutils'
+# https://github.com/wagoodman/dive
+brew 'dive'
 brew 'gh'
 brew 'gnu-sed'
 brew 'go'
