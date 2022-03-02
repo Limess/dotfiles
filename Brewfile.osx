@@ -4,7 +4,6 @@ cask_args appdir: '/Applications'
 tap 'homebrew/cask'
 tap 'getantibody/tap'
 tap 'homebrew/cask-versions'
-tap 'AdoptOpenJDK/openjdk'
 
 # Start with mas (Mac App Store) and related software so we get XCode
 brew 'mas'
@@ -58,10 +57,7 @@ cask 'visual-studio-code'
 cask 'vlc'
 cask 'whatsapp'
 
-# JVM based. Some require java as a pre-requisite so we install that first
-cask 'AdoptOpenJdk/openjdk/adoptopenjdk8'
-cask 'AdoptOpenJdk/openjdk/adoptopenjdk11'
+cask 'temurin'
 brew 'boot-clj'
 brew 'leiningen'
 brew 'maven'
-brew 'jenv'

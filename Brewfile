@@ -1,5 +1,7 @@
 tap 'homebrew/bundle'
 
+# multi-version manager https://asdf-vm.com/
+brew 'asdf'
 brew 'ag'
 # cat alternative https://github.com/sharkdp/bat
 brew 'bat'
@@ -40,8 +42,6 @@ brew 'ripgrep'
 brew 'roundup'
 brew 'stunnel'
 brew 'shellcheck'
-brew "terragrunt", args: ["ignore-dependencies"]
-brew 'tfenv', args: ["ignore-dependencies"]
 brew 'tree'
 brew 'unzip'
 brew 'vim'
