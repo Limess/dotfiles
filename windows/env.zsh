@@ -17,13 +17,15 @@ if [ -z "$SSH_TTY" ]; then
 	fi
 fi
 
-# Simple alternative to background tasks on startup rather than having to run fakesystemd
-# check with ps first as we need sudo to actually check status
-dnsmasq_running=$(ps -fC dnsmasq)
-if [ $? -ne 0 ]; then
-	echo "Checking dnsmasq status (requires root)"
-	sudo service dnsmasq status
+if [[ "${IS_WSL}" -eq 1 ]]; then
+	# Simple alternative to background tasks on startup rather than having to run fakesystemd
+	# check with ps first as we need sudo to actually check status
+	dnsmasq_running=$(ps -fC dnsmasq)
 	if [ $? -ne 0 ]; then
-		sudo service dnsmasq restart
+		echo "Checking dnsmasq status (requires root)"
+		sudo service dnsmasq status
+		if [ $? -ne 0 ]; then
+			sudo service dnsmasq restart
+		fi
 	fi
 fi
