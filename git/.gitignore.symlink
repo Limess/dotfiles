@@ -7,11 +7,9 @@
 .lein-env
 .lsp/*
 !.lsp/config.edn
-.clj-kondo/*
-!.clj-kondo/hooks
-!.clj-kondo/config.edn
-.nrepl-port
 .clj-kondo/.cache
+.cpcache
+.nrepl-port
 .classpath
 .project
 .settings
