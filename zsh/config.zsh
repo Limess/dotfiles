@@ -42,6 +42,10 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
 
+# words are command arguments using shell syntax for navigation
+autoload -Uz select-word-style
+select-word-style shell
+
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
