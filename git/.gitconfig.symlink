@@ -50,6 +50,7 @@
         untracked = cyan
 [diff]
 	colorMoved = dimmed-zebra
+	external = difft
 [merge]
         # git mergetool
 	# tool = opendiff
