@@ -120,3 +120,5 @@
 	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.13.0/bin/gh auth git-credential
 [submodule]
 	stickyRecursiveClone = true
+[pull]
+	rebase = true
