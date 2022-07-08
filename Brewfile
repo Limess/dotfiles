@@ -9,6 +9,8 @@ brew 'diff-so-fancy'
 brew 'chamber'
 brew 'coreutils'
 brew 'clojure'
+# https://cuelang.org/
+brew 'cue-lang/tap/cue'
 brew "doitlive"
 # better lsh
 brew 'exa'

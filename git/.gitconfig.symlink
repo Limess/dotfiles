@@ -16,7 +16,7 @@
         # https://news.ycombinator.com/item?id=11388479
         untrackedCache = true
 
-        excludesfile = ~/.gitignore
+	excludesfile = /home/charlie_briggs/.gitignore
         attributesfile = ~/.gitattributes
 	autocrlf = false
 	eol = lf
@@ -112,3 +112,11 @@
 [include]
         # use separate file for username / github token / gpg keys etc
         path = ~/.gitconfig.local
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.13.0/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.13.0/bin/gh auth git-credential
+[submodule]
+	stickyRecursiveClone = true
