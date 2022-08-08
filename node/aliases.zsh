@@ -1,6 +1,8 @@
 # prevent bash completion from correcting serverless
 alias serverless="nocorrect serverless"
 alias npmu="npx npm-check -u"
+alias tsc="nocorrect tsc"
+
 # prevent spotlight/alfred indexing node_modules
 # https://twitter.com/Herschel_R/status/1113095592559984641
 function npm_install {
