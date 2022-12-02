@@ -58,11 +58,15 @@ bindkey "$terminfo[kcud1]" down-line-or-beginning-search
 bindkey "$terminfo[cuu1]" up-line-or-beginning-search
 bindkey "$terminfo[cud1]" down-line-or-beginning-search
 
-# backward and forward word with option+left/right
-bindkey '^[^[[D' backward-word
-bindkey '^[b' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[f' forward-word
+# backward and forward word with ctrl+left/right
+bindkey "\eOc" forward-word
+bindkey "\eOd" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
 
 # to to the beginning/end of line with fn+left/right or home/end
 bindkey "${terminfo[khome]}" beginning-of-line
@@ -71,8 +75,9 @@ bindkey "${terminfo[kend]}" end-of-line
 bindkey '^[[F' end-of-line
 
 # delete char with backspaces and delete
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
+# doesn't seem to be needed
+# bindkey '^[[3~' delete-char
+# bindkey '^?' backward-delete-char
 
 # delete word with ctrl+backspace
 bindkey '^[[3;5~' kill-word
