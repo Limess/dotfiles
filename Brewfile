@@ -35,7 +35,6 @@ brew 'node'
 # Security network tool
 brew 'nmap'
 brew "pgcli"
-brew 'pipenv'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
 brew 'readline'
