@@ -3,26 +3,15 @@
 export IS_WSL=$(uname -a | grep -i -c "microsoft")
 
 if [[ "${IS_WSL}" -eq 1 ]]; then
-    	# Use wsl-open on WSL https://github.com/4U6U57/wsl-open
-	alias open="wsl-open $1"
+    # Use wsl-open on WSL https://github.com/4U6U57/wsl-open
+    alias open="wsl-open $1"
 
     if [ -z "$SSH_TTY" ]; then
-	    # http://manpages.ubuntu.com/manpages/xenial/man1/keychain.1.html
-		# https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/
-		# add id_rsa ssh key to keychain which is shared between tabs and start ssh agent
-		eval `keychain --agents ssh -q --eval id_rsa`
+    # http://manpages.ubuntu.com/manpages/xenial/man1/keychain.1.html
+    # https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/
+    # add id_rsa ssh key to keychain which is shared between tabs and start ssh agent
+        eval `keychain --agents ssh -q --eval id_rsa`
     fi
-
-	# Simple alternative to background tasks on startup rather than having to run fakesystemd
-	# check with ps first as we need sudo to actually check status
-#	dnsmasq_running=$(ps -fC dnsmasq)
-#	if [ $? -ne 0 ]; then
-#		echo "Checking dnsmasq status (requires root)"
-#		sudo service dnsmasq status
-#		if [ $? -ne 0 ]; then
-#			sudo service dnsmasq restart
-#		fi
-#	fi
 
     export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig"
 fi

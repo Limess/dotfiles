@@ -16,7 +16,7 @@ ohmyzsh/ohmyzsh path:plugins/ripgrep kind:fpath
 ohmyzsh/ohmyzsh path:plugins/rust
 ohmyzsh/ohmyzsh path:plugins/yarn
 zchee/zsh-completions path:src/go branch:main
-fishtown-analytics/dbt-completion.bash path:dbt-completion.bash
+dbt-labs/dbt-completion.bash kind:fpath
 docker/cli path:contrib/completion/zsh kind:fpath
 
 # these should be at last!
