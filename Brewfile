@@ -43,6 +43,8 @@ brew 'ripgrep'
 brew 'roundup'
 brew 'stunnel'
 brew 'shellcheck'
+# shell prompt https://starship.rs
+brew 'starship'
 brew 'tree'
 brew 'unzip'
 brew 'vim'
