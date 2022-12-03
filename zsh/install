@@ -5,5 +5,3 @@
 export BASH_COMPLETIONS_DIR=~/.local/share/bash-completion/completions
 
 mkdir -p $BASH_COMPLETIONS_DIR
-
-curl -sS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/dbt-completion.bash > $BASH_COMPLETIONS_DIR/dbt.bash
