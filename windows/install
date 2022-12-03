@@ -1,44 +1,5 @@
 #!/usr/bin/env bash
 
-configure_genie_sytemd () {
-    # required for systemd-genie
-    # https://docs.microsoft.com/en-us/dotnet/core/install/linux
-    echo "Adding microsoft package repository"
-    wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    sudo dpkg -i packages-microsoft-prod.deb
-    rm packages-microsoft-prod.deb
-
-    # https://github.com/arkane-systems/genie
-    echo "Adding wsl-transdebian repository for systemd-genie"
-    wget -O /etc/apt/trusted.gpg.d/wsl-transdebian.gpg https://arkane-systems.github.io/wsl-transdebian/apt/wsl-transdebian.gpg
-    chmod a+r /etc/apt/trusted.gpg.d/wsl-transdebian.gpg
-    cat << EOF > /etc/apt/sources.list.d/wsl-transdebian.list
-deb https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
-deb-src https://arkane-systems.github.io/wsl-transdebian/apt/ $(lsb_release -cs) main
-EOF
-    sudo apt-get update
-    sudo apt-get install -y --no-install-recommends \
-        dotnet-runtime-5.0 \
-        systemd-genie \
-        dnsmasq
-
-    sudo systemctl disable systemd-resolved
-    sudo systemctl mask systemd-resolved
-
-    sudo cp $(dirname $0)/configs/genie.ini /etc/genie.ini
-
-    # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL#systemd-remount-fsservice
-    sudo e2label $(findmnt -n -o SOURCE /) cloudimg-rootfs
-
-    # disable units incompatibel with genie
-    # https://github.com/arkane-systems/genie/wiki/Systemd-units-known-to-be-problematic-under-WSL
-    sudo systemctl disable multipathd
-    sudo systemctl mask multipathd
-
-    sudo systemctl disable systemd-modules-load
-    sudo systemctl mask systemd-modules-load
-}
-
 if [[ "${IS_WSL}" -eq 1 ]]; then
     echo "Detected WSL, Installing linux packages"
 
@@ -78,13 +39,6 @@ if [[ "${IS_WSL}" -eq 1 ]]; then
 
     echo "Installing Rust"
     curl https://sh.rustup.rs -sSf | sh -s -- -y
-
-    #echo "Configuring dnsmasq"
-    # sudo cp $(dirname $0)/configs/dnsmasq.service /etc/systemd/system/dnsmasq.service
-    #sudo cp $(dirname $0)/configs/dnsmasq.conf /etc/dnsmasq.conf
-    #sudo bash -c 'cat << EOF > /etc/resolv.conf
-    #nameserver 127.0.0.1
-#EOF'
 fi
 
 echo "Copying wsl config"
