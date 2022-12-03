@@ -64,8 +64,9 @@ _zpcompinit_custom() {
 # load autocomplete
 _zpcompinit_custom
 
-# load antibody plugins
-source ~/.zsh_plugins.sh
+# load antidote plugins
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}; do
@@ -117,4 +118,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
