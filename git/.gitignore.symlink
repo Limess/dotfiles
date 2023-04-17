@@ -3,6 +3,7 @@
 *.swp
 .vscode/settings.json
 .vscode/snipsnap.*
+.vscode/*.log
 .calva
 .lein-env
 .lsp/*

@@ -18,3 +18,6 @@ if [[ "${IS_WSL}" -eq 1 ]]; then
     # ensure sysdtem install of libffi is used for pyenv compilation rather than homebrew version
     export LDFLAGS="-L /usr/lib/x86_64-linux-gnu"
 fi
+
+alias dvc="nocorrect dvc"
+alias gto="nocorrect gto"
