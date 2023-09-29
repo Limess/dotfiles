@@ -29,7 +29,6 @@ brew 'vault'
 
 cask 'alfred'
 cask 'docker'
-cask 'dropbox'
 cask 'firefox'
 cask 'flux'
 # Installed by signal
