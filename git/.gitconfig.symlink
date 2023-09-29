@@ -16,7 +16,7 @@
         # https://news.ycombinator.com/item?id=11388479
         untrackedCache = true
 
-	excludesfile = /home/charlie_briggs/.gitignore
+	excludesfile = ~/.gitignore
         attributesfile = ~/.gitattributes
 	autocrlf = false
 	eol = lf
