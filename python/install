@@ -12,7 +12,7 @@ fi
 
 export PATH="$(pyenv root)/libexec/pyenv:$PATH"
 # Install pipx then install shared packages via pipx
-python3 -m pip install --user  pipx
+python3 -m pip install --user pipx
 
 
 
