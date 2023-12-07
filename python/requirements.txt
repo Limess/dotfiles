@@ -1,6 +1,4 @@
-pylint
-black
-pep8
+ruff
 virtualenv
 cookiecutter
 cfn_flip

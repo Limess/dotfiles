@@ -5,6 +5,8 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
+echo $DOTFILES_ROOT
+
 set -e
 
 echo ''
@@ -126,6 +128,49 @@ link_file () {
   fi
 }
 
+# From http://stackoverflow.com/a/12498485
+function relative_path {
+  # both $1 and $2 are absolute paths beginning with /
+  # returns relative path to $2 from $1
+  local source=$1
+  local target=$2
+
+  local commonPart=$source
+  local result=""
+
+  while [[ "${target#$commonPart}" == "${target}" ]]; do
+    # no match, means that candidate common part is not correct
+    # go up one level (reduce common part)
+    commonPart="$(dirname $commonPart)"
+    # and record that we went back, with correct / handling
+    if [[ -z $result ]]; then
+      result=".."
+    else
+      result="../$result"
+    fi
+  done
+
+  if [[ $commonPart == "/" ]]; then
+    # special case for root (no common path)
+    result="$result/"
+  fi
+
+  # since we now have identified the common part,
+  # compute the non-common part
+  local forwardPart="${target#$commonPart}"
+
+  # and now stick all parts together
+  if [[ -n $result ]] && [[ -n $forwardPart ]]; then
+    result="$result$forwardPart"
+  elif [[ -n $forwardPart ]]; then
+    # extra slash removal
+    result="${forwardPart:1}"
+  fi
+
+  echo $result
+}
+export relative_path
+
 install_dotfiles () {
   info 'installing dotfiles'
 
@@ -135,7 +180,7 @@ install_dotfiles () {
   # e.g. $DOTFILES_ROOT/jvm/.sdkman/etc/config.symlink -> ~/.sdkman/etc/config.symlink
   for src in $(find -H "$DOTFILES_ROOT" -name '*.symlink' -not -path '*.git/*')
   do
-    dst="$HOME/$(realpath --relative-to="$DOTFILES_ROOT" "${src%.*}" | cut -d'/' -f2-)"
+    dst="$HOME/$(relative_path "$DOTFILES_ROOT" "${src%.*}" | cut -d'/' -f2-)"
     link_file "$src" "$dst"
   done
 }
