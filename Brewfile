@@ -1,7 +1,5 @@
 tap 'homebrew/bundle'
 
-# cross-tool version manager https://asdf-vm.com/
-brew 'asdf'
 # AWS CLI https://aws.amazon.com/cli/
 brew 'awscli@2'
 brew 'ag'
@@ -44,6 +42,8 @@ brew 'python'
 brew 'jq'
 brew 'jp2a'
 brew 'libgit2'
+# cross-tool version manager https://mise.jdx.dev
+brew 'mise'
 brew 'node'
 # Security network tool
 brew 'nmap'
