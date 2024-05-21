@@ -12,6 +12,7 @@
         d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
         reup = rebase-update # depot_tools specific
+        fpush = push --force-with-lease
 [core]
         # https://news.ycombinator.com/item?id=11388479
         untrackedCache = true

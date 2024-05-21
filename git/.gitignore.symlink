@@ -1,6 +1,7 @@
 .DS_Store
 *~
 *.swp
+.vscode/snipsnap.code-snippets
 .vscode/settings.json
 .vscode/snipsnap.*
 .vscode/*.log
@@ -9,6 +10,7 @@
 .lsp/*
 !.lsp/config.edn
 .clj-kondo/.cache
+.clj-kondo/cache
 .cpcache
 .nrepl-port
 .classpath
