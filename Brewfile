@@ -20,7 +20,7 @@ brew 'clojure'
 brew 'cue-lang/tap/cue'
 brew "doitlive"
 # better lsh
-brew 'exa'
+brew 'eza'
 brew 'findutils'
 brew 'fnm'
 # https://github.com/wagoodman/dive

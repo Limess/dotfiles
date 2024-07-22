@@ -91,6 +91,8 @@ fi
 
 eval "$(zoxide init zsh)"
 
+source <(kubectl completion zsh)
+
 # Enable to capture load time information
 # zprof
 

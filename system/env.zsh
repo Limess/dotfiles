@@ -13,7 +13,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     ulimit -n 9999
 fi
 
-alias ls=exa
+alias ls=eza
 alias cat="bat"
 alias grep=rg
 alias wrk=wrk2
