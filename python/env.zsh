@@ -1,5 +1,6 @@
 export PIPENV_VENV_IN_PROJECT=true
 export POETRY_VIRTUALENVS_IN_PROJECT=true
+export PIPX_HOME="~/.local/pipx"
 
 export PATH=$PATH:$(python3 -c "import site; print(site.USER_BASE)")/bin/
 if command -v python 1>/dev/null 2>&1; then

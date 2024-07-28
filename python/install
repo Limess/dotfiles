@@ -10,12 +10,6 @@ else
   sudo easy_install pip
 fi
 
-export PATH="$(pyenv root)/libexec/pyenv:$PATH"
-# Install pipx then install shared packages via pipx
-python3 -m pip install --user pipx
-
-
-
 pipx_install_requirements() {
   printf "\n-> Installing user Python packages with pipx...\n\n"
   PY="$(python3 --version)"
