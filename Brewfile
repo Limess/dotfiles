@@ -37,6 +37,10 @@ brew 'httpstat'
 brew "httpie"
 brew 'hub'
 brew 'imagemagick'
+# kubernetes context switching https://github.com/ahmetb/kubectx
+brew 'kubectx'
+# kubernetes management tool https://github.com/derailed/k9s
+brew 'derailed/k9s/k9s'
 brew 'python'
 # JSON utility https://stedolan.github.io/jq/
 brew 'jq'

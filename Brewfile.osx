@@ -13,7 +13,6 @@ mas 'whatsapp', id: 310633997
 mas 'xcode', id: 497799835
 mas 'yubico-authenticator', id: 1497506650
 
-brew 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
 brew 'git'
 brew 'reattach-to-user-namespace' # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
 brew 'tmux'
@@ -25,6 +24,7 @@ brew 'zsh'
 brew 'vault'
 
 cask 'alfred'
+cask 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
 cask 'docker'
 cask 'firefox'
 cask 'flux'

@@ -2,6 +2,8 @@
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
+export PIPX_HOME="~/.local/pipx"
+
 if [[ $(uname -s) == "Linux" ]]; then
   if ! dpkg -s python-setuptools &> /dev/null; then
     sudo apt-get update && sudo apt-get install -y python-setuptools python3-pip
