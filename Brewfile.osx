@@ -1,9 +1,6 @@
 cask_args "no-quarantine": true
 cask_args appdir: '/Applications'
 
-tap 'homebrew/cask'
-tap 'homebrew/cask-versions'
-
 # Start with mas (Mac App Store) and related software so we get XCode
 brew 'mas'
 
