@@ -3,7 +3,8 @@ export EDITOR='vim'
 ### Less
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
-export MANPAGER='less -X';
+# https://github.com/sharkdp/bat/issues/2219#issuecomment-1645456156
+export MANPAGER="sh -c 'sed -r \"s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g\" | bat --language man --plain'"
 
 ### Languages
 export LANG='en_US.UTF-8';
