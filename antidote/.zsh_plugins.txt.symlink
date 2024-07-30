@@ -23,4 +23,3 @@ docker/cli path:contrib/completion/zsh kind:fpath
 sindresorhus/pure branch:main
 zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
-zprof
