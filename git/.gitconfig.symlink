@@ -69,10 +69,6 @@
         pushInsteadOf = "gist:"
         pushInsteadOf = "git://gist.github.com/"
         pushInsteadOf = "https://gist.github.com/"
-[url "https://github.com"]
-	insteadOf = git://github.com
-[url "git@github.com:"]
-	insteadOf = https://github.com
 [help]
         # correct typos
         autocorrect = 1
@@ -114,12 +110,6 @@
 [include]
         # use separate file for username / github token / gpg keys etc
         path = ~/.gitconfig.local
-[credential "https://github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.13.0/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/home/linuxbrew/.linuxbrew/Cellar/gh/2.13.0/bin/gh auth git-credential
 [submodule]
 	stickyRecursiveClone = true
 [pull]

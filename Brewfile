@@ -22,7 +22,6 @@ brew "doitlive"
 # better lsh
 brew 'eza'
 brew 'findutils'
-brew 'fnm'
 # https://github.com/wagoodman/dive
 brew 'dive'
 # github CLI https://github.com/cli/cli

@@ -3,7 +3,7 @@ export PIPENV_VENV_IN_PROJECT=true
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 export POETRY_VIRTUALENVS_PREFER_ACTIVE_PYTHON=true
 
-export PIPX_HOME="~/.local/pipx"
+export PIPX_HOME="$HOME/.local/pipx"
 
 export PATH=$HOME/.poetry/bin:$HOME/.local/bin:$PATH
 
