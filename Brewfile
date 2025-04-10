@@ -1,5 +1,3 @@
-tap 'homebrew/bundle'
-
 # AWS CLI https://aws.amazon.com/cli/
 brew 'awscli@2'
 brew 'ag'
