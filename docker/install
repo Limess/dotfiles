@@ -8,40 +8,30 @@ if dpkg -s docker-ce >/dev/null; then
     exit 0
 fi
 
-# https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
-# Environment variables you need to set so you don't have to edit the script below.
-export DOCKER_CHANNEL=stable
-export DOCKER_COMPOSE_VERSION=1.26.0
 
-# Update the apt package index.
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 
-# Install packages to allow apt to use a repository over HTTPS.
-sudo apt-get install -y \
-  apt-transport-https \
-  ca-certificates \
-  wget software-properties-common
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Add Docker's official GPG key.
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo groupadd docker
+sudo usermod -aG docker $USER
 
-# Verify the fingerprint.
-sudo apt-key fingerprint 0EBFCD88
+# install docker-compose shim
+switch_version=$(curl -fsSL -o /dev/null -w "%{url_effective}" https://github.com/docker/compose-switch/releases/latest | xargs basename)
 
-# Pick the release channel.
-sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) \
-  ${DOCKER_CHANNEL}"
+sudo curl -fL -o /usr/local/bin/docker-compose \
+       "https://github.com/docker/compose-switch/releases/download/${switch_version}/docker-compose-linux-$(dpkg --print-architecture)"
 
-# Update the apt package index.
-sudo apt-get update
-
-# # Install the latest version of Docker CE.
-# sudo apt-get install -y docker-ce
-
-# # Allow your user to access the Docker CLI without needing root.
-# sudo usermod -aG docker charlie_briggs
-
-# # Install Docker Compose.
-# sudo wget https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
