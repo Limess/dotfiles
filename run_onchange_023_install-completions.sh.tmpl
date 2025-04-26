@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+COMPLETIONS_PATH="$HOME/.zsh/completions"
+
+rm -rf "$COMPLETIONS_PATH/bash"
+mkdir -p "$COMPLETIONS_PATH/bash"
+
+{{ if lookPath "kubectl" }}
+kubectl completion zsh > "$COMPLETIONS_PATH/_kubectl"
+{{ end }}
+
+{{ if lookPath "mise" }}
+mise completion zsh > "$COMPLETIONS_PATH/_mise"
+{{ end }}
+
+{{ if lookPath "chezmoi" }}
+chezmoi completion bash > "$COMPLETIONS_PATH/_chezmoi"
+{{ end }}
+
+
+curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/_dbt"

@@ -19,6 +19,8 @@ then
   source ~/.localrc
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
 _zpcompinit_custom() {
   setopt extendedglob local_options
@@ -40,15 +42,15 @@ _zpcompinit_custom() {
   fi
 }
 
-# load autocomplete
-_zpcompinit_custom
-
-# load zsh config
-source ~/.zsh/config.zsh
+# load completions
+fpath=(~/.zsh/completions $fpath)
 
 # load antidote plugins
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
+
+# load zsh config
+source ~/.zsh/config.zsh
 
 {{ if eq .chezmoi.os "darwin" -}}
 {{ if eq .chezmoi.arch "arm64" -}}
@@ -60,33 +62,44 @@ eval "$(/usr/local/bin/brew shellenv)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end }}
 
+# load autocomplete
+_zpcompinit_custom
+
+# load bash (not zsh) completions
+if [[ -d ~/.zsh/completions/bash ]]; then
+  for file in ~/.zsh/completions/bash/*(N); do
+    if [[ -f "$file" && -r "$file" ]]; then
+      source "$file"
+    fi
+  done
+fi
+
 # load aliases
 source ~/.zsh/aliases.zsh
 
-# load completions
-source ~/.zsh/load_completions.zsh
-
+{{ if eq .chezmoi.os "darwin" -}}
 # load iterm2 shell integration if iterm2 exists
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+{{ end }}
 
 __wt_osc9_9 () {
     printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
 }
 
+{{ if eq .chezmoi.os "linux" -}}
 # allow windows terminal to split panes in the same directory
 if [ -n "$WT_SESSION" ] ; then
     if ((!precmd_functions[(I)__wt_osc9_9])); then
         precmd_functions=(__wt_osc9_9 "${precmd_functions[@]}")
     fi
 fi
+{{ end }}
 
 eval "$(zoxide init zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-ulimit -n 8192
 
 eval "$($(which mise) activate zsh)"
 
