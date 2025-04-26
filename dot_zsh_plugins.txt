@@ -15,7 +15,6 @@ zsh-users/zsh-completions
 lukechilds/zsh-better-npm-completion
 ohmyzsh/ohmyzsh path:plugins/aws
 ohmyzsh/ohmyzsh path:plugins/docker-compose
-ohmyzsh/ohmyzsh path:plugins/httpie kind:fpath
 ohmyzsh/ohmyzsh path:plugins/pip
 # activates mise
 ohmyzsh/ohmyzsh path:plugins/mise
