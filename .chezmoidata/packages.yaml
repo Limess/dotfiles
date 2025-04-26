@@ -1,8 +1,7 @@
 packages:
   all:
-    crates:
-      - difftastic
-    uv:
+    crates: []
+    python:
       - ruff
       - cookiecutter
       - cfn_flip

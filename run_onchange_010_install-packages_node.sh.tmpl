@@ -1,0 +1,7 @@
+#!/bin/bash
+
+{{ if and (hasKey .packages "all") (hasKey .packages.all "npm") (gt (len .packages.all.npm) 0) }}
+
+npm install -g {{ range .packages.all.npm }}{{ . | quote }} {{ end }}
+
+{{ end }}

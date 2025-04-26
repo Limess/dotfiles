@@ -4,13 +4,11 @@ set -e
 
 # Install XCode Command Line Tools if necessary
 if [[ "$(uname -s)" == "Darwin" ]]; then
-    xcode-select --install || echo "XCode already installed"
+    xcode-select --install || true
 fi
 
 # Install Homebrew if necessary
-if command -v brew &>/dev/null; then
-    echo 'Homebrew is already installed'
-else
+if ! command -v brew &>/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     if [[ "$(uname -s)" == "Darwin" ]]; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -20,9 +18,7 @@ else
 fi
 
 # Install 1password if necessary
-if command -v op &>/dev/null; then
-    echo "1password is already installed"
-else
+if ! command -v op &>/dev/null; then
     case "$(uname -s)" in
     Darwin)
         brew install 1password-cli

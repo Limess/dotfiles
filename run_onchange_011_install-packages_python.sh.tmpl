@@ -1,0 +1,9 @@
+#!/bin/bash
+
+{{ if and (hasKey .packages "all") (hasKey .packages.all "python") (gt (len .packages.all.python) 0) }}
+
+{{ range .packages.all.python -}}
+uv tool install {{ . | quote }} --force
+{{ end -}}
+
+{{ end }}
