@@ -1,4 +1,9 @@
 #!/bin/zsh
+
+# https://github.com/mattmc3/ez-compinit
+zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
+zstyle ':plugin:ez-compinit' 'use-cache' 'yes'
+
 # forces zsh to realize new commands
 zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
 

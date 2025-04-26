@@ -1,15 +1,9 @@
-# Enable to capture load time information
-# zmodload zsh/zprof
+# run zsh-bench to capture debugging info
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 export DOTFILES="$HOME/.dotfiles"
-
-if [[ -n "$ZSH_DEBUGRC" ]]; then
-  zmodload zsh/zprof
-fi
-
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -21,27 +15,6 @@ fi
 
 export PATH="$HOME/.local/bin:$PATH"
 
-# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
-_zpcompinit_custom() {
-  setopt extendedglob local_options
-  autoload -Uz compinit
-  autoload -U +X bashcompinit && bashcompinit
-  local zcd=${ZDOTDIR:-$HOME}/.zcompdump
-  local zcdc="$zcd.zwc"
-  # Compile the completion dump to increase startup speed, if dump is newer or doesn't exist,
-  # in the background as this is doesn't affect the current session
-  if [[ -f "$zcd"(#qN.m+1) ]]; then
-    compinit -i -d "$zcd"
-    { rm -f "$zcdc" && zcompile "$zcd" } &!
-  else
-    # for now always load completions as for some reason makefile completions don't load when loading from cache on WSL
-    # FIXME: work out a better fix for this so we can use cache
-    # compinit -C -d "$zcd"
-    compinit -d "$zcd"
-    { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
-  fi
-}
-
 # load completions
 fpath=(~/.zsh/completions $fpath)
 
@@ -49,8 +22,11 @@ fpath=(~/.zsh/completions $fpath)
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-# load zsh config
+# load shell config
 source ~/.zsh/config.zsh
+
+# load zstyle
+source ~/.zsh/zstyle.zsh
 
 {{ if eq .chezmoi.os "darwin" -}}
 {{ if eq .chezmoi.arch "arm64" -}}
@@ -61,9 +37,6 @@ eval "$(/usr/local/bin/brew shellenv)"
 {{ else if eq .chezmoi.os "linux" -}}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end }}
-
-# load autocomplete
-_zpcompinit_custom
 
 # load aliases
 source ~/.zsh/aliases.zsh
@@ -101,10 +74,4 @@ if [[ -d ~/.zsh/completions/bash ]]; then
       source "$file"
     fi
   done
-fi
-
-# Enable to capture load time information
-# e.g. time ZSH_DEBUGRC=1 zsh -i -c exit
-if [[ -n "$ZSH_DEBUGRC" ]]; then
-  zprof
 fi

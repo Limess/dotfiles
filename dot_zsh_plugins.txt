@@ -1,5 +1,10 @@
 # Original source via https://github.com/caarlos0/dotfiles/blob/master/antibody/bundles.txt
 
+romkatv/zsh-bench kind:path
+olets/zsh-abbr    kind:defer
+
+mattmc3/ez-compinit
+
 # this block is in alphabetic order
 mafredri/zsh-async
 zsh-users/zsh-completions
