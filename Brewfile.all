@@ -1,3 +1,7 @@
+tap 'signal-ai/signal-tap', "git@github.com:signal-ai/homebrew-signal-tap.git"
+
+brew 'signal-ai/signal-tap/signal-cli'
+
 # AWS CLI https://aws.amazon.com/cli/
 brew 'awscli@2'
 brew 'ag'
@@ -10,6 +14,8 @@ brew 'diff-so-fancy'
 brew 'borkdude/brew/babashka'
 # clojure linter https://github.com/clj-kondo/clj-kondo
 brew 'borkdude/brew/clj-kondo'
+# graphical process manager
+brew 'bottom'
 # secrets manager using SSM https://github.com/segmentio/chamber
 brew 'chamber'
 brew 'coreutils'
@@ -17,6 +23,7 @@ brew 'clojure'
 # https://cuelang.org/
 brew 'cue-lang/tap/cue'
 brew "doitlive"
+brew 'common-fate/granted/granted'
 # better lsh
 brew 'eza'
 brew 'findutils'
@@ -30,7 +37,6 @@ brew 'gnu-sed'
 brew 'gnupg'
 brew 'hadolint'
 brew 'httpstat'
-brew "httpie"
 brew 'hub'
 brew 'imagemagick'
 # kubernetes context switching https://github.com/ahmetb/kubectx
@@ -62,5 +68,9 @@ brew 'vim'
 brew 'wget'
 brew 'yarn'
 brew 'zopfli'
+# like httpie https://github.com/ducaale/xh
+brew 'xh'
+# kubernetes logs
+brew 'stern'
 # better cd
 brew 'zoxide'

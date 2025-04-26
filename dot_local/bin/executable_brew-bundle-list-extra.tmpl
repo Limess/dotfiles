@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# lists things which aren't in the brewfile
+
+brew bundle cleanup --file=/dev/stdin <<EOF
+
+{{ include "Brewfile.all" }}
+
+{{ if eq .chezmoi.os "darwin" -}}
+{{ include "Brewfile.osx" }}
+{{ end }}
+
+EOF

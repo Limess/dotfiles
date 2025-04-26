@@ -33,4 +33,8 @@ fi
 EOF
 {{ end }}
 
+{{ if lookPath "op" }}
+op completion zsh > "$COMPLETIONS_PATH/zsh/_op"
+{{ end }}
+
 curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/zsh/_dbt"
