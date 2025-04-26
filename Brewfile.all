@@ -26,6 +26,7 @@ brew "doitlive"
 brew 'common-fate/granted/granted'
 # better lsh
 brew 'eza'
+brew 'fzf'
 brew 'findutils'
 # https://github.com/wagoodman/dive
 brew 'dive'

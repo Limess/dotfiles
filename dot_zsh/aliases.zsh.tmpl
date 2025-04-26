@@ -27,6 +27,7 @@ alias gto="nocorrect gto"
 alias dot='chezmoi apply'
 alias cz=chezmoi
 
+# 1password
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 op_exe_path="$(wslpath "$(wslvar USERPROFILE)")/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
@@ -35,3 +36,4 @@ if test -f "$op_exe_path"; then
 fi
 {{ end }}
 {{ end }}
+alias op-signin='eval $(op signin)'

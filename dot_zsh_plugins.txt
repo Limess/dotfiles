@@ -9,7 +9,7 @@ mattmc3/ez-compinit
 mafredri/zsh-async
 zsh-users/zsh-completions
 # Fish style autosuggestions
-# zsh-users/zsh-autosuggestions
+zsh-users/zsh-autosuggestions
 
 # additional completions
 lukechilds/zsh-better-npm-completion
