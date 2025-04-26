@@ -6,3 +6,5 @@ run_*.sh
 
 wsl_config
 .clj-kondo
+
+Brewfile*

@@ -1,7 +1,3 @@
-#!/usr/bin/env bash
-{{- if eq .chezmoi.os "darwin" -}}
-
-brew bundle --file=/dev/stdin <<EOF
 cask_args "no-quarantine": true
 cask_args appdir: '/Applications'
 
@@ -50,10 +46,4 @@ cask 'tableplus'
 cask 'visual-studio-code'
 cask 'vlc'
 
-cask 'temurin'
 brew 'boot-clj'
-brew 'leiningen'
-brew 'maven'
-
-EOF
-{{ end -}}

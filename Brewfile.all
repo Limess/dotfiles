@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-
-brew bundle --file=/dev/stdin <<EOF
 # AWS CLI https://aws.amazon.com/cli/
 brew 'awscli@2'
 brew 'ag'
@@ -30,7 +27,6 @@ brew 'gh'
 # source control
 brew 'git'
 brew 'gnu-sed'
-brew 'go'
 brew 'gnupg'
 brew 'hadolint'
 brew 'httpstat'
@@ -48,12 +44,9 @@ brew 'jp2a'
 brew 'libgit2'
 # cross-tool version manager https://mise.jdx.dev
 brew 'mise'
-brew 'node'
 # Security network tool
 brew 'nmap'
 brew "pgcli"
-brew 'pyenv'
-brew 'pyenv-virtualenv'
 brew 'readline'
 # better grep (https://github.com/BurntSushi/ripgrep)
 brew 'ripgrep'
@@ -71,5 +64,3 @@ brew 'yarn'
 brew 'zopfli'
 # better cd
 brew 'zoxide'
-
-EOF

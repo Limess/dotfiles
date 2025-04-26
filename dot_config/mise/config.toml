@@ -1,11 +1,17 @@
 [tools]
+# view https://github.com/jdx/mise/blob/main/registry.toml
+
 node = 'lts'
 python = '3.12'
 rust = 'stable'
 go = 'latest'
-"go:github.com/mitranim/gow" = "latest"
 terraform = 'latest'
+terragrunt = 'latest'
 terraform-docs = 'latest'
+tflint = 'latest'
+maven = '3.9.9'
+leiningen = '2.11.2'
+java = '21'
 
 [settings]
 # plugins can read the versions files used by other version managers (if enabled by the plugin)

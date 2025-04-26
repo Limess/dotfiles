@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+brew bundle --file=/dev/stdin <<EOF
+
+{{ include "Brewfile.all" }}
+
+{{ if eq .chezmoi.os "darwin" -}}
+{{ include "Brewfile.osx" }}
+{{ end }}
+
+EOF
