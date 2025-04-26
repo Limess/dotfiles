@@ -14,3 +14,5 @@
 [scriptEnv]
     GITHUB_USERNAME = {{ onepasswordRead "op://personal/GITHUB_TOKEN/username" | quote }}
     GITHUB_TOKEN = {{ onepasswordRead "op://personal/GITHUB_TOKEN/password" | quote }}
+[diff]
+    pager = "diff-so-fancy"

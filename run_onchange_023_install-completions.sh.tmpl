@@ -6,16 +6,16 @@ rm -rf "$COMPLETIONS_PATH"
 mkdir -p "$COMPLETIONS_PATH/zsh"
 mkdir -p "$COMPLETIONS_PATH/bash"
 
-{{ if lookPath "kubectl" }}
+{{- if lookPath "kubectl" }}
 kubectl completion zsh > "$COMPLETIONS_PATH/zsh/_kubectl"
 {{ end }}
 
-{{ if lookPath "chezmoi" }}
+{{- if lookPath "chezmoi" }}
 chezmoi completion zsh > "$COMPLETIONS_PATH/zsh/_chezmoi"
 {{ end }}
 
 
-{{ if lookPath "terraform" }}
+{{- if lookPath "terraform" }}
 cat > ~/.zsh/completions/bash/terraform.bash << 'EOF'
 # Terraform bash completion
 if command -v terraform >/dev/null 2>&1; then
@@ -24,7 +24,7 @@ fi
 EOF
 {{ end }}
 
-{{ if lookPath "terragrunt" }}
+{{- if lookPath "terragrunt" }}
 cat > ~/.zsh/completions/bash/terragrunt.bash << 'EOF'
 # terragrunt bash completion
 if command -v terragrunt >/dev/null 2>&1; then
@@ -33,10 +33,14 @@ fi
 EOF
 {{ end }}
 
-{{ if lookPath "op" }}
+{{- if lookPath "op" }}
 cat > ~/.zsh/completions/bash/op.bash << 'EOF'
  eval "$(op completion zsh)"; compdef _op op
 EOF
+{{ end }}
+
+{{- if lookPath "xh" }}
+xh --generate complete-zsh > "$COMPLETIONS_PATH/zsh/_xh"
 {{ end }}
 
 curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/zsh/_dbt"
