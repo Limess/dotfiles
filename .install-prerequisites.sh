@@ -22,7 +22,6 @@ if ! command -v op &>/dev/null; then
     case "$(uname -s)" in
     Darwin)
         brew install 1password-cli
-        eval $(op signin --account "EI6GPO6VNJAVLGDDID3B75JI6E")
         ;;
     Linux)
         curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
