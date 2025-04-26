@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+git symbolic-ref refs/remotes/origin/HEAD >/dev/null || git remote set-head origin -a > /dev/null
+
+main_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+branches_to_die=$(git branch --no-color --merged origin/$main_branch | grep -v "^[\* ] $main_branch")
+
+if [ -z "$branches_to_die" ]; then
+	echo "No branches to be deleted"
+	exit 0
+fi
+
+echo "Branches to be deleted:"
+echo $branches_to_die
+
+echo ""
+echo "Enter Y|y to confirm"
+read -p "> " confirm
+
+
+kill_branches(){
+	echo $branches_to_die | xargs -n 1 git branch -d
+}
+
+confirm_lower="$(echo "$confirm" | tr '[:upper:]' '[:lower:]')"
+
+[[ $confirm_lower == "y"  ]] && kill_branches

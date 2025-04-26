@@ -1,5 +1,0 @@
-. "$HOME/.cargo/env"
-
-fpath=(/home/charlie_briggs/.granted/zsh_autocomplete/assume/ $fpath)
-
-fpath=(/home/charlie_briggs/.granted/zsh_autocomplete/granted/ $fpath)

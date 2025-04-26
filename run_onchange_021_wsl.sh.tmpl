@@ -1,0 +1,9 @@
+#!/bin/bash
+
+{{ if (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
+if ! sudo test -f /etc/wsl.conf || ! sudo cmp -s {{ .chezmoi.sourceDir }}/wsl_config/wsl.conf /etc/wsl.conf; then
+    echo "Updating /etc/wsl.conf (sudo password may be required)..."
+    sudo cp {{ .chezmoi.sourceDir }}/wsl_config/wsl.conf /etc/wsl.conf
+    echo "Remember to restart your WSL instance for changes to take effect"
+fi
+{{ end }}

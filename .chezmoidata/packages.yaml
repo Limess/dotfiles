@@ -1,0 +1,14 @@
+packages:
+  all:
+    crates:
+      - difftastic
+    uv:
+      - ruff
+      - cookiecutter
+      - cfn_flip
+      - psutil
+      - glances
+    npm:
+      - gzip-size-cli
+      - pretty-bytes-cli
+      - wsl-open

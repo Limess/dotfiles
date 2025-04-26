@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# dot_zsh_plugins.txt hash: {{ include "dot_zsh_plugins.txt" | sha256sum }}
+
+if [ ! -d ${ZDOTDIR:-~}/.antidote ]; then
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+else
+    git -C ${ZDOTDIR:-~}/.antidote pull --depth=1
+fi
+
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote bundle <"~/.zsh_plugins.txt" >~/.zsh_plugins.zsh

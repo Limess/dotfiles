@@ -1,0 +1,59 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --file=/dev/stdin <<EOF
+cask_args "no-quarantine": true
+cask_args appdir: '/Applications'
+
+# Start with mas (Mac App Store) and related software so we get XCode
+brew 'mas'
+
+mas '1password', id: 1333542190
+mas 'dato', id: 1470584107
+mas 'jiffy', id: 1502527999
+mas 'magnet', id: 441258766
+mas 'slack', id: 803453959
+mas 'whatsapp', id: 310633997
+mas 'xcode', id: 497799835
+mas 'yubico-authenticator', id: 1497506650
+
+brew 'git'
+brew 'reattach-to-user-namespace' # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+brew 'tmux'
+brew 'bash'
+brew 'pinentry-mac'
+# driver for postgres for use with MySQL Workbench
+brew 'psqlODBC'
+brew 'zsh'
+brew 'vault'
+
+cask 'alfred'
+cask 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
+cask 'docker'
+cask 'firefox'
+cask 'flux'
+# Installed by signal
+# cask 'google-chrome'
+# hyperdock seems to be broken
+# cask 'hyperdock'
+cask 'iterm2'
+cask 'kap'
+cask 'jetbrains-toolbox'
+# cask 'minikube'
+cask 'private-internet-access'
+# cask 'podman'
+cask 'raycast'
+cask 'sensiblesidebuttons'
+cask 'sublime-text'
+cask 'spotify'
+cask 'tableplus'
+cask 'visual-studio-code'
+cask 'vlc'
+
+cask 'temurin'
+brew 'boot-clj'
+brew 'leiningen'
+brew 'maven'
+
+EOF
+{{ end -}}

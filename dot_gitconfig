@@ -1,0 +1,116 @@
+[alias]
+        c = commit -am
+        up = pull
+        p = push
+        s = status -s
+        sclone = clone --depth=1
+        co = checkout
+        df = diff --color --color-words --abbrev
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+        # Show the diff between the latest commit and the current state
+        d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+        reup = rebase-update # depot_tools specific
+        fpush = push --force-with-lease
+[core]
+        # https://news.ycombinator.com/item?id=11388479
+        untrackedCache = true
+
+	excludesfile = /Users/charlie.briggs/.gitignore
+        attributesfile = ~/.gitattributes
+	autocrlf = false
+	eol = lf
+[pager]
+        # use diff-so-fancy for pretty-diffs
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = "diff-so-fancy"
+[color]
+        ui = always
+[color "diff"]
+        meta = yellow bold
+        commit = green bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+        whitespace = red reverse
+[color "diff-highlight"]
+        oldNormal = red bold
+        oldHighlight = "red bold 52"
+        newNormal = "green bold"
+        newHighlight = "green bold 22"
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+[color "status"]
+        added = green
+        changed = yellow
+        untracked = cyan
+[diff]
+	colorMoved = dimmed-zebra
+	external = difft
+[merge]
+        # git mergetool
+	# tool = opendiff
+        # present 3 way conflict editor
+	# conflictstyle = diff3
+# rewrites of repo paths
+[url "git@github.com:"]
+        insteadOf = "gh:"
+        insteadOf = "git://github.com"
+        pushInsteadOf = "github:"
+        pushInsteadOf = "git://github.com/"
+        pushInsteadOf = "https://github.com/"
+[url "git@gist.github.com:"]
+        insteadOf = "gst:"
+        pushInsteadOf = "gist:"
+        pushInsteadOf = "git://gist.github.com/"
+        pushInsteadOf = "https://gist.github.com/"
+[help]
+        # correct typos
+        autocorrect = 1
+[fetch]
+	prune = true
+[push]
+       # push easily. http://stackoverflow.com/a/23918418/89484
+        default = current
+[branch]
+        # when a new branch is created, setup git pull to rebase rather than merge
+        autosetuprebase = always
+[rebase]
+        # squash fixup commits automatically when rebasing interactively
+	autosquash = true
+[status]
+        # show all untracked files rather than just the directory containing them
+        showUntrackedFiles = all
+[tag]
+        # Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+        sort = version:refname
+[versionsort]
+        prereleaseSuffix = -pre
+        prereleaseSuffix = .pre
+        prereleaseSuffix = -beta
+        prereleaseSuffix = .beta
+        prereleaseSuffix = -rc
+        prereleaseSuffix = .rc
+[init]
+	defaultBranch = main
+        # templatedir = ~/.git_template
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+        required = true
+	process = git-lfs filter-process
+[http]
+[credential]
+	helper = store
+[include]
+        # use separate file for username / github token / gpg keys etc
+        path = ~/.gitconfig.local
+[submodule]
+	stickyRecursiveClone = true
+[pull]
+	rebase = true

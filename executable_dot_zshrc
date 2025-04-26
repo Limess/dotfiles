@@ -1,0 +1,87 @@
+# Enable to capture load time information
+# zmodload zsh/zprof
+
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+
+export DOTFILES="$HOME/.dotfiles"
+
+if [[ -n "$ZSH_DEBUGRC" ]]; then
+  zmodload zsh/zprof
+fi
+
+
+# Stash your environment variables in ~/.localrc. This means they'll stay out
+# of your main dotfiles repository (which may be public, like this one), but
+# you'll have access to them in your scripts.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2894219
+_zpcompinit_custom() {
+  setopt extendedglob local_options
+  autoload -Uz compinit
+  autoload -U +X bashcompinit && bashcompinit
+  local zcd=${ZDOTDIR:-$HOME}/.zcompdump
+  local zcdc="$zcd.zwc"
+  # Compile the completion dump to increase startup speed, if dump is newer or doesn't exist,
+  # in the background as this is doesn't affect the current session
+  if [[ -f "$zcd"(#qN.m+1) ]]; then
+    compinit -i -d "$zcd"
+    { rm -f "$zcdc" && zcompile "$zcd" } &!
+  else
+    # for now always load completions as for some reason makefile completions don't load when loading from cache on WSL
+    # FIXME: work out a better fix for this so we can use cache
+    # compinit -C -d "$zcd"
+    compinit -d "$zcd"
+    { [[ ! -f "$zcdc" || "$zcd" -nt "$zcdc" ]] && rm -f "$zcdc" && zcompile "$zcd" } &!
+  fi
+}
+
+# load autocomplete
+_zpcompinit_custom
+
+# load zsh config
+source ~/.zsh/config.zsh
+
+# load antidote plugins
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
+
+# load aliases
+source ~/.zsh/aliases.zsh
+
+# load completions
+source ~/.zsh/load_completions.zsh
+
+# load iterm2 shell integration if iterm2 exists
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+__wt_osc9_9 () {
+    printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+
+# allow windows terminal to split panes in the same directory
+if [ -n "$WT_SESSION" ] ; then
+    if ((!precmd_functions[(I)__wt_osc9_9])); then
+        precmd_functions=(__wt_osc9_9 "${precmd_functions[@]}")
+    fi
+fi
+
+eval "$(zoxide init zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+ulimit -n 8192
+
+eval "$($(which mise) activate zsh)"
+
+# Enable to capture load time information
+# e.g. time ZSH_DEBUGRC=1 zsh -i -c exit
+if [[ -n "$ZSH_DEBUGRC" ]]; then
+  zprof
+fi
