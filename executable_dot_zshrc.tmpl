@@ -58,7 +58,7 @@ eval "$(/usr/local/bin/brew shellenv)"
 {{ end -}}
 {{ else if eq .chezmoi.os "linux" -}}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{ end -}}
+{{ end }}
 
 # load aliases
 source ~/.zsh/aliases.zsh
