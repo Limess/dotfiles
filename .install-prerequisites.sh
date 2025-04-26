@@ -8,19 +8,19 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 fi
 
 # Install Homebrew if necessary
-if which -s brew; then
+if command -v brew &>/dev/null; then
     echo 'Homebrew is already installed'
 else
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    (
-        echo
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
-    ) >>$HOME/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ "$(uname -s)" == "Linux" ]]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
 fi
 
 # Install 1password if necessary
-if type op >/dev/null 2>&1; then
+if command -v op &>/dev/null; then
     echo "1password is already installed"
 else
     case "$(uname -s)" in
