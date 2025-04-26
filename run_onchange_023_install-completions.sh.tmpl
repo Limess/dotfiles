@@ -27,4 +27,13 @@ fi
 EOF
 {{ end }}
 
+{{ if lookPath "terragrunt" }}
+cat > ~/.zsh/completions/bash/terragrunt.bash << 'EOF'
+# terragrunt bash completion
+if command -v terragrunt >/dev/null 2>&1; then
+  complete -C "$(which terragrunt)" terragrunt
+fi
+EOF
+{{ end }}
+
 curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/_dbt"
