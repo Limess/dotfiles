@@ -14,8 +14,17 @@ mise completion zsh > "$COMPLETIONS_PATH/_mise"
 {{ end }}
 
 {{ if lookPath "chezmoi" }}
-chezmoi completion bash > "$COMPLETIONS_PATH/_chezmoi"
+chezmoi completion zsh > "$COMPLETIONS_PATH/_chezmoi"
 {{ end }}
 
+
+{{ if lookPath "terraform" }}
+cat > ~/.zsh/completions/bash/terraform.bash << 'EOF'
+# Terraform bash completion
+if command -v terraform >/dev/null 2>&1; then
+  complete -C "$(which terraform)" terraform
+fi
+EOF
+{{ end }}
 
 curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/_dbt"

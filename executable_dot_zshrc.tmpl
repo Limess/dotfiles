@@ -65,15 +65,6 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # load autocomplete
 _zpcompinit_custom
 
-# load bash (not zsh) completions
-if [[ -d ~/.zsh/completions/bash ]]; then
-  for file in ~/.zsh/completions/bash/*(N); do
-    if [[ -f "$file" && -r "$file" ]]; then
-      source "$file"
-    fi
-  done
-fi
-
 # load aliases
 source ~/.zsh/aliases.zsh
 
@@ -102,6 +93,15 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 eval "$($(which mise) activate zsh)"
+
+# load bash (not zsh) completions
+if [[ -d ~/.zsh/completions/bash ]]; then
+  for file in ~/.zsh/completions/bash/*(N); do
+    if [[ -f "$file" && -r "$file" ]]; then
+      source "$file"
+    fi
+  done
+fi
 
 # Enable to capture load time information
 # e.g. time ZSH_DEBUGRC=1 zsh -i -c exit
