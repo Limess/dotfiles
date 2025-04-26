@@ -29,6 +29,7 @@ dbt-labs/dbt-completion.bash kind:fpath
 docker/cli path:contrib/completion/zsh kind:fpath
 
 # these should be at last!
-sindresorhus/pure branch:main
+# disable pure for now to try starship
+# sindresorhus/pure branch:main
 zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search

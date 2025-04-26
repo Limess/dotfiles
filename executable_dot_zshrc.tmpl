@@ -46,11 +46,11 @@ source ~/.zsh/aliases.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 {{ end }}
 
+{{ if eq .chezmoi.os "linux" -}}
 __wt_osc9_9 () {
     printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
 }
 
-{{ if eq .chezmoi.os "linux" -}}
 # allow windows terminal to split panes in the same directory
 if [ -n "$WT_SESSION" ] ; then
     if ((!precmd_functions[(I)__wt_osc9_9])); then
@@ -58,12 +58,6 @@ if [ -n "$WT_SESSION" ] ; then
     fi
 fi
 {{ end }}
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-eval "$($(which mise) activate zsh)"
 
 # load bash (not zsh) completions
 if [[ -d ~/.zsh/completions/bash ]]; then
@@ -73,3 +67,5 @@ if [[ -d ~/.zsh/completions/bash ]]; then
     fi
   done
 fi
+
+eval "$(starship init zsh)"
