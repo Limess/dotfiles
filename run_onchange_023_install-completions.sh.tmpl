@@ -2,19 +2,16 @@
 
 COMPLETIONS_PATH="$HOME/.zsh/completions"
 
-rm -rf "$COMPLETIONS_PATH/bash"
+rm -rf "$COMPLETIONS_PATH"
+mkdir -p "$COMPLETIONS_PATH/zsh"
 mkdir -p "$COMPLETIONS_PATH/bash"
 
 {{ if lookPath "kubectl" }}
-kubectl completion zsh > "$COMPLETIONS_PATH/_kubectl"
-{{ end }}
-
-{{ if lookPath "mise" }}
-mise completion zsh > "$COMPLETIONS_PATH/_mise"
+kubectl completion zsh > "$COMPLETIONS_PATH/zsh/_kubectl"
 {{ end }}
 
 {{ if lookPath "chezmoi" }}
-chezmoi completion zsh > "$COMPLETIONS_PATH/_chezmoi"
+chezmoi completion zsh > "$COMPLETIONS_PATH/zsh/_chezmoi"
 {{ end }}
 
 
@@ -36,4 +33,4 @@ fi
 EOF
 {{ end }}
 
-curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/_dbt"
+curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/zsh/_dbt"

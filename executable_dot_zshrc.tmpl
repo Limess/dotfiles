@@ -16,11 +16,7 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # load completions
-fpath=(~/.zsh/completions $fpath)
-
-# load antidote plugins
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load
+fpath=(~/.zsh/completions/zsh $fpath)
 
 # load shell config
 source ~/.zsh/config.zsh
@@ -37,6 +33,10 @@ eval "$(/usr/local/bin/brew shellenv)"
 {{ else if eq .chezmoi.os "linux" -}}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{ end }}
+
+# load antidote plugins. Some of these require executables to be on the path so must be after brew
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
 
 # load aliases
 source ~/.zsh/aliases.zsh
@@ -58,8 +58,6 @@ if [ -n "$WT_SESSION" ] ; then
     fi
 fi
 {{ end }}
-
-eval "$(zoxide init zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
