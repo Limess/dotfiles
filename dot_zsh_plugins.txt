@@ -25,7 +25,6 @@ ohmyzsh/ohmyzsh path:plugins/yarn
 # activates zoxide
 ohmyzsh/ohmyzsh path:plugins/zoxide
 zchee/zsh-completions path:src/go branch:main
-dbt-labs/dbt-completion.bash kind:fpath
 docker/cli path:contrib/completion/zsh kind:fpath
 
 # these should be at last!
