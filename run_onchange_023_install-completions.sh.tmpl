@@ -34,7 +34,9 @@ EOF
 {{ end }}
 
 {{ if lookPath "op" }}
-op completion zsh > "$COMPLETIONS_PATH/zsh/_op"
+cat > ~/.zsh/completions/bash/op.bash << 'EOF'
+ eval "$(op completion zsh)"; compdef _op op
+EOF
 {{ end }}
 
 curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/zsh/_dbt"
