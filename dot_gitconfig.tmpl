@@ -13,11 +13,18 @@
 
         reup = rebase-update # depot_tools specific
         fpush = push --force-with-lease
+[user]
+    email = "{{ .email }}"
+    name = "{{ .name }}"
+[credential]
+        helper = cache
+[core]
+        excludesfile = ~/.gitignore                                                                                                                                                                                                                ~                                                                                                                                                                                                                                                             ~                                                                                                                                                                                                                                                             ~
 [core]
         # https://news.ycombinator.com/item?id=11388479
         untrackedCache = true
 
-	excludesfile = /Users/charlie.briggs/.gitignore
+	excludesfile = ~/.gitignore
         attributesfile = ~/.gitattributes
 	autocrlf = false
 	eol = lf
@@ -107,9 +114,6 @@
 [http]
 [credential]
 	helper = store
-[include]
-        # use separate file for username / github token / gpg keys etc
-        path = ~/.gitconfig.local
 [submodule]
 	stickyRecursiveClone = true
 [pull]

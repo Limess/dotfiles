@@ -1,7 +1,13 @@
+{{ $email := promptStringOnce . "email" "What is your email address" -}}
+
 [data]
     name = "Charlie Briggs"
+    email = {{ $email | quote }}
 [edit]
     command = "code"
     args = ["--wait"]
 [hooks.read-source-state.pre]
     command = ".local/share/chezmoi/.install-prerequisites.sh"
+[git]
+    autoCommit = true
+    autoPush = true
