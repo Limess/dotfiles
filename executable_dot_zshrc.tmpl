@@ -48,8 +48,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-# load aliases
+# load aliases & env
 source ~/.zsh/aliases.zsh
+source ~/.zsh/env.zsh
 
 {{ if eq .chezmoi.os "darwin" -}}
 # load iterm2 shell integration if iterm2 exists
@@ -77,10 +78,5 @@ if [[ -d ~/.zsh/completions/bash ]]; then
     fi
   done
 fi
-
-# fzf
-export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
-export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-source <(fzf --zsh)
 
 eval "$(starship init zsh)"
