@@ -13,3 +13,9 @@
     autoPush = true
 [diff]
     pager = "diff-so-fancy"
+[onepassword]
+    {{ if (eq .chezmoi.os "linux") }}
+    {{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+    command = "{{ output "wslpath" (output "wslvar" "USERPROFILE" | trim) | trim }}/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
+    {{ end }}
+    {{ end }}
