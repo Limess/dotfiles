@@ -48,17 +48,20 @@ source ~/.zsh/env.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 {{ end }}
 
-{{ if eq .chezmoi.os "linux" -}}
-__wt_osc9_9 () {
-    printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
-}
 
-# allow windows terminal to split panes in the same directory
-if [ -n "$WT_SESSION" ] ; then
-    if ((!precmd_functions[(I)__wt_osc9_9])); then
-        precmd_functions=(__wt_osc9_9 "${precmd_functions[@]}")
-    fi
-fi
+{{ if eq .chezmoi.os "linux" }}
+{{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+
+# perl spits out locale warnings on WSL2 for some reason
+export PERL_BADLANG=0;
+
+# new tab same dir in windows terminal https://learn.microsoft.com/en-us/windows/terminal/tutorials/new-tab-same-directory#zsh
+keep_current_path() {
+  printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+precmd_functions+=(keep_current_path)
+
+{{ end }}
 {{ end }}
 
 # load bash (not zsh) completions
