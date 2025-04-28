@@ -2,7 +2,7 @@
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 echo "Detected WSL, Installing linux packages"
-echo "Installing packages"
+echo "Installing packages (requires sudo)"
 sudo apt-get update
 sudo apt-get install -y apt-transport-https
 sudo apt-get update

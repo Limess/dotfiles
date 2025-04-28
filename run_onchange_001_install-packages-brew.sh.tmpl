@@ -2,6 +2,7 @@
 
 export GITHUB_USERNAME={{ onepasswordRead "op://personal/GITHUB_TOKEN/username" | quote }}
 export GITHUB_TOKEN={{ onepasswordRead "op://personal/GITHUB_TOKEN/password" | quote }}
+export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 
 brew bundle --file=/dev/stdin <<EOF
 
@@ -12,3 +13,5 @@ brew bundle --file=/dev/stdin <<EOF
 {{ end }}
 
 EOF
+
+brew upgrade

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# Run updates
+
+echo "Updating chezmoi"
+chezmoi update
+echo "Upgrading chezmoi"
+chezmoi upgrade
+
+echo "Re-applying chezmoi"
+chezmoi state delete-bucket --bucket=scriptState
+chezmoi apply
+
+echo "Done!"
