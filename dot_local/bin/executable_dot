@@ -8,7 +8,7 @@ echo "Upgrading chezmoi"
 chezmoi upgrade
 
 echo "Re-applying chezmoi"
-chezmoi state delete-bucket --bucket=scriptState
+chezmoi state delete-bucket --bucket=entryState
 chezmoi apply
 
 echo "Done!"
