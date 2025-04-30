@@ -1,10 +1,4 @@
 README.md
-.git
-.gitignore
 run_*.sh
-.editorconfig
-
 wsl_config
-.clj-kondo
-
 Brewfile*
