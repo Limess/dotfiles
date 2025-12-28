@@ -5,7 +5,6 @@ cask_args appdir: '/Applications'
 brew 'mas'
 
 mas 'dato', id: 1470584107
-mas 'jiffy', id: 1502527999
 mas 'magnet', id: 441258766
 mas 'slack', id: 803453959
 mas 'whatsapp', id: 310633997
@@ -24,9 +23,9 @@ brew 'vault'
 
 cask 'alfred'
 cask 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
-cask 'docker'
+cask 'docker-desktop'
 cask 'firefox'
-cask 'flux'
+cask 'flux-app'
 # Installed by signal
 # cask 'google-chrome'
 # hyperdock seems to be broken
