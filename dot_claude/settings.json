@@ -1,6 +1,10 @@
 {
-  "model": "opus",
-   "hooks": {
+  "model": "haiku",
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/charlie.briggs/.claude/hooks/statusline.sh"
+  },
+  "hooks": {
     "Notification": [
       {
         "matcher": "",
