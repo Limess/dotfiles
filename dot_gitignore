@@ -20,3 +20,6 @@
 **/.bloop/*.json
 **/metals.sbt
 *~
+.serena/cache
+.serena/memories
+.claude/settings.local.json
