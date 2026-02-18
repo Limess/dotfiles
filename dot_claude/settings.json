@@ -1,5 +1,5 @@
 {
-  "model": "haiku",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "/Users/charlie.briggs/.claude/hooks/statusline.sh"
