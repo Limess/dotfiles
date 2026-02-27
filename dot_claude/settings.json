@@ -14,7 +14,7 @@
       "mcp__serena__edit_memory"
     ]
   },
-  "model": "opus",
+  "model": "sonnet",
   "hooks": {
     "Notification": [
       {
@@ -33,6 +33,6 @@
     "command": "$HOME/.claude/hooks/statusline.sh"
   },
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": false
   }
 }
