@@ -36,7 +36,8 @@
       "Bash(du *)",
       "Bash(df *)",
       "Bash(date *)",
-      "Bash(uname *)"
+      "Bash(uname *)",
+      "Bash(aws sts get-caller-identity*)"
     ],
     "deny": [
       "Read(./**/.env*)",
