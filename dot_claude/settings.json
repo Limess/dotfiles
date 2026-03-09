@@ -1,4 +1,8 @@
 {
+  "env": {
+    "NO_COLOR": "1",
+    "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true"
+  },
   "permissions": {
     "allow": [
       "mcp__serena__*",
@@ -22,6 +26,10 @@
       "Bash(git -C * blame *)",
       "Bash(git shortlog *)",
       "Bash(git -C * shortlog *)",
+      "Bash(git checkout *)",
+      "Bash(git -C checkout *)",
+      "Bash(git add *)",
+      "Bash(git -C add *)",
       "Bash(ls *)",
       "Bash(pwd)",
       "Bash(wc *)",
@@ -66,10 +74,6 @@
       "mcp__serena__edit_memory"
     ]
   },
-  "env": {
-    "NO_COLOR": "1",
-    "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true"
-  },
   "model": "opus",
   "hooks": {
     "Notification": [
@@ -92,5 +96,6 @@
     "superpowers@claude-plugins-official": false,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true
-  }
+  },
+  "voiceEnabled": true
 }
