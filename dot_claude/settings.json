@@ -30,6 +30,8 @@
       "Bash(git -C checkout *)",
       "Bash(git add *)",
       "Bash(git -C add *)",
+      "Bash(git pull *)",
+      "Bash(git -C pull *)",
       "Bash(ls *)",
       "Bash(pwd)",
       "Bash(wc *)",
