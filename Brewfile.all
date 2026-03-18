@@ -59,6 +59,8 @@ brew 'readline'
 # better grep (https://github.com/BurntSushi/ripgrep)
 brew 'ripgrep'
 brew 'roundup'
+# LLM CLI proxy https://github.com/rtk-ai/rtk
+brew 'rtk'
 brew 'stunnel'
 brew 'shellcheck'
 # shell prompt https://starship.rs
