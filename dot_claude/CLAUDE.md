@@ -6,3 +6,5 @@
 
 ## Git
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
+
+@RTK.md
