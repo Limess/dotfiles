@@ -110,4 +110,41 @@ token_count_estimator: CHAR_COUNT
 
 # the list of registered project paths (updated automatically).
 projects:
-- /Users/charlie.briggs/projects/signal/news-ingestor
+- /home/charlie_briggs/projects/data-platform-components-clojure
+- /home/charlie_briggs/projects/data-platform-components-clojure/components/worker
+- /home/charlie_briggs/projects/signal/chunked-document-updater
+- /home/charlie_briggs/projects/signal/data-platform-components-python
+- /home/charlie_briggs/projects/signal/document-translation
+- /home/charlie_briggs/projects/signal/gateway-batcher
+- /home/charlie_briggs/projects/signal/news-ingestor
+- /home/charlie_briggs/projects/signal/sources-ui
+- /home/charlie_briggs/projects/sources-search-api
+
+# time budget (seconds) per tool call for the retrieval of additional symbol information
+# such as docstrings or parameter information.
+# (currently only used by LSP-based tools).
+# If the budget is exceeded, Serena stops issuing further retrieval requests
+# and returns partial info results.
+# 0 disables the budget (no early stopping). Negative values are invalid.
+# This is an advanced setting that can help alleviate problems with LSP servers
+# that have a slow implementation of request_hover (clangd is one of those)
+# or with tool calls that find very many symbols.
+# Can be overridden in project.yml.
+symbol_info_budget: 10.0
+
+# whether global memories (the "global" topic) are allowed to be deleted or edited by the agent.
+# Global memories are stored in ~/.serena/memories/global/ and shared across all projects.
+# Set to false to protect global memories from accidental modification by agents.
+# Note: We recommend tracking global memories with git.
+project_serena_folder_location: $projectDir/.serena
+
+# list of regex patterns which, when matched, mark a memory entry as read‑only.
+# For example, "global/.*" will mark all global memories as read-only.
+# You can extend the list on a per-project basis in the project.yml configuration file.
+read_only_memory_patterns: []
+
+# line ending convention to use when writing source files.
+# Possible values: "lf" (Unix), "crlf" (Windows), "native" (platform default).
+# Note that Serena's own files (e.g. memories and configuration files) always use native line endings.
+# This setting can be overridden on a per-project basis in project.yml files.
+line_ending: native
