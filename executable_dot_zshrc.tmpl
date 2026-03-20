@@ -37,6 +37,7 @@ eval "$(/usr/local/bin/brew shellenv)"
 {{ end -}}
 {{ else if eq .chezmoi.os "linux" -}}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
 {{ end }}
 
 # load antidote plugins. Some of these require executables to be on the path so must be after brew
