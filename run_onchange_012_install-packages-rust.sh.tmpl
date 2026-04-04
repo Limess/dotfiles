@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 {{ if and (hasKey .packages "all") (hasKey .packages.all "crates") (gt (len .packages.all.crates) 0) }}
 

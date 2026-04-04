@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+set -e
 
 COMPLETIONS_PATH="$HOME/.zsh/completions"
+[[ -n "$COMPLETIONS_PATH" ]] || exit 1
 
 rm -rf "$COMPLETIONS_PATH"
 mkdir -p "$COMPLETIONS_PATH/zsh"

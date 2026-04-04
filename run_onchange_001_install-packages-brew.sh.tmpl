@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 export GITHUB_USERNAME={{ onepasswordRead "op://personal/GITHUB_TOKEN/username" | quote }}
 export GITHUB_TOKEN={{ onepasswordRead "op://personal/GITHUB_TOKEN/password" | quote }}

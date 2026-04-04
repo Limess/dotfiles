@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 echo "Detected WSL, Installing linux packages"
@@ -9,31 +10,28 @@ sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo apt-get install -y --no-install-recommends \
-    keychain \
-    libffi-dev \
-    libtool \
-    libsasl2-dev \
     build-essential \
-    sqlite3 \
-    libsqlite3-dev \
-    libpcsclite-dev \
-    make \
-    build-essential \
-    libssl-dev \
-    zlib1g-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    wget \
     curl \
-    llvm \
-    libncurses5-dev \
-    xz-utils \
-    tk-dev \
-    libxml2-dev \
-    libxmlsec1-dev \
+    keychain \
+    libbz2-dev \
     libffi-dev \
     liblzma-dev \
+    libncurses5-dev \
+    libpcsclite-dev \
+    libreadline-dev \
+    libsasl2-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libtool \
+    libxml2-dev \
+    libxmlsec1-dev \
+    llvm \
+    make \
+    sqlite3 \
+    tk-dev \
+    wget \
+    xz-utils \
+    zlib1g-dev \
     zsh
 {{   end }}
 {{ end }}

@@ -17,37 +17,28 @@
     email = "{{ .email }}"
     name = "{{ .name }}"
 [credential]
-        helper = cache
-[core]
-        excludesfile = ~/.gitignore                                                                                                                                                                                                                ~                                                                                                                                                                                                                                                             ~                                                                                                                                                                                                                                                             ~
+        helper = store
 [core]
         # https://news.ycombinator.com/item?id=11388479
         untrackedCache = true
-
 	excludesfile = ~/.gitignore
         attributesfile = ~/.gitattributes
 	autocrlf = false
 	eol = lf
 [pager]
-        # use diff-so-fancy for pretty-diffs
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
+	diff = delta
+	show = delta
+	log = delta
+	reflog = delta
 [interactive]
-	diffFilter = "diff-so-fancy"
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Dracula
 [color]
         ui = always
-[color "diff"]
-        meta = yellow bold
-        commit = green bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
-        whitespace = red reverse
-[color "diff-highlight"]
-        oldNormal = red bold
-        oldHighlight = "red bold 52"
-        newNormal = "green bold"
-        newHighlight = "green bold 22"
 [color "branch"]
         current = yellow reverse
         local = yellow
@@ -112,8 +103,6 @@
         required = true
 	process = git-lfs filter-process
 [http]
-[credential]
-	helper = store
 [submodule]
 	stickyRecursiveClone = true
 [pull]

@@ -16,7 +16,7 @@ java = '21'
 [settings]
 # tools can read the versions files used by other version managers
 # for example, .nvmrc in the case of node's nvm
-idiomatic_version_file_enable_tools = ['cystal', 'elixir', 'go', 'node', 'java', 'python', 'ruby', 'terraform', 'yarn']
+idiomatic_version_file_enable_tools = ['crystal', 'elixir', 'go', 'node', 'java', 'python', 'ruby', 'terraform', 'yarn']
 
 # configure `mise install` to always keep the downloaded archive
 always_keep_download = false # deleted after install by default

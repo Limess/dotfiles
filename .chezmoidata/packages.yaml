@@ -5,7 +5,6 @@ packages:
       - ruff
       - cookiecutter
       - cfn_flip
-      - psutil
       - glances
     npm:
       - gzip-size-cli

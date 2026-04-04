@@ -4,12 +4,12 @@ brew 'signal-ai/signal-tap/signal-cli'
 
 # AWS CLI https://aws.amazon.com/cli/
 brew 'awscli@2'
-brew 'ag'
 # zsh plugin manager
 brew 'antidote'
 # cat alternative https://github.com/sharkdp/bat
 brew 'bat'
-brew 'diff-so-fancy'
+# better git pager https://github.com/dandavison/delta
+brew 'git-delta'
 # clojure scripting support https://github.com/babashka/babashka
 brew 'borkdude/brew/babashka'
 # clojure linter https://github.com/clj-kondo/clj-kondo
@@ -25,7 +25,11 @@ brew 'cue-lang/tap/cue'
 brew "doitlive"
 brew 'common-fate/granted/granted'
 # better lsh
+# better du https://github.com/bootandy/dust
+brew 'dust'
 brew 'eza'
+# better find https://github.com/sharkdp/fd
+brew 'fd'
 brew 'fzf'
 brew 'findutils'
 # https://github.com/wagoodman/dive
@@ -39,7 +43,6 @@ brew 'gnupg'
 brew 'hadolint'
 brew 'helm@3'
 brew 'httpstat'
-brew 'hub'
 brew 'imagemagick'
 # kubernetes context switching https://github.com/ahmetb/kubectx
 brew 'kubectx'
@@ -55,10 +58,11 @@ brew 'mise'
 # Security network tool
 brew 'nmap'
 brew "pgcli"
+# better ps https://github.com/dalance/procs
+brew 'procs'
 brew 'readline'
 # better grep (https://github.com/BurntSushi/ripgrep)
 brew 'ripgrep'
-brew 'roundup'
 # LLM CLI proxy https://github.com/rtk-ai/rtk
 brew 'rtk'
 brew 'stunnel'

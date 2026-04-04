@@ -1,7 +1,7 @@
 alias k="kubectl"
 alias s="stern"
 
-alias brew_update="brew -v update; brew upgrade --force-bottle; brew cleanup; brew cask cleanup; brew prune; brew doctor;"
+alias brew_update="brew -v update; brew upgrade; brew cleanup; brew doctor;"
 
 
 # git
@@ -31,7 +31,7 @@ alias cz=chezmoi
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 op_exe_path="$(wslpath "$(wslvar USERPROFILE)")/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
 if test -f "$op_exe_path"; then
-    alias op='"$op_exe_path"'
+    alias op="$op_exe_path"
 fi
 {{ end }}
 {{ end }}

@@ -6,8 +6,8 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 
 # don't nice background tasks
 setopt NO_BG_NICE
@@ -83,10 +83,4 @@ bindkey '^H' backward-kill-word
 # backwards tab through menus
 bindkey '^[[Z' reverse-menu-complete
 
-# search history with fzf if installed, default otherwise
-if test -d /usr/local/opt/fzf/shell; then
-	# shellcheck disable=SC1091
-	. /usr/local/opt/fzf/shell/key-bindings.zsh
-else
-	bindkey '^R' history-incremental-search-backward
-fi
+# fzf key-bindings loaded via `source <(fzf --zsh)` in env.zsh
