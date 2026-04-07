@@ -35,7 +35,7 @@ fi
 EOF
 {{ end }}
 
-{{- if lookPath "op" }}
+{{- if and (eq .chezmoi.os "darwin") (lookPath "op") }}
 cat > ~/.zsh/completions/bash/op.bash << 'EOF'
  eval "$(op completion zsh)"; compdef _op op
 EOF
