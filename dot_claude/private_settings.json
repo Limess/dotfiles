@@ -48,7 +48,14 @@
       "Bash(df *)",
       "Bash(date *)",
       "Bash(uname *)",
-      "Bash(aws sts get-caller-identity*)"
+      "Bash(rtk *)",
+      "Bash(aws sts get-caller-identity*)",
+      "Read(//tmp/spandex-072/spandex-0.7.2/**)",
+      "Read(//home/charlie_briggs/.m2/repository/com/walmartlabs/lacinia/**)",
+      "Read(//tmp/lacinia-src/com/walmartlabs/lacinia/**)",
+      "Bash(rtk git *)",
+      "WebFetch(domain:github.com)",
+      "WebSearch"
     ],
     "deny": [
       "Read(./**/.env*)",
@@ -111,5 +118,6 @@
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true
   },
+  "effortLevel": "medium",
   "voiceEnabled": true
 }
