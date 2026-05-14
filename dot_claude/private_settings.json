@@ -1,8 +1,14 @@
 {
+  "awsAuthRefresh": "aws sso login --profile signal-research",
   "env": {
     "NO_COLOR": "1",
     "GIT_PAGER": "cat",
-    "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true"
+    "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true",
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_REGION": "eu-west-2",
+    "AWS_PROFILE": "signal-research",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "eu.anthropic.claude-opus-4-7",
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "true"
   },
   "permissions": {
     "allow": [
@@ -55,7 +61,9 @@
       "Read(//tmp/lacinia-src/com/walmartlabs/lacinia/**)",
       "Bash(rtk git *)",
       "WebFetch(domain:github.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(/usr/bin/git diff *)",
+      "Bash(/usr/bin/git show *)"
     ],
     "deny": [
       "Read(./**/.env*)",
@@ -84,7 +92,7 @@
       "mcp__serena__edit_memory"
     ]
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -119,5 +127,6 @@
     "claude-md-management@claude-plugins-official": true
   },
   "effortLevel": "medium",
+  "theme": "dark",
   "voiceEnabled": true
 }
