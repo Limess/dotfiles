@@ -1,13 +1,8 @@
 {
-  "awsAuthRefresh": "aws sso login --profile signal-research",
   "env": {
     "NO_COLOR": "1",
     "GIT_PAGER": "cat",
     "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true",
-    "CLAUDE_CODE_USE_BEDROCK": "1",
-    "AWS_REGION": "eu-west-2",
-    "AWS_PROFILE": "signal-research",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "eu.anthropic.claude-opus-4-7",
     "CLAUDE_CODE_DISABLE_1M_CONTEXT": "true"
   },
   "permissions": {
@@ -63,7 +58,11 @@
       "WebFetch(domain:github.com)",
       "WebSearch",
       "Bash(/usr/bin/git diff *)",
-      "Bash(/usr/bin/git show *)"
+      "Bash(/usr/bin/git show *)",
+      "Bash(git commit -m 'Refactor msearch sub-query construction; lift signal keys to module constants *)",
+      "Bash(git fetch *)",
+      "Bash(git stash *)",
+      "Bash(git push *)"
     ],
     "deny": [
       "Read(./**/.env*)",
