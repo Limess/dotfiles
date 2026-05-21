@@ -110,7 +110,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/home/charlie_briggs/.claude/hooks/rtk-rewrite.sh"
+            "command": "$HOME/.claude/hooks/rtk-rewrite.sh"
           }
         ]
       }
