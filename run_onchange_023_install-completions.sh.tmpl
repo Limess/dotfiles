@@ -37,7 +37,14 @@ EOF
 
 {{- if and (eq .chezmoi.os "darwin") (lookPath "op") }}
 cat > ~/.zsh/completions/bash/op.bash << 'EOF'
- eval "$(op completion zsh)"; compdef _op op
+# Cache `op completion zsh`; only regenerate when the op binary is newer than the cache.
+_op_comp="${ZSH_CACHE_DIR:-$HOME/.cache/zsh}/op_completion.zsh"
+if [[ ! -s $_op_comp || $(command -v op) -nt $_op_comp ]]; then
+  op completion zsh >| $_op_comp 2>/dev/null
+fi
+source $_op_comp
+compdef _op op
+unset _op_comp
 EOF
 {{ end }}
 
