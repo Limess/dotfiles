@@ -30,12 +30,13 @@ source ~/.zsh/zstyle.zsh
 
 {{ if eq .chezmoi.os "darwin" -}}
 {{ if eq .chezmoi.arch "arm64" -}}
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# .zprofile already runs brew shellenv for login shells; skip the redundant fork here.
+[[ -n $HOMEBREW_PREFIX ]] || eval "$(/opt/homebrew/bin/brew shellenv)"
 {{ else -}}
-eval "$(/usr/local/bin/brew shellenv)"
+[[ -n $HOMEBREW_PREFIX ]] || eval "$(/usr/local/bin/brew shellenv)"
 {{ end -}}
 {{ else if eq .chezmoi.os "linux" -}}
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[[ -n $HOMEBREW_PREFIX ]] || eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
 {{ end }}
 
