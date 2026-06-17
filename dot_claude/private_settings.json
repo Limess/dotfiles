@@ -83,6 +83,7 @@
       "Bash(tail */.ssh/*)",
       "Read(~/.aws/*)",
       "Read(~/.ssh/*)",
+      "Read(~/.dbt/*)",
       "mcp__serena__write_memory",
       "mcp__serena__read_memory",
       "mcp__serena__list_memories",
