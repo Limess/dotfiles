@@ -53,3 +53,12 @@ window-inherit-working-directory = true
 
 # Don't prompt when closing a tab/surface that has a running process
 confirm-close-surface = false
+
+# Select text to copy it straight to the clipboard
+copy-on-select = clipboard
+
+# Restore windows/tabs after quit and relaunch
+window-save-state = always
+
+# Bump scrollback buffer from the 10MB default to 50MB
+scrollback-limit = 50000000
