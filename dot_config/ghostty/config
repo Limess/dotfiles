@@ -65,3 +65,6 @@ scrollback-limit = 50000000
 
 # Treat the Option key as Alt so meta bindings (e.g. Alt+arrows) work
 macos-option-as-alt = true
+
+# Automatically download and install updates (not just check)
+auto-update = download
