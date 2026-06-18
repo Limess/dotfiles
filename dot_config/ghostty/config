@@ -72,5 +72,5 @@ auto-update = download
 # Theme: auto-switch with macOS appearance (Synthwave dark, Solarized Light light)
 theme = light:Solarized Light,dark:Synthwave
 
-# High-contrast split divider (single global value; reads on both themes)
-split-divider-color = #ff2d95
+# High-contrast split divider — bright orange (single global value; reads on both themes)
+split-divider-color = #ff6600
