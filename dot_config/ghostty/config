@@ -68,3 +68,9 @@ macos-option-as-alt = true
 
 # Automatically download and install updates (not just check)
 auto-update = download
+
+# Theme: auto-switch with macOS appearance (Synthwave dark, Solarized Light light)
+theme = light:Solarized Light,dark:Synthwave
+
+# High-contrast split divider (single global value; reads on both themes)
+split-divider-color = #ff2d95
