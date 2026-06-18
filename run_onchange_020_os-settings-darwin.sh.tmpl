@@ -77,8 +77,8 @@ defaults write NSGlobalDomain com.apple.mouse.scaling -float -1
 # Enable full keyboard access for all controls (e.g. Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Disable press-and-hold for keys in favor of key repeat, and set a fast repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+# Fast key repeat. Press-and-hold is left enabled so the accent menu
+# (é, ñ, ü, …) still works.
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
