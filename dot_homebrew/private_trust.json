@@ -1,0 +1,17 @@
+{
+  "trustedformulae": [
+    "signal-ai/signal-tap/signal-cli"
+  ],
+  "trustedtaps": [
+    "aquasecurity/trivy",
+    "babashka/brew",
+    "borkdude/brew",
+    "common-fate/granted",
+    "cue-lang/tap",
+    "derailed/k9s",
+    "heroku/brew",
+    "signal-ai/signal-tap",
+    "synfinatic/aws-sso-cli",
+    "warrensbox/tap"
+  ]
+}
