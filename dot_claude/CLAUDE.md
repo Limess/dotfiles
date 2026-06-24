@@ -4,6 +4,9 @@
 
 - When executing a plan, do not pause between batches to ask for feedback. Continue straight through all tasks without prompting mid-progress.
 
+## Code Style
+- Avoid unnecessary line breaks in docstrings or markdown unless enforced by a linter. Modern editors handle wrapping appropriately, so write prose as long lines rather than manually hard-wrapping.
+
 ## Git
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
 
