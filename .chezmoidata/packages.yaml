@@ -5,6 +5,7 @@ packages:
       - resource-capacity
       - explore
       - ktop
+      - why-pending
     python:
       - ruff
       - cookiecutter
