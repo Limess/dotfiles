@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -e
+
+{{ if and (hasKey .packages "all") (hasKey .packages.all "krew") (gt (len .packages.all.krew) 0) }}
+{{ if lookPath "kubectl" }}
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Ensure the plugin index is present/up to date before installing.
+kubectl krew update
+
+installed="$(kubectl krew list 2>/dev/null || true)"
+for plugin in {{ range .packages.all.krew }}{{ . | quote }} {{ end }}; do
+  if ! grep -qx "$plugin" <<< "$installed"; then
+    kubectl krew install "$plugin"
+  fi
+done
+
+{{ end }}
+{{ end }}

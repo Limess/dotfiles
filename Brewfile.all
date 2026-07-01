@@ -47,6 +47,10 @@ brew 'imagemagick'
 # kubernetes context switching https://github.com/ahmetb/kubectx
 brew 'kubectx'
 brew 'kubernetes-cli'
+# colorized kubectl output https://github.com/kubecolor/kubecolor
+brew 'kubecolor'
+# kubectl plugin manager https://github.com/kubernetes-sigs/krew
+brew 'krew'
 # kubernetes management tool https://github.com/derailed/k9s
 brew 'derailed/k9s/k9s'
 # JSON utility https://stedolan.github.io/jq/

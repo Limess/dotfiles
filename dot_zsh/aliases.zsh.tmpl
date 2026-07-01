@@ -1,6 +1,11 @@
 alias k="kubectl"
 alias s="stern"
 
+# colorize kubectl output when kubecolor is available (k -> kubectl -> kubecolor)
+if command -v kubecolor >/dev/null 2>&1; then
+  alias kubectl="kubecolor"
+fi
+
 alias brew_update="brew -v update; brew upgrade; brew cleanup; brew doctor;"
 
 

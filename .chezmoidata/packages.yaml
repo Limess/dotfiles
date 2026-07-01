@@ -1,6 +1,10 @@
 packages:
   all:
     crates: []
+    krew:
+      - resource-capacity
+      - explore
+      - ktop
     python:
       - ruff
       - cookiecutter
