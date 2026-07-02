@@ -8,6 +8,7 @@
   "permissions": {
     "allow": [
       "mcp__serena__*",
+      "mcp__prometheus__*",
       "Bash(git diff *)",
       "Bash(git -C * diff *)",
       "Bash(git log *)",
@@ -89,7 +90,9 @@
       "mcp__serena__list_memories",
       "mcp__serena__delete_memory",
       "mcp__serena__rename_memory",
-      "mcp__serena__edit_memory"
+      "mcp__serena__edit_memory",
+      "mcp__prometheus__get_targets",
+      "mcp__prometheus__get_metric_metadata"
     ]
   },
   "model": "opus",
