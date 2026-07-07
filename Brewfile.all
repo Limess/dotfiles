@@ -16,6 +16,7 @@ brew 'borkdude/brew/babashka'
 brew 'borkdude/brew/clj-kondo'
 # graphical process manager
 brew 'bottom'
+brew 'circleci-public/circleci/circleci@next'
 # secrets manager using SSM https://github.com/segmentio/chamber
 brew 'chamber'
 brew 'coreutils'
