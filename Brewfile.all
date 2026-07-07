@@ -16,7 +16,7 @@ brew 'borkdude/brew/babashka'
 brew 'borkdude/brew/clj-kondo'
 # graphical process manager
 brew 'bottom'
-brew 'circleci-public/circleci/circleci@next'
+cask 'circleci-public/circleci/circleci@next'
 # secrets manager using SSM https://github.com/segmentio/chamber
 brew 'chamber'
 brew 'coreutils'
@@ -42,7 +42,7 @@ brew 'git'
 brew 'gnu-sed'
 brew 'gnupg'
 brew 'hadolint'
-brew 'helm@3'
+brew 'helm@3', link: true
 brew 'httpstat'
 brew 'imagemagick'
 # kubernetes context switching https://github.com/ahmetb/kubectx
