@@ -22,4 +22,6 @@
 *~
 .serena/cache
 .serena/memories
-.claude/settings.local.json
+
+**/.claude/settings.local.json
+**/.claude/.cc-writes/
