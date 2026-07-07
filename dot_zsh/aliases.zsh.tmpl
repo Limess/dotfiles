@@ -31,6 +31,16 @@ alias gto="nocorrect gto"
 # chezmoi
 alias cz=chezmoi
 
+{{ if eq .chezmoi.os "linux" }}
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+# clip.exe reads stdin in the OEM codepage; UTF-16LE input is treated as Unicode
+clip() { iconv -f utf-8 -t utf-16le | clip.exe; }
+alias pbcopy=clip
+# Get-Clipboard emits CRLF and a trailing newline
+pbpaste() { powershell.exe -noprofile -command 'Get-Clipboard -Raw' | tr -d '\r'; }
+{{   end }}
+{{ end }}
+
 # 1password
 {{ if eq .chezmoi.os "linux" }}
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
