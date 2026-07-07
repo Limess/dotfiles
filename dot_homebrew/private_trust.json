@@ -13,5 +13,8 @@
     "signal-ai/signal-tap",
     "synfinatic/aws-sso-cli",
     "warrensbox/tap"
+  ],
+  "trustedcasks": [
+    "circleci-public/circleci/circleci@next"
   ]
 }
