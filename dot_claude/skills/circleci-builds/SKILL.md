@@ -64,7 +64,19 @@ circleci run watch --sha <sha>        # polls up to 2m for the run to appear —
 circleci run watch --failfast         # exit as soon as any job fails
 ```
 
-Exit codes: 0 succeeded, 1 failed, 6 cancelled, 8 timed out (default timeout 30m, `--timeout`).
+Exit codes: 0 succeeded, 1 failed, 5 run not found (`--sha` poll expired), 6 cancelled, 8 timed out (default timeout 30m, `--timeout`).
+
+The `--sha` discovery poll is hard-coded at 2m and runs regularly take longer than that to appear after a push (webhook/queueing delay), so exit 5 usually means "not there yet", not "won't exist". Retry on exit 5 only, so real outcomes (1/6/8) propagate:
+
+```bash
+for i in 1 2 3 4 5; do
+  circleci run watch --sha "$sha" -q; rc=$?
+  [ "$rc" -ne 5 ] && exit "$rc"
+done
+exit 5    # still not found after ~10m — check the push actually triggered a run
+```
+
+Alternatively, wait for the run to show up in `run list -B` (its `id`, matched by `revision`), then `circleci run watch <run-id>` — watching by ID has no discovery window.
 
 ## Mutating commands (confirm with the user before running)
 
