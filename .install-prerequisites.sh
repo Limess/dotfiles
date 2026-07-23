@@ -2,6 +2,14 @@
 
 set -e
 
+source_brew () {
+    if [[ "$(uname -s)" == "Darwin" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [[ "$(uname -s)" == "Linux" ]]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+}
+
 # Install XCode Command Line Tools if necessary
 if [[ "$(uname -s)" == "Darwin" ]]; then
     xcode-select --install || true
@@ -10,11 +18,7 @@ fi
 # Install Homebrew if necessary
 if ! command -v brew &>/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    if [[ "$(uname -s)" == "Darwin" ]]; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-    elif [[ "$(uname -s)" == "Linux" ]]; then
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    fi
+    source_brew
 fi
 
 # Install 1password if necessary
@@ -22,6 +26,7 @@ if ! command -v op &>/dev/null; then
     case "$(uname -s)" in
     Darwin)
         brew install 1password-cli
+        source_brew
         ;;
     Linux)
         curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
