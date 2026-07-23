@@ -1,4 +1,3 @@
-cask_args "no-quarantine": true
 cask_args appdir: '/Applications'
 
 # Start with mas (Mac App Store) and related software so we get XCode
