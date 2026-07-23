@@ -38,7 +38,7 @@ brew 'git'
 brew 'gnu-sed'
 brew 'gnupg'
 brew 'hadolint'
-brew 'helm@3', link: true
+brew 'helm'
 brew 'httpstat'
 brew 'imagemagick'
 # kubernetes context switching https://github.com/ahmetb/kubectx
