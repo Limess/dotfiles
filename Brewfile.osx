@@ -20,7 +20,6 @@ brew 'pinentry-mac'
 brew 'psqlODBC'
 brew 'zsh'
 
-cask 'alfred'
 cask 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
 cask 'docker-desktop'
 cask 'firefox'
