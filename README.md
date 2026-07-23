@@ -7,7 +7,8 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 To install to a new machine:
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply Limess
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+$HOME/.local/bin/chezmoi -v init --apply Limess
 ```
 
 To update:
