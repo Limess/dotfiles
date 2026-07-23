@@ -19,7 +19,6 @@ brew 'pinentry-mac'
 # driver for postgres for use with MySQL Workbench
 brew 'psqlODBC'
 brew 'zsh'
-brew 'vault'
 
 cask 'alfred'
 cask 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
