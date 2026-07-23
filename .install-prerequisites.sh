@@ -11,7 +11,7 @@ source_brew () {
 }
 
 # Install XCode Command Line Tools if necessary
-if [[ "$(uname -s)" == "Darwin" ]]; then
+if [[ "$(uname -s)" == "Darwin" ]] && ! xcode-select -p &>/dev/null; then
     xcode-select --install || true
 fi
 
