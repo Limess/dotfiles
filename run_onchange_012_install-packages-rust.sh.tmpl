@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+eval "$(mise activate bash --shims)"
+
 {{ if and (hasKey .packages "all") (hasKey .packages.all "crates") (gt (len .packages.all.crates) 0) }}
 
 cargo install {{ range .packages.all.crates }}{{ . | quote }} {{ end }}
