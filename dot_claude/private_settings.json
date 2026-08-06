@@ -5,6 +5,7 @@
     "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true"
   },
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "mcp__serena__*",
       "mcp__prometheus__*",
@@ -94,7 +95,6 @@
       "mcp__prometheus__get_metric_metadata"
     ]
   },
-  "model": "auto",
   "hooks": {
     "Notification": [
       {
