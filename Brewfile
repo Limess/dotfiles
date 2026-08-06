@@ -83,3 +83,52 @@ brew 'xh'
 brew 'stern'
 # better cd
 brew 'zoxide'
+
+if OS.mac?
+  cask_args appdir: '/Applications'
+
+  # Start with mas (Mac App Store) and related software so we get XCode
+  brew 'mas'
+
+  mas 'dato', id: 1470584107
+  mas 'magnet', id: 441258766
+  mas 'slack', id: 803453959
+  mas 'whatsapp', id: 310633997
+  mas 'xcode', id: 497799835
+  mas 'yubico-authenticator', id: 1497506650
+
+  brew 'git'
+  brew 'reattach-to-user-namespace' # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
+  brew 'tmux'
+  brew 'bash'
+  brew 'pinentry-mac'
+  # driver for postgres for use with MySQL Workbench
+  brew 'psqlODBC'
+  brew 'zsh'
+
+  cask 'bluesnooze' # disable bluetooth while mac is sleeping to prevent it staying connected to headphones
+  cask 'docker-desktop'
+  cask 'firefox'
+  cask 'flux-app'
+  cask 'ghostty'
+  # Installed by signal
+  # cask 'google-chrome'
+  # hyperdock seems to be broken
+  # cask 'hyperdock'
+  cask 'kap'
+  cask 'jetbrains-toolbox'
+  # https://lidrun.com - keeps AI/dev jobs running with the lid closed
+  cask 'aibrickai/lidrun/lidrun'
+  # cask 'minikube'
+  cask 'private-internet-access'
+  # cask 'podman'
+  cask 'raycast'
+  cask 'sensiblesidebuttons'
+  cask 'sublime-text'
+  cask 'spotify'
+  cask 'tableplus'
+  cask 'visual-studio-code'
+  cask 'vlc'
+
+  brew 'boot-clj'
+end

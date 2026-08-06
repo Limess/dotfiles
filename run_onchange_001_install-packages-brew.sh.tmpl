@@ -7,11 +7,7 @@ export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
 
 brew bundle --file=/dev/stdin <<EOF
 
-{{ include "Brewfile.all" }}
-
-{{ if eq .chezmoi.os "darwin" -}}
-{{ include "Brewfile.osx" }}
-{{ end }}
+{{ include "Brewfile" }}
 
 EOF
 
