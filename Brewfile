@@ -21,9 +21,12 @@ brew 'clojure'
 brew 'cue-lang/tap/cue'
 brew "doitlive"
 brew 'common-fate/granted/granted'
+# review-first diff viewer
+brew 'hunk'
 # better lsh
 # better du https://github.com/bootandy/dust
 brew 'dust'
+brew 'difftastic'
 brew 'eza'
 # better find https://github.com/sharkdp/fd
 brew 'fd'
@@ -111,7 +114,6 @@ if OS.mac?
   cask 'firefox'
   cask 'flux-app'
   cask 'ghostty'
-  # Installed by signal
   # cask 'google-chrome'
   # hyperdock seems to be broken
   # cask 'hyperdock'
@@ -129,6 +131,4 @@ if OS.mac?
   cask 'tableplus'
   cask 'visual-studio-code'
   cask 'vlc'
-
-  brew 'boot-clj'
 end

@@ -4,10 +4,6 @@
 
 brew bundle cleanup --file=/dev/stdin <<EOF
 
-{{ include "Brewfile.all" }}
-
-{{ if eq .chezmoi.os "darwin" -}}
-{{ include "Brewfile.osx" }}
-{{ end }}
+{{ include "Brewfile" }}
 
 EOF
