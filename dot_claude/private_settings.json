@@ -94,7 +94,7 @@
       "mcp__prometheus__get_metric_metadata"
     ]
   },
-  "model": "claude-opus-5",
+  "model": "auto",
   "hooks": {
     "Notification": [
       {
