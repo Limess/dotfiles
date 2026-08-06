@@ -15,6 +15,7 @@
     "warrensbox/tap"
   ],
   "trustedcasks": [
+    "aibrickai/lidrun/lidrun",
     "circleci-public/circleci/circleci@next"
   ]
 }
