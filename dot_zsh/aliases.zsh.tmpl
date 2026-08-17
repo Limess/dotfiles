@@ -46,7 +46,9 @@ pbpaste() { powershell.exe -noprofile -command 'Get-Clipboard -Raw' | tr -d '\r'
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
 op_exe_path="$(wslpath "$(wslvar USERPROFILE)")/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
 if test -f "$op_exe_path"; then
-    alias op="$op_exe_path"
+    # Alias bodies are re-parsed as shell words, so the spaces in the Windows
+    # path must survive expansion; a function keeps the path a single argument.
+    op() { "$op_exe_path" "$@"; }
 fi
 {{ end }}
 {{ end }}

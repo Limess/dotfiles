@@ -19,3 +19,5 @@
     command = "{{ output "wslpath" (output "wslvar" "USERPROFILE" | trim) | trim }}/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
     {{ end }}
     {{ end }}
+    # chezmoi has no account setting; op picks the account from OP_ACCOUNT,
+    # exported (and forwarded via WSLENV) in dot_zsh/env.zsh.tmpl.
