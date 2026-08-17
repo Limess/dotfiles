@@ -2,6 +2,8 @@
 # view https://github.com/jdx/mise/blob/main/registry.toml
 
 node = 'lts'
+pnpm = 'latest'
+'npm:@microsoft/rush' = 'latest'
 python = ['3.12']
 rust = 'stable'
 go = 'latest'
@@ -14,6 +16,8 @@ leiningen = '2.11.2'
 java = '21'
 
 [settings]
+
+npm.package_manager = 'pnpm'
 
 # configure `mise install` to always keep the downloaded archive
 always_keep_download = false # deleted after install by default
