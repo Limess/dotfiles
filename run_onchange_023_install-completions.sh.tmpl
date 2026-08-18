@@ -48,8 +48,20 @@ unset _op_comp
 EOF
 {{ end }}
 
+cat > ~/.zsh/completions/bash/rush.bash << 'EOF'
+# Rush has no static completion script; it answers per-keystroke via `rush tab-complete`.
+# rush comes from a mise-managed npm shim, so guard at shell-startup time rather than at chezmoi apply time.
+(( ${+commands[rush]} )) && {
+  _rush_completion() {
+    compadd -- $(rush tab-complete --position ${CURSOR} --word "${BUFFER}" 2>>/dev/null)
+  }
+  compdef _rush_completion rush
+}
+EOF
+
 {{- if lookPath "xh" }}
-xh --generate complete-zsh > "$COMPLETIONS_PATH/zsh/_xh"
+# xh dropped `--generate complete-zsh` in 0.23; completions now only ship in the repo.
+curl -fsS https://raw.githubusercontent.com/ducaale/xh/master/completions/_xh > "$COMPLETIONS_PATH/zsh/_xh"
 {{ end }}
 
 curl -fsS https://raw.githubusercontent.com/fishtown-analytics/dbt-completion.bash/master/_dbt > "$COMPLETIONS_PATH/zsh/_dbt"
