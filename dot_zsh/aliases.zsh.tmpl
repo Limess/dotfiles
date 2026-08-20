@@ -22,6 +22,26 @@ alias gb='git branch'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gac='git add -A && git commit -m'
 
+# pick a worktree with fzf and cd into it
+gwt() {
+  local dir
+  dir=$(git worktree list | fzf --height 40% --reverse --preview 'git -C {1} log --oneline -10' | awk '{print $1}') || return
+  [[ -n $dir ]] && cd "$dir"
+}
+
+# create a worktree for a new branch as a sibling directory, then cd into it
+gwta() {
+  local branch=$1
+  if [[ -z $branch ]]; then
+    print -u2 "usage: gwta <branch>"
+    return 1
+  fi
+  local root dir
+  root=$(git rev-parse --show-toplevel) || return
+  dir="${root:h}/${root:t}-${branch//\//-}"
+  git worktree add "$dir" -b "$branch" && cd "$dir"
+}
+
 # corrections
 alias bat="nocorrect bat"
 alias aws="nocorrect aws"
