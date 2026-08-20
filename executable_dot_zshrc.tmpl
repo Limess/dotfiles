@@ -54,11 +54,6 @@ source ${zsh_plugins}.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/env.zsh
 
-# direnv comes from mise, which the antidote plugin bundle activates above.
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
-fi
-
 {{ if eq .chezmoi.os "darwin" -}}
 # load iterm2 shell integration if iterm2 exists
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
