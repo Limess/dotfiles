@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# 1Password CLI shim.
+#
+# The Linux `op` in /usr/bin cannot reach the Windows desktop app's biometric
+# unlock, so every call is routed to the Windows op.exe instead. This is a real
+# executable on PATH (ahead of /usr/bin/op) rather than a shell function so it
+# also resolves in scripts, `sh -c`, and anything else that shells out without
+# sourcing ~/.zshrc.
+#
+# Reads a secret from the enode account with:
+#
+#   op read "op://Development/Some Item/password" --account enode
+#
+# `--account` overrides the default below. Account-qualified secret references
+# (op://enode/Vault/Item/field) are not supported by op 2.30.3 — the flag is the
+# only way to select an account per-invocation.
+
+set -eu
+
+# A non-interactive shell never sources ~/.zsh/env.zsh, so the shim has to
+# supply the default itself — otherwise op has two signed-in accounts and no
+# way to choose between them.
+{{ $account := index .onepassword.accounts .onepassword.defaultAccount -}}
+: "${OP_ACCOUNT:={{ $account.id }}}"  # {{ $account.email }}
+export OP_ACCOUNT
+
+# WSL only forwards variables named in WSLENV across the Linux/Windows boundary.
+case ":${WSLENV:-}:" in
+    *:OP_ACCOUNT:*) ;;
+    *) WSLENV="${WSLENV:+$WSLENV:}OP_ACCOUNT"; export WSLENV ;;
+esac
+
+exec "{{ output "wslpath" (output "wslvar" "USERPROFILE" | trim) | trim }}/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe" "$@"

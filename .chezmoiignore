@@ -2,3 +2,8 @@ README.md
 run_*.sh
 wsl_config
 Brewfile*
+{{ if not (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
+# Only WSL needs to route op through the Windows executable; elsewhere the
+# natively installed op is already on PATH.
+.local/bin/op
+{{ end -}}

@@ -21,7 +21,9 @@
 **/metals.sbt
 *~
 .serena/cache
+.serena/.gitignore
 .serena/memories
+.serena/project.yml
 
 **/.claude/settings.local.json
 **/.claude/.cc-writes/
