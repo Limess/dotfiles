@@ -64,6 +64,8 @@ brew 'nmap'
 brew "pgcli"
 # better ps https://github.com/dalance/procs
 brew 'procs'
+# process composition manager https://github.com/F1bonacc1/process-compose
+brew 'process-compose'
 brew 'readline'
 # better grep (https://github.com/BurntSushi/ripgrep)
 brew 'ripgrep'
