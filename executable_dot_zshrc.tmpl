@@ -84,4 +84,15 @@ if [[ -d ~/.zsh/completions/bash ]]; then
   done
 fi
 
+# worktrunk (`wt`) shell integration: the cd/exec directives only work through its shell function.
+# Cache the generated snippet; regenerate only when the binary is newer. Must follow compinit (ez-compinit) for completions.
+if (( ${+commands[wt]} )); then
+  _wt_init="$ZSH_CACHE_DIR/worktrunk_init.zsh"
+  if [[ ! -s $_wt_init || ${commands[wt]} -nt $_wt_init ]]; then
+    wt config shell init zsh >| $_wt_init
+  fi
+  source $_wt_init
+  unset _wt_init
+fi
+
 eval "$(starship init zsh)"

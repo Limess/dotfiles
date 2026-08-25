@@ -80,6 +80,8 @@ brew 'unzip'
 brew 'uv'
 brew 'vim'
 brew 'wget'
+# git worktree manager, `wt` https://worktrunk.dev
+brew 'worktrunk'
 brew 'yarn'
 brew 'zopfli'
 # like httpie https://github.com/ducaale/xh

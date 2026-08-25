@@ -25,7 +25,10 @@ alias gac='git add -A && git commit -m'
 # pick a worktree with fzf and cd into it
 gwt() {
   local dir
-  dir=$(git worktree list | fzf --height 40% --reverse --preview 'git -C {1} log --oneline -10' | awk '{print $1}') || return
+  # display only the worktree directory name; the tab-separated full path stays in field 2 for preview/cd
+  dir=$(git worktree list --porcelain | awk '/^worktree /{p=$2; n=p; sub(/.*\//, "", n); print n "\t" p}' \
+    | fzf --height 40% --reverse --with-nth=1 --delimiter='\t' --preview 'git -C {2} log --oneline -10' \
+    | cut -f2) || return
   [[ -n $dir ]] && cd "$dir"
 }
 
