@@ -24,6 +24,12 @@
 ## Git
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
 
+## Agent attribution
+
+- Anything posted on my behalf to a place other people read — GitHub PR descriptions and review comments, Slack messages, Linear tickets and comments — must be prefixed with a line marking it as agent-written, including the harness and model name when known and the 🤖 emoji. E.g. `🤖 Written by an agent (Claude Code, Claude Opus 5).`
+- The prefix goes at the top of the body, as its own line. Titles/subjects don't need it if the body has it.
+- This is about honesty to human readers, so it applies even when the content is short or I dictated it closely.
+
 ## Pull Requests
 - Keep PR titles and descriptions terse — a short summary and bullet points only.
 - Do not include a test plan section unless the user has explicitly provided specific steps to test.
