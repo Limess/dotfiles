@@ -2,7 +2,8 @@
   "env": {
     "NO_COLOR": "1",
     "GIT_PAGER": "cat",
-    "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true"
+    "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-8[1m]"
   },
   "permissions": {
     "defaultMode": "auto",
@@ -95,6 +96,7 @@
       "mcp__prometheus__get_metric_metadata"
     ]
   },
+  "model": "claude-opus-4-8[1m]",
   "hooks": {
     "Notification": [
       {
