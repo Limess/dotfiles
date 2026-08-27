@@ -4,6 +4,13 @@
 
 - When executing a plan, do not pause between batches to ask for feedback. Continue straight through all tasks without prompting mid-progress.
 
+## Code navigation & editing
+
+- When the serena MCP server is connected (its tools appear in the deferred-tools list), prefer it over built-in Read/Grep for exploring code. Load its tools immediately via ToolSearch and call `initial_instructions` once per session before the first use.
+- For discovery in a code file, use `get_symbols_overview` then `find_symbol` (with `include_body` only when you need the body) instead of reading whole files; use `find_referencing_symbols` to find call sites instead of grepping. This is dramatically cheaper on large files (measured ~27× fewer tokens on a 900-line file) and more targeted.
+- Grep/Glob are still fine for content/name discovery; follow-up reads and reference searches should go through serena. Small files, or cases where you genuinely need the whole file, are the exception — a plain Read is fine there.
+- For edits to code you've navigated with serena, use its symbolic edit tools (`replace_symbol_body`, `insert_*_symbol`, `rename_symbol`, `safe_delete_symbol`, `replace_content`).
+
 ## Code Style
 
 ### Comments
