@@ -1,0 +1,72 @@
+onboarding = false
+[ui]
+agent_panel_sort = "spaces"
+status_indicators = "symbols"
+show_agent_labels_on_pane_borders = true
+# Long branch names are the primary label; default max (36) truncates them.
+sidebar_max_width = 48
+prompt_new_workspace_name = true
+
+[ui.toast]
+delivery = "system"
+
+# $title/$repo/$kind/$label come from the local.space-labels plugin (local-plugins/space-labels):
+# title = "<abbreviated repo> <typed workspace name, else branch>"; kind = ⌂ primary checkout / ⑂ worktree (unused).
+[ui.sidebar.spaces]
+row_gap = 1
+rows = [
+  ["state_icon", { token = "$title", bold = true }, "git_status"],
+  [{ token = "branch", dim = true }],
+]
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "workspace", "tab"],
+  [{ token = "agent", dim = true }],
+]
+
+# Worktrunk plugin (devashish2203/herdr-worktrunk). prefix+shift+g replaces herdr's
+# built-in "new worktree" so worktrunk's hooks run on every worktree.
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
+
+[[keys.command]]
+key = "prefix+shift+n"
+type = "plugin_action"
+command = "worktrunk.open-current"
+description = "Worktree: switch / create from current branch"
+
+[[keys.command]]
+key = "prefix+shift+d"
+type = "plugin_action"
+command = "worktrunk.remove"
+description = "Worktree: remove"
+
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "worktrunk.merge"
+description = "Worktree: merge into the target branch"
+
+# BEGIN jhochenbaum.hunkdiff — managed by `setup-keys`; edit via the plugin, not by hand
+[[keys.command]]
+key = "prefix+shift+h"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.review"
+description = "hunk: review changes"
+
+[[keys.command]]
+key = "prefix+shift+s"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.send-review"
+description = "hunk: send review to agent"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.review:staged"
+description = "hunk: review staged changes"
+# END jhochenbaum.hunkdiff
