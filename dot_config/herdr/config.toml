@@ -16,7 +16,7 @@ delivery = "system"
 row_gap = 1
 rows = [
   ["state_icon", { token = "workspace", bold = true }, "git_status"],
-  [{ token = "$branch", dim = true }],
+  [{ token = "$branch" }],
   [{ token = "$repo", dim = true }],
 ]
 
