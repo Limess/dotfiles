@@ -1,6 +1,6 @@
 {
   "trustedformulae": [
-    "signal-ai/signal-tap/signal-cli"
+    "f1bonacc1/tap/process-compose"
   ],
   "trustedtaps": [
     "aquasecurity/trivy",
@@ -10,7 +10,6 @@
     "cue-lang/tap",
     "derailed/k9s",
     "heroku/brew",
-    "signal-ai/signal-tap",
     "synfinatic/aws-sso-cli",
     "warrensbox/tap"
   ],
