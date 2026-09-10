@@ -13,6 +13,11 @@
 
         reup = rebase-update # depot_tools specific
         fpush = push --force-with-lease
+
+        # This branch's changes against origin/main, measured from the merge-base
+        # so commits landing on main don't show up. bd includes the working tree.
+        bd = !"git diff $(git merge-base origin/main HEAD)"
+        bl = log --oneline origin/main..HEAD
 [user]
     email = "{{ .email }}"
     name = "{{ .name }}"

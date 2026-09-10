@@ -1,0 +1,10 @@
+id = "local.space-labels"
+name = "Space labels"
+version = "0.1.0"
+min_herdr_version = "0.8.2"
+description = "Reports $repo (⌂ checkout / ⑂ worktree + name) and $branch (⎇ + branch) workspace tokens with icons"
+platforms = ["linux", "macos"]
+
+# One-shot launch; the script loops itself.
+[[startup]]
+command = ["bash", "space-labels.sh"]

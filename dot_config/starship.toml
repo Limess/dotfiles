@@ -1,6 +1,7 @@
 format = """
 $username\
 $hostname\
+${custom.worktree}\
 $directory\
 $git_branch\
 $git_state\
@@ -17,6 +18,14 @@ style = "blue"
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
+
+[custom.worktree]
+description = "In a linked git worktree, prefix the directory with <project> ⑂"
+# git-dir == git-common-dir in a normal checkout; they differ only inside a linked worktree.
+when = 'test "$(git rev-parse --git-common-dir 2>/dev/null)" != "$(git rev-parse --git-dir 2>/dev/null)"'
+command = 'printf "%s ⑂" "$(basename "$(dirname "$(git rev-parse --git-common-dir)")")"'
+format = "[$output]($style) "
+style = "bold green"
 
 [git_branch]
 format = "[$branch]($style)"

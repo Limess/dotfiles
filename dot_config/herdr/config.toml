@@ -1,0 +1,92 @@
+onboarding = false
+
+# Layered on top of whichever theme the picker selects. Catppuccin's overlay/subtext
+# tokens (used for secondary text) sit below 4.5:1 contrast; shift each up one step.
+[theme.custom]
+overlay0 = "#9399b2"
+overlay1 = "#a6adc8"
+subtext0 = "#bac2de"
+
+[ui]
+agent_panel_sort = "spaces"
+status_indicators = "symbols"
+show_agent_labels_on_pane_borders = true
+# Long branch names are the primary label; default max (36) truncates them.
+sidebar_max_width = 48
+prompt_new_workspace_name = true
+
+[ui.toast]
+delivery = "system"
+
+# $branch/$repo come from the local.space-labels plugin (local-plugins/space-labels), with icons
+# baked in: "⎇ <branch>" and "⌂ <repo>" (primary checkout) / "⑂ <repo>" (linked worktree).
+[ui.sidebar.spaces]
+row_gap = 1
+rows = [
+  ["state_icon", { token = "workspace", bold = true }, "git_status"],
+  [{ token = "$branch", fg = "#74c7ec", dim = false }],
+  [{ token = "$repo", fg = "#cba6f7", dim = false }],
+]
+
+# No `dim`: Windows Terminal renders ANSI faint at half intensity, unreadable on dark themes.
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", { token = "workspace", fg = "#cdd6f4", bold = true, dim = false }, { token = "tab", fg = "#74c7ec", dim = false }],
+  [{ token = "agent", fg = "#74c7ec", dim = false }, { token = "state_text", fg = "#74c7ec", dim = false }],
+]
+
+# Worktrunk plugin (devashish2203/herdr-worktrunk). prefix+shift+g replaces herdr's
+# built-in "new worktree" so worktrunk's hooks run on every worktree.
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "worktrunk.open"
+description = "Worktree: switch / create from default branch"
+
+[[keys.command]]
+key = "prefix+shift+b"
+type = "plugin_action"
+command = "worktrunk.open-current"
+description = "Worktree: switch / create from current branch"
+
+[[keys.command]]
+key = "prefix+shift+r"
+type = "plugin_action"
+command = "worktrunk.remove"
+description = "Worktree: remove"
+
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "worktrunk.merge"
+description = "Worktree: merge into the target branch"
+
+# BEGIN jhochenbaum.hunkdiff — managed by `setup-keys`; edit via the plugin, not by hand
+[[keys.command]]
+key = "prefix+shift+h"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.review"
+description = "hunk: review changes"
+
+[[keys.command]]
+key = "prefix+shift+s"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.send-review"
+description = "hunk: send review to agent"
+
+[[keys.command]]
+key = "prefix+shift+c"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.review:commit"
+description = "hunk: review the last commit"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.review:staged"
+description = "hunk: review staged changes"
+# END jhochenbaum.hunkdiff
+
+[theme]
+name = "catppuccin"
+auto_switch = false
