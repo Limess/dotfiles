@@ -24,15 +24,15 @@ delivery = "system"
 row_gap = 1
 rows = [
   ["state_icon", { token = "workspace", bold = true }, "git_status"],
-  [{ token = "$branch", fg = "#a6adc8", dim = false }],
-  [{ token = "$repo", fg = "#9399b2", dim = false }],
+  [{ token = "$branch", fg = "#b4befe", dim = false }],
+  [{ token = "$repo", fg = "#89b4fa", dim = false }],
 ]
 
 # No `dim`: Windows Terminal renders ANSI faint at half intensity, unreadable on dark themes.
 [ui.sidebar.agents]
 rows = [
-  ["state_icon", { token = "workspace", fg = "#cdd6f4", bold = true, dim = false }, { token = "tab", fg = "#a6adc8", dim = false }],
-  [{ token = "agent", fg = "#a6adc8", dim = false }, { token = "state_text", fg = "#a6adc8", dim = false }],
+  ["state_icon", { token = "workspace", fg = "#cdd6f4", bold = true, dim = false }, { token = "tab", fg = "#b4befe", dim = false }],
+  [{ token = "agent", fg = "#b4befe", dim = false }, { token = "state_text", fg = "#b4befe", dim = false }],
 ]
 
 # Worktrunk plugin (devashish2203/herdr-worktrunk). prefix+shift+g replaces herdr's
