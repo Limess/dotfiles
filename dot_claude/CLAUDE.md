@@ -30,6 +30,9 @@
 
 ## Git
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
+- Never switch branches in a shared checkout. Do not run `git checkout <branch>`, `git switch`, or `git checkout -b` in the primary clone (or any directory another session may be using). Multiple Claude sessions share the same working tree and a branch switch changes their files underneath them.
+- To work on a different branch, create a worktree instead (`git worktree add ../<repo>.<branch> <branch>` or the `EnterWorktree` tool) and do the work there. Rebasing, cherry-picking, or checking out a PR branch counts as switching — use a worktree for those too.
+- If a task genuinely requires changing the branch of the primary checkout, stop and ask first.
 
 ## Agent attribution
 
@@ -40,6 +43,7 @@
 ## Pull Requests
 - Keep PR titles and descriptions terse — a short summary and bullet points only.
 - Do not include a test plan section unless the user has explicitly provided specific steps to test.
+- Never open, raise, or create a pull request unless the current message explicitly asks for it — no exceptions. Adding a helper, fixing a comment, or finishing a task is NOT authorization to open a PR for it.
 - Do not push, create PRs, or take other shared-state actions unless explicitly asked in the current turn. Don't infer authorization from earlier turns in the conversation (e.g. "I raised a PR last time" is not standing permission to do it again). Commit locally and stop; wait for the user to ask for the push/PR.
 
 @RTK.md
