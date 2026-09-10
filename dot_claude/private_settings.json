@@ -37,12 +37,10 @@
       "Bash(df *)",
       "Bash(date *)",
       "Bash(uname *)",
-      "Bash(rtk *)",
       "Bash(aws sts get-caller-identity*)",
       "Read(//tmp/spandex-072/spandex-0.7.2/**)",
       "Read(//home/charlie_briggs/.m2/repository/com/walmartlabs/lacinia/**)",
       "Read(//tmp/lacinia-src/com/walmartlabs/lacinia/**)",
-      "Bash(rtk git *)",
       "WebFetch(domain:github.com)",
       "WebSearch",
       "Bash(/usr/bin/git diff *)",
@@ -96,13 +94,14 @@
         ]
       }
     ],
-    "PreToolUse": [
+    "PostToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "rtk hook claude"
+            "command": "bash \"$HOME/.claude/hooks/oxfmt-after-edit.sh\"",
+            "statusMessage": "Formatting with oxfmt"
           }
         ]
       }
