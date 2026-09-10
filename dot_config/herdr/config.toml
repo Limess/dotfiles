@@ -1,7 +1,7 @@
 onboarding = false
 
-# Match Ghostty's Catppuccin Latte/Mocha and follow its light/dark appearance so dim
-# sidebar text is drawn against the palette it was designed for.
+# Match Windows Terminal's Catppuccin Mocha scheme. auto_switch follows the host appearance when
+# the terminal reports it. Rows avoid `dim`: Windows Terminal renders ANSI faint at half intensity.
 [theme]
 name = "catppuccin"
 auto_switch = true
@@ -25,7 +25,7 @@ row_gap = 1
 rows = [
   ["state_icon", { token = "workspace", bold = true }, "git_status"],
   [{ token = "$branch" }],
-  [{ token = "$repo", dim = true }],
+  [{ token = "$repo", fg = "#a6adc8" }],
 ]
 
 [ui.sidebar.agents]
