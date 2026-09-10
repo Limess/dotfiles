@@ -7,3 +7,6 @@ Brewfile*
 # natively installed op is already on PATH.
 .local/bin/op
 {{ end -}}
+{{ if ne .chezmoi.os "linux" -}}
+.config/systemd
+{{ end -}}

@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+# Remove every worktree whose branch is already integrated into main, across all
+# Enode repos. `wt remove` without -f/-D refuses dirty worktrees and unmerged
+# branches, so an unattended run cannot lose work.
+set -u
+: "${WT_PRUNE_ROOT:=$HOME/projects/enode}"
+for repo in "$WT_PRUNE_ROOT"/*/; do
+  [[ -d "$repo/.git" ]] || continue
+  git -C "$repo" fetch --quiet origin main 2>/dev/null || true
+  wt -C "$repo" list --format json 2>/dev/null \
+    | jq -r '.[] | select(.kind == "worktree" and .main_state == "integrated" and .is_main == false) | .branch' \
+    | while read -r branch; do
+        echo "$repo: removing $branch"
+        wt -C "$repo" remove -y "$branch"
+      done
+done
