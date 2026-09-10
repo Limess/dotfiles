@@ -1,12 +1,5 @@
 onboarding = false
 
-# Match Windows Terminal's Catppuccin Mocha scheme. auto_switch follows the host appearance when
-# the terminal reports it. Rows avoid `dim`: Windows Terminal renders ANSI faint at half intensity.
-[theme]
-name = "catppuccin"
-auto_switch = true
-light_name = "catppuccin-latte"
-dark_name = "catppuccin"
 [ui]
 agent_panel_sort = "spaces"
 status_indicators = "symbols"
