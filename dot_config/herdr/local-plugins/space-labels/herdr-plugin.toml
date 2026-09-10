@@ -2,7 +2,7 @@ id = "local.space-labels"
 name = "Space labels"
 version = "0.1.0"
 min_herdr_version = "0.8.2"
-description = "Reports $repo, $kind and $label workspace tokens: repo basename, worktree/checkout icon, and workspace name falling back to branch"
+description = "Reports $repo (primary checkout basename) and $kind (⌂ checkout / ⑂ worktree) workspace tokens"
 platforms = ["linux", "macos"]
 
 # One-shot launch; the script loops itself.

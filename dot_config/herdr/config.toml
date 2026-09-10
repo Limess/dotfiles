@@ -10,13 +10,14 @@ prompt_new_workspace_name = true
 [ui.toast]
 delivery = "system"
 
-# $title/$repo/$kind/$label come from the local.space-labels plugin (local-plugins/space-labels):
-# title = "<abbreviated repo> <typed workspace name, else branch>"; kind = ⌂ primary checkout / ⑂ worktree (unused).
+# $repo/$kind come from the local.space-labels plugin (local-plugins/space-labels):
+# repo = primary checkout basename, kind = ⌂ checkout / ⑂ worktree (unused for now).
 [ui.sidebar.spaces]
 row_gap = 1
 rows = [
-  ["state_icon", { token = "$title", bold = true }, "git_status"],
+  ["state_icon", { token = "workspace", bold = true }, "git_status"],
   [{ token = "branch", dim = true }],
+  [{ token = "$repo", dim = true }],
 ]
 
 [ui.sidebar.agents]
@@ -34,13 +35,13 @@ command = "worktrunk.open"
 description = "Worktree: switch / create from default branch"
 
 [[keys.command]]
-key = "prefix+shift+n"
+key = "prefix+shift+b"
 type = "plugin_action"
 command = "worktrunk.open-current"
 description = "Worktree: switch / create from current branch"
 
 [[keys.command]]
-key = "prefix+shift+d"
+key = "prefix+shift+r"
 type = "plugin_action"
 command = "worktrunk.remove"
 description = "Worktree: remove"
@@ -63,6 +64,12 @@ key = "prefix+shift+s"
 type = "plugin_action"
 command = "jhochenbaum.hunkdiff.send-review"
 description = "hunk: send review to agent"
+
+[[keys.command]]
+key = "prefix+shift+c"
+type = "plugin_action"
+command = "jhochenbaum.hunkdiff.review:commit"
+description = "hunk: review the last commit"
 
 [[keys.command]]
 key = "prefix+shift+a"
