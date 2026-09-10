@@ -10,13 +10,13 @@ prompt_new_workspace_name = true
 [ui.toast]
 delivery = "system"
 
-# $repo/$kind come from the local.space-labels plugin (local-plugins/space-labels):
-# repo = primary checkout basename, kind = ⌂ checkout / ⑂ worktree (unused for now).
+# $branch/$repo come from the local.space-labels plugin (local-plugins/space-labels), with icons
+# baked in: "⎇ <branch>" and "⌂ <repo>" (primary checkout) / "⑂ <repo>" (linked worktree).
 [ui.sidebar.spaces]
 row_gap = 1
 rows = [
   ["state_icon", { token = "workspace", bold = true }, "git_status"],
-  [{ token = "branch", dim = true }],
+  [{ token = "$branch", dim = true }],
   [{ token = "$repo", dim = true }],
 ]
 
