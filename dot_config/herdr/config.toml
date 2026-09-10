@@ -1,4 +1,12 @@
 onboarding = false
+
+# Match Ghostty's Catppuccin Latte/Mocha and follow its light/dark appearance so dim
+# sidebar text is drawn against the palette it was designed for.
+[theme]
+name = "catppuccin"
+auto_switch = true
+light_name = "catppuccin-latte"
+dark_name = "catppuccin"
 [ui]
 agent_panel_sort = "spaces"
 status_indicators = "symbols"
