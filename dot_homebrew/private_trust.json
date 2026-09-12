@@ -1,5 +1,6 @@
 {
   "trustedformulae": [
+    "coolcorexix/tap/claude-grep",
     "f1bonacc1/tap/process-compose"
   ],
   "trustedtaps": [

@@ -17,6 +17,8 @@ cask 'circleci-public/circleci/circleci@next'
 brew 'chamber'
 brew 'coreutils'
 brew 'clojure'
+# fzf/rg search + resume across Claude Code session transcripts (https://github.com/coolcorexix/claude-grep)
+brew 'coolcorexix/tap/claude-grep'
 # https://cuelang.org/
 brew 'cue-lang/tap/cue'
 brew "doitlive"
