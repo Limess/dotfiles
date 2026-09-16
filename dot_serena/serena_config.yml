@@ -109,16 +109,7 @@ default_max_tool_answer_chars: 150000
 token_count_estimator: CHAR_COUNT
 
 # the list of registered project paths (updated automatically).
-projects:
-- /home/charlie_briggs/projects/data-platform-components-clojure
-- /home/charlie_briggs/projects/data-platform-components-clojure/components/worker
-- /home/charlie_briggs/projects/signal/chunked-document-updater
-- /home/charlie_briggs/projects/signal/data-platform-components-python
-- /home/charlie_briggs/projects/signal/document-translation
-- /home/charlie_briggs/projects/signal/gateway-batcher
-- /home/charlie_briggs/projects/signal/news-ingestor
-- /home/charlie_briggs/projects/signal/sources-ui
-- /home/charlie_briggs/projects/sources-search-api
+projects: []
 
 # time budget (seconds) per tool call for the retrieval of additional symbol information
 # such as docstrings or parameter information.

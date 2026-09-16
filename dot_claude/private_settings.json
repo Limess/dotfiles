@@ -45,7 +45,6 @@
       "WebSearch",
       "Bash(/usr/bin/git diff *)",
       "Bash(/usr/bin/git show *)",
-      "Bash(git commit -m 'Refactor msearch sub-query construction; lift signal keys to module constants *)",
       "Bash(git fetch *)",
       "Bash(git stash *)",
       "Bash(git push *)"
