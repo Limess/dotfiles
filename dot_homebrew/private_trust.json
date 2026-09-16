@@ -8,6 +8,7 @@
     "babashka/brew",
     "borkdude/brew",
     "common-fate/granted",
+    "coolcorexix/tap",
     "cue-lang/tap",
     "derailed/k9s",
     "heroku/brew",

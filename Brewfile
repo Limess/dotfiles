@@ -2,6 +2,8 @@
 brew 'awscli@2'
 # zsh plugin manager
 brew 'antidote'
+# shell history search/sync https://atuin.sh
+brew 'atuin'
 # cat alternative https://github.com/sharkdp/bat
 brew 'bat'
 # better git pager https://github.com/dandavison/delta

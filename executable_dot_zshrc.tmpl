@@ -95,4 +95,18 @@ if (( ${+commands[wt]} )); then
   unset _wt_init
 fi
 
+# atuin shell history, bound to both ctrl-r and the up arrow. Must come after
+# every other keybinding source so its bindings win: fzf's ctrl-r (env.zsh), the
+# up-arrow prefix search (.zsh/config.zsh) and history-substring-search. Also
+# needs to follow compinit (ez-compinit) for completions.
+# Cache the generated snippet; regenerate only when the binary is newer.
+if (( ${+commands[atuin]} )); then
+  _atuin_init="$ZSH_CACHE_DIR/atuin_init.zsh"
+  if [[ ! -s $_atuin_init || ${commands[atuin]} -nt $_atuin_init ]]; then
+    atuin init zsh >| $_atuin_init
+  fi
+  source $_atuin_init
+  unset _atuin_init
+fi
+
 eval "$(starship init zsh)"
