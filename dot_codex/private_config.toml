@@ -1,0 +1,49 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+
+[shell_environment_policy]
+inherit = "all"
+
+[shell_environment_policy.set]
+NO_COLOR = "1"
+GIT_PAGER = "cat"
+AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT = "true"
+
+[projects."/home/charlie_briggs/projects/enode/vendor-service"]
+trust_level = "trusted"
+
+[projects."/home/charlie_briggs/projects/enode/skills"]
+trust_level = "trusted"
+
+[projects."/home/charlie_briggs/projects/enode/emcp"]
+trust_level = "trusted"
+
+[projects."/home/charlie_briggs"]
+trust_level = "trusted"
+
+[hooks.state]
+
+[hooks.state."/home/charlie_briggs/projects/enode/vendor-service/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:c2f603ace30cfd19a1d91d4835635818269e849f3e103526ce4b8be5d3cb115a"
+
+[hooks.state."/home/charlie_briggs/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:2e12f844269103182c911f2e29cc60f7f1b05376495b52849ba12878b586bb3f"
+enabled = true
+
+[hooks.state."/home/charlie_briggs/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:fc87dbee1cb8a9be4f78ba094c4fa8d5e2fd38cb800854e3717f9b6a52fe2a47"
+enabled = true
+
+[hooks.state."/home/charlie_briggs/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:ac371f260e4b23ba1d1b7a4ad68a44a323a8470b61f38471a47aceac1b7a5a7c"
+
+[mcp_servers.enode]
+url = "https://emcp.production.enode.com/mcp"
+
+[features]
+hooks = true
+
+[tui.model_availability_nux]
+gpt-6-astra = 4

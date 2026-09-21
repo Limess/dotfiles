@@ -26,17 +26,23 @@
 - Rationale about the code as it stands is fine (that's the "why" above). References to *past* behaviour or prior decisions need a durable, citable source — an ADR, an issue/ticket, or specific prior git history — cited explicitly.
 
 ### Line wrapping
-- Default: do not hard-wrap prose, comments, docstrings, or markdown to a fixed column — write long lines and let the editor soft-wrap. Exception: if a configured linter/formatter enforces a line length that covers comments (e.g. ruff, `.editorconfig`), wrap to exactly that limit — never a self-chosen narrower width.
+- Default: do not hard-wrap prose, comments, docstrings, or markdown to a fixed column — write long lines and let the editor soft-wrap. This explicitly includes README and other documentation files you author or edit: write each paragraph and bullet as one long line, never manually broken at ~80 columns. Exception: if a configured linter/formatter enforces a line length that covers comments (e.g. ruff, `.editorconfig`), wrap to exactly that limit — never a self-chosen narrower width.
 
 ## Git
+- Do not prefix branch names with `charlie/` (or any personal username). Name branches by their content instead (e.g. `npm-run-copy-silent`).
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
 - Never switch branches in a shared checkout. Do not run `git checkout <branch>`, `git switch`, or `git checkout -b` in the primary clone (or any directory another session may be using). Multiple Claude sessions share the same working tree and a branch switch changes their files underneath them.
 - To work on a different branch, create a worktree instead (`git worktree add ../<repo>.<branch> <branch>` or the `EnterWorktree` tool) and do the work there. Rebasing, cherry-picking, or checking out a PR branch counts as switching — use a worktree for those too.
 - If a task genuinely requires changing the branch of the primary checkout, stop and ask first.
 
+## Security
+
+- Do not read `.env*`, `profiles.clj`, or files under `~/.aws`, `~/.ssh`, or `~/.dbt` unless I explicitly request it.
+- Do not run AWS or SSH commands except `aws sts get-caller-identity` without explicit approval.
+
 ## Agent attribution
 
-- Anything posted on my behalf to a place other people read — GitHub PR descriptions and review comments, Slack messages, Linear tickets and comments — must be prefixed with a line marking it as agent-written, including the harness and model name when known and the 🤖 emoji. E.g. `🤖 Written by an agent (Claude Code, Claude Opus 5).`
+- Anything posted on my behalf to a place other people read — GitHub PR descriptions and review comments, Slack messages, Linear tickets and comments — must be prefixed with a line marking it as agent-written, including the harness and model name when known and the 🤖 emoji. E.g. `🤖 Written by an agent (Codex, GPT-5.6).`
 - The prefix goes at the top of the body, as its own line. Titles/subjects don't need it if the body has it.
 - This is about honesty to human readers, so it applies even when the content is short or I dictated it closely.
 
@@ -45,3 +51,4 @@
 - Do not include a test plan section unless the user has explicitly provided specific steps to test.
 - Never open, raise, or create a pull request unless the current message explicitly asks for it — no exceptions. Adding a helper, fixing a comment, or finishing a task is NOT authorization to open a PR for it.
 - Do not push, create PRs, or take other shared-state actions unless explicitly asked in the current turn. Don't infer authorization from earlier turns in the conversation (e.g. "I raised a PR last time" is not standing permission to do it again). Commit locally and stop; wait for the user to ask for the push/PR.
+- When addressing PR comments, always reply to and resolve the review threads from automated reviewers that leave inline comments (e.g. CodeRabbit, Greptile) — one reply per thread saying how it was addressed (or why it was disregarded), then resolve it. For human reviewers, handle threads case by case: don't auto-resolve, and ask or leave them for me, since I may prefer to reply directly.
