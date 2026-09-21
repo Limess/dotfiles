@@ -19,8 +19,10 @@
         bd = !"git diff $(git merge-base origin/main HEAD)"
         bl = log --oneline origin/main..HEAD
 
-        # Structural (AST-aware) diff on demand via difftastic; default `git diff` uses the hunk pager
+        # On-demand diff viewers; default `git diff` pages through delta.
+        # dft: structural (AST-aware) diff via difftastic. dh: hunk's interactive TUI.
         dft = !"GIT_EXTERNAL_DIFF=difft git diff"
+        dh = !"hunk diff"
 [user]
     email = "{{ .email }}"
     name = "{{ .name }}"
@@ -33,7 +35,7 @@
         attributesfile = ~/.gitattributes
 	autocrlf = false
 	eol = lf
-        pager = hunk pager
+        pager = delta
 [interactive]
 	diffFilter = delta --color-only
 [delta]
