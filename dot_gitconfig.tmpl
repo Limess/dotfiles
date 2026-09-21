@@ -18,6 +18,9 @@
         # so commits landing on main don't show up. bd includes the working tree.
         bd = !"git diff $(git merge-base origin/main HEAD)"
         bl = log --oneline origin/main..HEAD
+
+        # Structural (AST-aware) diff on demand via difftastic; default `git diff` uses the hunk pager
+        dft = !"GIT_EXTERNAL_DIFF=difft git diff"
 [user]
     email = "{{ .email }}"
     name = "{{ .name }}"
@@ -50,7 +53,6 @@
         untracked = cyan
 [diff]
 	colorMoved = dimmed-zebra
-	external = difft
 [merge]
         # git mergetool
 	# tool = opendiff
