@@ -138,6 +138,7 @@
       }
     }
   },
+  "promptSuggestionEnabled": false,
   "outputStyle": "Concise",
   "effortLevel": "medium",
   "modelSettings": {
