@@ -32,7 +32,8 @@
 - Do not prefix branch names with `charlie/` (or any personal username). Name branches by their content instead (e.g. `npm-run-copy-silent`).
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
 - Never switch branches in a shared checkout. Do not run `git checkout <branch>`, `git switch`, or `git checkout -b` in the primary clone (or any directory another session may be using). Multiple Claude sessions share the same working tree and a branch switch changes their files underneath them.
-- To work on a different branch, create a worktree instead (`git worktree add ../<repo>.<branch> <branch>` or the `EnterWorktree` tool) and do the work there. Rebasing, cherry-picking, or checking out a PR branch counts as switching — use a worktree for those too.
+- To work on a different branch, create a worktree instead and do the work there. Rebasing, cherry-picking, or checking out a PR branch counts as switching — use a worktree for those too.
+- Always create and enter worktrees with the `EnterWorktree` tool, never with a manual `git worktree add`. Only `EnterWorktree` moves the session itself into the worktree, so the harness treats it as the project root: the sidebar "files changed" diff renders, relative paths resolve there, and the scratchpad/permissions apply to the right tree. A manual `git worktree add` leaves the session rooted in the original checkout — the diff panel then shows changed files and line counts but empty diffs, every path has to be an absolute one into a sibling directory, and I cannot review the change in the UI.
 - If a task genuinely requires changing the branch of the primary checkout, stop and ask first.
 
 ## Security
