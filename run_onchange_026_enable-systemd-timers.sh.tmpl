@@ -1,0 +1,19 @@
+#!/bin/sh
+{{ if eq .chezmoi.os "linux" -}}
+# Reloads and enables the chezmoi-managed systemd user timers. The hashes re-run this
+# whenever a unit changes.
+# wt-prune.service: {{ include "dot_config/systemd/user/wt-prune.service" | sha256sum }}
+# wt-prune.timer: {{ include "dot_config/systemd/user/wt-prune.timer" | sha256sum }}
+set -eu
+
+command -v systemctl >/dev/null 2>&1 || exit 0
+
+# wt-prune-merged was renamed to wt-prune; drop the old units if a machine still has them.
+if [ -e "$HOME/.config/systemd/user/wt-prune-merged.timer" ]; then
+  systemctl --user disable --now wt-prune-merged.timer || true
+  rm -f "$HOME/.config/systemd/user/wt-prune-merged.service" "$HOME/.config/systemd/user/wt-prune-merged.timer" "$HOME/.local/bin/wt-prune-merged"
+fi
+
+systemctl --user daemon-reload
+systemctl --user enable --now wt-prune.timer
+{{ end -}}
