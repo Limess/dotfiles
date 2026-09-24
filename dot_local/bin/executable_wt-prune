@@ -1,0 +1,46 @@
+#!/usr/bin/env zsh
+# Prune worktrees across all Enode repos:
+# - integrated into main: `wt remove` without -f, so dirty worktrees are kept.
+# - stale (no commit or HEAD movement for WT_PRUNE_STALE_DAYS): `wt remove -f`,
+#   discarding uncommitted changes. The branch is still only deleted if merged.
+# Locked worktrees (live Claude sessions) are always skipped. Worktrees are
+# addressed by path because two worktrees can share a branch name.
+set -u
+: "${WT_PRUNE_ROOT:=$HOME/projects/enode}"
+: "${WT_PRUNE_STALE_DAYS:=14}"
+: "${WT_PRUNE_DRY_RUN:=}"
+zmodload zsh/datetime
+stale_before=$(( EPOCHSECONDS - WT_PRUNE_STALE_DAYS * 86400 ))
+
+# Last activity: newest of the HEAD commit time and the worktree's HEAD reflog
+# (checkouts, resets, rebases), so an old branch that was just checked out is
+# not treated as stale.
+last_activity() {
+  local dir=$1 commit reflog
+  commit=$(git -C "$dir" log -1 --format=%ct HEAD 2>/dev/null || echo 0)
+  reflog=$(git -C "$dir" log -g -1 --format=%ct HEAD 2>/dev/null || echo 0)
+  echo $(( commit > reflog ? commit : reflog ))
+}
+
+run() {
+  [[ -n $WT_PRUNE_DRY_RUN ]] || "$@" </dev/null
+}
+
+for repo in "$WT_PRUNE_ROOT"/*/; do
+  [[ -d "$repo/.git" ]] || continue
+  git -C "$repo" fetch --quiet origin main || true
+  wt -C "$repo" list --format json \
+    | jq -r '.items[]
+        | select(.worktree != null and .worktree.main == false and .worktree.locked == null)
+        | [.worktree.path, (if .default_branch.integration != null then "integrated" else "unmerged" end)]
+        | @tsv' \
+    | while IFS=$'\t' read -r dir state; do
+        if [[ $state == integrated ]]; then
+          echo "$repo: removing integrated $dir"
+          run wt -C "$repo" remove -y --foreground "$dir"
+        elif (( $(last_activity "$dir") < stale_before )); then
+          echo "$repo: removing stale $dir"
+          run wt -C "$repo" remove -y -f --foreground "$dir"
+        fi
+      done
+done
