@@ -10,12 +10,21 @@
 - For discovery in a code file, use `get_symbols_overview` then `find_symbol` (with `include_body` only when you need the body) instead of reading whole files; use `find_referencing_symbols` to find call sites instead of grepping. This is dramatically cheaper on large files (measured ~27× fewer tokens on a 900-line file) and more targeted.
 - Grep/Glob are still fine for content/name discovery; follow-up reads and reference searches should go through serena. Small files, or cases where you genuinely need the whole file, are the exception — a plain Read is fine there.
 - For edits to code you've navigated with serena, use its symbolic edit tools (`replace_symbol_body`, `insert_*_symbol`, `rename_symbol`, `safe_delete_symbol`, `replace_content`).
+- Serena's project root is fixed when the session starts (`--project-from-cwd`) and does not follow `EnterWorktree`. If the session has moved into a worktree since startup, or Serena's paths otherwise resolve outside the current worktree, do not use Serena's edit tools, because they would modify the other checkout. Use the built-in tools with worktree paths instead, and tell me that Serena is rooted elsewhere.
 
 ## Code Style
 
 ### Comments
 - Comment only non-obvious *why*: intent, constraints, gotchas, invariants, links to context. Don't restate what the code does (`// increment counter`), echo a name, or teach language basics — prefer clear names and small functions over such comments.
+- A docstring that paraphrases the function name and signature is redundant, even when it reads as helpful prose. Examples to delete:
+  - `/** The meter evidence in a hybrid inverter's real-time reading. */` on `hybridGridMeterEvidence(psKey, response)`
+  - `/** Build a Meter response from the grid readings of the smart meter wired to a hybrid inverter. */` on `buildHybridGridMeter(response, timezone): Meter`
+  - `/** Read a meter asset backed by an iHomeManager's grid metering channel. */` on `getHomeEnergyManagerGridMeter(auth, info)`
+
+  Keep only the part a reader couldn't get from the name, e.g. `/** Live power is left out: the iHomeManager's power point reads 0 on some sites while the counters move. */`
 - Do keep comments that save a reader real effort: tricky algorithms, non-obvious regexes, workarounds for external bugs/quirks, units and invariants.
+- Write comments and docstrings as if explaining to a PM: plain declarative sentences, shorthand and internal symbols expanded into what they mean, no terse fragments or jargon chains.
+- Before finishing a change, check every comment you added against the code and tests: delete any that restates the code, repeats what a name or test already makes clear, or duplicates a comment elsewhere (keep it once, where the constraint is enforced).
 - These rules govern comments *you write*. Leave existing comments alone in code you're editing for other reasons — only remove or rewrite one if it's wrong, stale, or on a line you're already changing.
 
 ### Docstrings
