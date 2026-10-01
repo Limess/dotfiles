@@ -13,11 +13,18 @@
     autoPush = true
 [diff]
     pager = "diff-so-fancy"
+{{/* .chezmoidata isn't available to the config template, so read it directly. */ -}}
+{{ $op := (include ".chezmoidata/onepassword.yaml" | fromYaml).onepassword -}}
+{{ $opAccount := index $op.accounts $op.defaultAccount -}}
+# chezmoi has no onepassword account setting, but [env] reaches the op it
+# spawns, so this stops op prompting for an account with both signed in.
+[env]
+    OP_ACCOUNT = {{ $opAccount.id | quote }}  # {{ $opAccount.email }}
 [onepassword]
     {{ if (eq .chezmoi.os "linux") }}
     {{ if (.chezmoi.kernel.osrelease | lower | contains "microsoft") }}
+    # op.exe only sees OP_ACCOUNT if WSLENV forwards it, which
+    # dot_zsh/env.zsh.tmpl does for interactive shells.
     command = "{{ output "wslpath" (output "wslvar" "USERPROFILE" | trim) | trim }}/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
     {{ end }}
     {{ end }}
-    # chezmoi has no account setting; op picks the account from OP_ACCOUNT,
-    # exported (and forwarded via WSLENV) in dot_zsh/env.zsh.tmpl.
