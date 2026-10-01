@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Serena regenerates serena_config.yml from its own template, so this only
+# pins the keys below and leaves the rest of the live file alone. Keys missing
+# from the live file (including when it doesn't exist yet) are appended.
+
+set -eu
+
+awk '
+  BEGIN {
+    want["web_dashboard_open_on_launch"] = "false"
+  }
+  {
+    for (key in want) {
+      if ($0 ~ "^" key ":") {
+        print key ": " want[key]
+        delete want[key]
+        next
+      }
+    }
+    print
+  }
+  END {
+    for (key in want) print key ": " want[key]
+  }
+'
