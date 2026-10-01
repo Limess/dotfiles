@@ -155,18 +155,18 @@ managed=$(cat <<'EOF'
       "enode-internal": {
         "source": { "source": "github", "repo": "enode/skills" }
       }
-    }
+    },
+    "outputStyle": "Concise",
+    "showThinkingSummaries": true,
+    "theme": "dark",
+    "voiceEnabled": true
   },
   "defaults": {
     "model": "claude-opus-5-5[1m]",
     "effortLevel": "medium",
     "modelSettings": {
       "claude-fable-5-1": { "effortLevel": "medium" }
-    },
-    "outputStyle": "Concise",
-    "showThinkingSummaries": true,
-    "theme": "dark",
-    "voiceEnabled": true
+    }
   }
 }
 EOF
