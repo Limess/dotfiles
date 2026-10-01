@@ -14,6 +14,14 @@
 
 ## Code Style
 
+### Names carry the intent
+- Prefer names that state intent and the rule they encode over a comment that explains them. A reader should get the why from the function, variable and test names alone.
+- Name booleans and conditions after the rule they test, and pull a non-obvious condition into a named const rather than commenting it: `const noAliasLeftOnTicket = …`, `const latestIsSharedSession = slug === undefined`, `if (stoppedTriggerSessionsAreNeverResumed)`, not a bare `if (x && y)` under a `// trigger sessions are never resumed` comment.
+- Put ordering, scope and qualifiers in the name when they are part of the contract: `sessionsNewestFirst`, `liveOrQueued`, `lowercasedAssignees`, `changedByThisEvent`, `TicketStateAfterEvent`, `acceptLinearDeliveryUnderTicketLock`, `MAX_TRIGGER_SLUG_WITHIN_SESSION_ID_LIMIT`.
+- Name what a value means, not its mechanism: `changedByPerson` over `human`, `nothingHoldsSharedSession` over `sharedCleared`, `triggerTakenAwayByThisEvent` over `takenAway`, `recordDeliveryNeedingNoWork` over `recordHandled`.
+- Write test names as the full rule including its reason or edge case, e.g. `"stops a label session when its label is removed, even by the agent itself as its last step"` or `"compares exact status names, so a status that shortens to the same session name still stops the session"`.
+- Long names are fine. Don't trade clarity for brevity, but don't restate the type or the enclosing module either.
+
 ### Comments
 - Comment only non-obvious *why*: intent, constraints, gotchas, invariants, links to context. Don't restate what the code does (`// increment counter`), echo a name, or teach language basics — prefer clear names and small functions over such comments.
 - A docstring that paraphrases the function name and signature is redundant, even when it reads as helpful prose. Examples to delete:
