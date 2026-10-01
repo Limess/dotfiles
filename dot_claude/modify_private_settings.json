@@ -1,0 +1,190 @@
+#!/usr/bin/env bash
+#
+# Claude Code rewrites ~/.claude/settings.json itself (permission approvals,
+# /config, plugin installs, herdr's SessionStart hook), so this merges the
+# settings below into the live file instead of owning it outright.
+#
+#   enforced  always win; permission lists and hook groups are unioned with
+#             the live ones, so locally added entries survive
+#   defaults  only fill top-level keys the live file doesn't set
+#
+# Removing an entry from a list here doesn't remove it from the live file.
+
+set -euo pipefail
+
+if ! command -v jq >/dev/null; then
+    echo "modify settings.json: jq not found, leaving file unchanged" >&2
+    cat
+    exit 0
+fi
+
+managed=$(cat <<'EOF'
+{
+  "enforced": {
+    "env": {
+      "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true",
+      "GIT_PAGER": "cat",
+      "NO_COLOR": "1"
+    },
+    "permissions": {
+      "allow": [
+        "mcp__serena__*",
+        "mcp__prometheus__*",
+        "Bash(git diff *)",
+        "Bash(git log *)",
+        "Bash(git status *)",
+        "Bash(git show *)",
+        "Bash(git branch *)",
+        "Bash(git tag *)",
+        "Bash(git stash list *)",
+        "Bash(git rev-parse *)",
+        "Bash(git blame *)",
+        "Bash(git shortlog *)",
+        "Bash(git checkout *)",
+        "Bash(git add *)",
+        "Bash(git pull *)",
+        "Bash(git fetch *)",
+        "Bash(git stash *)",
+        "Bash(git push *)",
+        "Bash(/usr/bin/git diff *)",
+        "Bash(/usr/bin/git show *)",
+        "Bash(ls *)",
+        "Bash(pwd)",
+        "Bash(wc *)",
+        "Bash(which *)",
+        "Bash(whoami)",
+        "Bash(cat *)",
+        "Bash(head *)",
+        "Bash(tail *)",
+        "Bash(find *)",
+        "Bash(tree *)",
+        "Bash(file *)",
+        "Bash(du *)",
+        "Bash(df *)",
+        "Bash(date *)",
+        "Bash(uname *)",
+        "Bash(aws sts get-caller-identity*)",
+        "WebFetch(domain:github.com)",
+        "WebSearch"
+      ],
+      "deny": [
+        "Read(./**/.env*)",
+        "Read(./**/profiles.clj)",
+        "Bash(cat *.env*)",
+        "Bash(head *.env*)",
+        "Bash(tail *.env*)",
+        "Bash(cat *profiles.clj*)",
+        "Bash(head *profiles.clj*)",
+        "Bash(tail *profiles.clj*)",
+        "Bash(aws *)",
+        "Bash(ssh *)",
+        "Bash(cat */.aws/*)",
+        "Bash(head */.aws/*)",
+        "Bash(tail */.aws/*)",
+        "Bash(cat */.ssh/*)",
+        "Bash(head */.ssh/*)",
+        "Bash(tail */.ssh/*)",
+        "Read(~/.aws/*)",
+        "Read(~/.ssh/*)",
+        "Read(~/.dbt/*)",
+        "mcp__serena__write_memory",
+        "mcp__serena__read_memory",
+        "mcp__serena__list_memories",
+        "mcp__serena__delete_memory",
+        "mcp__serena__rename_memory",
+        "mcp__serena__edit_memory",
+        "mcp__prometheus__get_targets",
+        "mcp__prometheus__get_metric_metadata"
+      ],
+      "defaultMode": "auto"
+    },
+    "hooks": {
+      "Notification": [
+        {
+          "matcher": "",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "$HOME/.claude/hooks/notify.sh 'Claude Code needs your attention' 'Claude Code'"
+            }
+          ]
+        }
+      ],
+      "PreToolUse": [
+        {
+          "matcher": "Bash",
+          "hooks": [{ "type": "command", "command": "atuin hook claude-code" }]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "matcher": "Write|Edit|MultiEdit|Bash",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash \"$HOME/.claude/hooks/oxfmt-after-edit.sh\"",
+              "statusMessage": "Formatting with oxfmt"
+            }
+          ]
+        },
+        {
+          "matcher": "Bash",
+          "hooks": [{ "type": "command", "command": "atuin hook claude-code" }]
+        }
+      ],
+      "PostToolUseFailure": [
+        {
+          "matcher": "Bash",
+          "hooks": [{ "type": "command", "command": "atuin hook claude-code" }]
+        }
+      ]
+    },
+    "statusLine": {
+      "type": "command",
+      "command": "$HOME/.claude/hooks/statusline.sh"
+    },
+    "enabledPlugins": {
+      "claude-code-setup@claude-plugins-official": true,
+      "claude-md-management@claude-plugins-official": true,
+      "code-simplifier@claude-plugins-official": true,
+      "enode-skills@enode-internal": true,
+      "security-guidance@claude-plugins-official": true,
+      "superpowers@claude-plugins-official": false
+    },
+    "extraKnownMarketplaces": {
+      "enode-internal": {
+        "source": { "source": "github", "repo": "enode/skills" }
+      }
+    }
+  },
+  "defaults": {
+    "model": "claude-opus-5-5[1m]",
+    "effortLevel": "medium",
+    "modelSettings": {
+      "claude-fable-5-1": { "effortLevel": "medium" }
+    },
+    "outputStyle": "Concise",
+    "showThinkingSummaries": true,
+    "theme": "dark",
+    "voiceEnabled": true
+  }
+}
+EOF
+)
+
+# An absent target file arrives as empty stdin.
+jq -n --argjson managed "$managed" '
+  def union($a; $b):
+    reduce (($a // []) + ($b // []))[] as $x ([];
+      if any(.[]; . == $x) then . else . + [$x] end);
+
+  (try input catch {}) as $live
+  | $managed.enforced as $enforced
+  # Merging onto $live first keeps its key order, so applying causes no diff churn.
+  | $live * ($enforced | del(.permissions.allow, .permissions.deny, .hooks))
+  | . + ($managed.defaults | with_entries(select(.key as $key | $live | has($key) | not)))
+  | .permissions.allow = union($live.permissions.allow; $enforced.permissions.allow)
+  | .permissions.deny = union($live.permissions.deny; $enforced.permissions.deny)
+  | .hooks = reduce ($enforced.hooks | keys_unsorted[]) as $event ($live.hooks // {};
+      .[$event] = union(.[$event]; $enforced.hooks[$event]))
+'
