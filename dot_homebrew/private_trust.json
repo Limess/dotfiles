@@ -1,0 +1,22 @@
+{
+  "trustedformulae": [
+    "coolcorexix/tap/claude-grep",
+    "f1bonacc1/tap/process-compose"
+  ],
+  "trustedtaps": [
+    "aquasecurity/trivy",
+    "babashka/brew",
+    "borkdude/brew",
+    "common-fate/granted",
+    "coolcorexix/tap",
+    "cue-lang/tap",
+    "derailed/k9s",
+    "heroku/brew",
+    "synfinatic/aws-sso-cli",
+    "warrensbox/tap"
+  ],
+  "trustedcasks": [
+    "aibrickai/lidrun/lidrun",
+    "circleci-public/circleci/circleci@next"
+  ]
+}
