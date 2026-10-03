@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Runs the he-loops CLI from any directory: `he-loops start` starts every loop and attaches to the session
+# (`he-loops start --background` leaves it running), `he-loops stop` stops everything, `he-loops --help` lists the rest.
+
+set -euo pipefail
+
+repo="$HOME/projects/enode/he-loops"
+
+exec env -u VIRTUAL_ENV uv run --quiet --project "$repo" he-loops "$@"
