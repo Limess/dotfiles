@@ -16,6 +16,10 @@ kubectl completion zsh > "$COMPLETIONS_PATH/zsh/_kubectl"
 chezmoi completion zsh > "$COMPLETIONS_PATH/zsh/_chezmoi"
 {{ end }}
 
+{{- if lookPath "he-loops" }}
+he-loops --show-completion zsh > "$COMPLETIONS_PATH/zsh/_he-loops"
+{{ end }}
+
 
 {{- if lookPath "terraform" }}
 cat > ~/.zsh/completions/bash/terraform.bash << 'EOF'
