@@ -1,0 +1,16 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Only the keys below are managed; any other line already in ~/.npmrc (e.g. tokens added by `npm login`) is kept. */ -}}
+{{- $managed := dict
+      "//npm.pkg.github.com/:_authToken" (onepasswordRead "op://personal/github - npm packages/credential")
+      "@enode:registry" "https://npm.pkg.github.com/" -}}
+{{- $lines := list -}}
+{{- range $key := keys $managed | sortAlpha -}}
+  {{- $lines = append $lines (printf "%s=%s" $key (get $managed $key)) -}}
+{{- end -}}
+{{- range splitList "\n" .chezmoi.stdin -}}
+  {{- $key := regexReplaceAll "=.*$" . "" | trim -}}
+  {{- if and (ne (trim .) "") (not (hasKey $managed $key)) -}}
+    {{- $lines = append $lines . -}}
+  {{- end -}}
+{{- end -}}
+{{ join "\n" $lines }}
