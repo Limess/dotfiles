@@ -23,6 +23,7 @@ managed=$(cat <<'EOF'
   "enforced": {
     "env": {
       "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true",
+      "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
       "GIT_PAGER": "cat",
       "NO_COLOR": "1"
     },
@@ -156,7 +157,13 @@ managed=$(cat <<'EOF'
     "outputStyle": "Concise",
     "showThinkingSummaries": true,
     "theme": "dark",
-    "voiceEnabled": true
+    "voiceEnabled": true,
+    "modelSettings": {
+      "claude-opus-5-5": { "autoCompactWindow": 600000 },
+      "claude-fable-5-1": { "autoCompactWindow": 600000 },
+      "claude-sonnet-5-5": { "autoCompactWindow": 600000 },
+      "claude-haiku-5-5": { "autoCompactWindow": 100000 }
+    }
   },
   "defaults": {
     "model": "claude-opus-5-5[1m]",
