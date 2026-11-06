@@ -19,9 +19,8 @@ java = '21'
 
 npm.package_manager = 'pnpm'
 
-# configure `mise install` to always keep the downloaded archive
-always_keep_download = false # deleted after install by default
-always_keep_install = false  # deleted on failure by default
+# configure `mise install` to always keep the install directory on failure
+always_keep_install = false # deleted on failure by default
 
 # configure how frequently (in minutes) to fetch updated plugin repository changes
 # this is updated whenever a new runtime is installed
