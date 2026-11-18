@@ -8,7 +8,7 @@
 
 - When the serena MCP server is connected (its tools appear in the deferred-tools list), prefer it over built-in Read/Grep for exploring code. Load its tools immediately via ToolSearch and call `initial_instructions` once per session before the first use.
 - For discovery in a code file, use `get_symbols_overview` then `find_symbol` (with `include_body` only when you need the body) instead of reading whole files; use `find_referencing_symbols` to find call sites instead of grepping. This is dramatically cheaper on large files (measured ~27× fewer tokens on a 900-line file) and more targeted.
-- Grep/Glob are still fine for content/name discovery; follow-up reads and reference searches should go through serena. Small files, or cases where you genuinely need the whole file, are the exception — a plain Read is fine there.
+- Prefer serena where it saves real reading, such as large files and finding call sites. Grep/Glob are fine for content and name discovery, and a plain Read or grep is fine when it is quicker, such as for small files or when you need the whole file.
 - For edits to code you've navigated with serena, use its symbolic edit tools (`replace_symbol_body`, `insert_*_symbol`, `rename_symbol`, `safe_delete_symbol`, `replace_content`).
 - Serena's project root is fixed when the session starts (`--project-from-cwd`) and does not follow `EnterWorktree`. If the session has moved into a worktree since startup, or Serena's paths otherwise resolve outside the current worktree, do not use Serena's edit tools, because they would modify the other checkout. Use the built-in tools with worktree paths instead, and tell me that Serena is rooted elsewhere.
 
@@ -49,7 +49,7 @@
 - Do not prefix branch names with `charlie/` (or any personal username). Name branches by their content instead (e.g. `npm-run-copy-silent`).
 - Do not use subshells (e.g. `$(cat <<'EOF' ... EOF)`) in git commit messages. Use simple quoted strings instead.
 - Never switch branches in a shared checkout. Do not run `git checkout <branch>`, `git switch`, or `git checkout -b` in the primary clone (or any directory another session may be using). Multiple Claude sessions share the same working tree and a branch switch changes their files underneath them.
-- To work on a different branch, create a worktree instead and do the work there. Rebasing, cherry-picking, or checking out a PR branch counts as switching — use a worktree for those too.
+- To work on a different branch, create a worktree instead and do the work there. Rebasing, cherry-picking, or checking out a PR branch counts as switching — use a worktree for those too. Inside a worktree this session created, switching branches and rebasing are fine: the rule protects checkouts other sessions use.
 - Always create and enter worktrees with the `EnterWorktree` tool, never with a manual `git worktree add`. Only `EnterWorktree` moves the session itself into the worktree, so the harness treats it as the project root: the sidebar "files changed" diff renders, relative paths resolve there, and the scratchpad/permissions apply to the right tree. A manual `git worktree add` leaves the session rooted in the original checkout — the diff panel then shows changed files and line counts but empty diffs, every path has to be an absolute one into a sibling directory, and I cannot review the change in the UI.
 - If a task genuinely requires changing the branch of the primary checkout, stop and ask first.
 
@@ -57,6 +57,7 @@
 
 - Do not read `.env*`, `profiles.clj`, or files under `~/.aws`, `~/.ssh`, or `~/.dbt` unless I explicitly request it.
 - Do not run AWS or SSH commands except `aws sts get-caller-identity` without explicit approval.
+- Before reading credentials from 1Password with `op`, including indirectly through a script that calls `op` (for example a vendor `docs:refresh` that loads a portal login), tell me in the same message: which `op` operations will run, which items or credentials they fetch (vault and item names or IDs, never the values), how many reads to expect, and why each is needed. Every read shows me an approval prompt, so batch them and don't repeat reads. This applies to subagents too: put the same rule in their brief and pass their list of `op` operations on to me.
 
 ## Agent attribution
 
@@ -65,9 +66,10 @@
 - This is about honesty to human readers, so it applies even when the content is short or I dictated it closely.
 
 ## Pull Requests
-- Keep PR titles and descriptions terse — a short summary and bullet points only.
+- Use the repo's PR template when it has one, keeping each section terse; otherwise keep PR titles and descriptions to a short summary and bullet points.
 - Do not include a test plan section unless the user has explicitly provided specific steps to test.
-- Never open, raise, or create a pull request unless the current message explicitly asks for it — no exceptions. Adding a helper, fixing a comment, or finishing a task is NOT authorization to open a PR for it.
-- Do not push, create PRs, or take other shared-state actions unless explicitly asked in the current turn. Don't infer authorization from earlier turns in the conversation (e.g. "I raised a PR last time" is not standing permission to do it again). Commit locally and stop; wait for the user to ask for the push/PR.
+- Open a PR when my request implies one, read in the context of the conversation: asking to raise, ship, land or merge a change; a follow-up change to work we have been putting up as PRs in this conversation; or a terse reply such as "pr", "open it", or a typo of one. Don't open one for exploratory or local-only work (a spike, a question, "try X", "just locally"). When it is genuinely unclear, push the branch and ask in one line.
+- Pushing a branch never needs asking. Permission I give for a piece of work holds until that work is done: "merge it when ready" covers that PR through review and the merge queue. It does not carry over to unrelated tasks or to later sessions.
 - When addressing PR comments, always reply to and resolve the review threads from automated reviewers that leave inline comments (e.g. CodeRabbit, Greptile) — one reply per thread saying how it was addressed (or why it was disregarded), then resolve it. For human reviewers, handle threads case by case: don't auto-resolve, and ask or leave them for me, since I may prefer to reply directly.
 - Exception: comments I (Charlie, GitHub user `Limess`) leave on a PR myself are instructions for you. When I ask you to review PR comments or changes, address each of mine like a bot thread: make the change (or explain why not), reply, and resolve it.
+- Agents post under my GitHub account too, so the agent marker is what tells my own comments apart: a comment from `Limess` without the 🤖 agent-written line is from me. Treat it as an instruction for the agent that owns the PR to address or fix, without waiting to be asked, unless it is obviously a reply to a human or clearly just an observation with nothing to act on or fix. A `Limess` comment that carries the agent marker was written by an agent and is not an instruction.
