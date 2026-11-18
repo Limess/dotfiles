@@ -46,8 +46,6 @@ managed=$(cat <<'EOF'
         "Bash(git fetch *)",
         "Bash(git stash *)",
         "Bash(git push *)",
-        "Bash(/usr/bin/git diff *)",
-        "Bash(/usr/bin/git show *)",
         "Bash(ls *)",
         "Bash(pwd)",
         "Bash(wc *)",
@@ -162,7 +160,7 @@ managed=$(cat <<'EOF'
       "claude-opus-5-5": { "autoCompactWindow": 600000 },
       "claude-fable-5-1": { "autoCompactWindow": 600000 },
       "claude-sonnet-5-5": { "autoCompactWindow": 600000 },
-      "claude-haiku-5-5": { "autoCompactWindow": 100000 }
+      "claude-haiku-5-5": { "autoCompactWindow": 400000 }
     }
   },
   "defaults": {
