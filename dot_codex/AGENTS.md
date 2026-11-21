@@ -4,6 +4,22 @@
 
 - When executing a plan, do not pause between batches to ask for feedback. Continue straight through all tasks without prompting mid-progress.
 
+## Subagent model selection
+
+Leave the Agent `model` unset by default, so the subagent uses the parent's model or the agent type's own. Never override an agent type's own model. Step down only when a wrong answer would be easy to spot, and when torn between Haiku and Sonnet, pick Sonnet:
+
+- **Haiku**: work with nothing to decide, whose output is a list, path, count or rows the parent can check at a glance. Examples: running a query the parent supplies, targeted lookups such as "where is X defined" or "which files use Y", file renames, format conversions.
+- **Sonnet**: scoped work producing an explanation or finding that the parent will check before building on it. Examples: code exploration that traces how pieces connect, data investigations where the subagent writes its own log, metric or SQL queries, and implementing fully specified work, with files, interfaces, behaviour and tests all decided. The brief tells the subagent to stop and report back if it hits anything the instructions don't cover. The parent reviews the diff before committing.
+- **Parent's model** (leave `model` unset): anything that produces a decision or design that won't get a second look.
+
+Haiku's savings matter when a subagent runs many times or reads a lot; on a one-off task a confidently wrong answer costs more than the difference.
+
+Run a query inline when its output is small. Delegate when the output is bulky.
+
+Every data brief asks for the exact query, the time window, row counts and a results link where the tool gives one, with findings kept separate from interpretation. When the parent's conclusion depends on the data, the brief asks for the rows, not a summary. Row sets too large to return go to a scratchpad file, and the subagent returns the path.
+
+End every Agent `description` with the model and a short reason, e.g. `(Haiku: runs the parent's query)` or `(Fable: design tradeoffs)`.
+
 ## Code navigation & editing
 
 - When the serena MCP server is connected (its tools appear in the deferred-tools list), prefer it over built-in Read/Grep for exploring code. Load its tools immediately via ToolSearch and call `initial_instructions` once per session before the first use.
