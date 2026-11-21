@@ -70,7 +70,7 @@ Zsh config is split across `dot_zsh/`:
 - `config.zsh` — history, keybindings, FZF integration
 - `zstyle.zsh` — completion styling
 - `aliases.zsh.tmpl` — aliases (git, kubectl, docker, brew, chezmoi shortcut `cz`)
-- `env.zsh.tmpl` — environment variables, 1Password-sourced tokens
+- `private_env.zsh.tmpl` — environment variables, 1Password-sourced tokens
 
 Plugin manager: **antidote** (plugin list in `dot_zsh_plugins.txt`).
 Prompt: **starship** (`dot_config/starship.toml`).
