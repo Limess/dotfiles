@@ -23,6 +23,7 @@ managed=$(cat <<'EOF'
   "enforced": {
     "env": {
       "AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT": "true",
+      "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1",
       "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
       "GIT_PAGER": "cat",
       "NO_COLOR": "1"
