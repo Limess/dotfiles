@@ -10,3 +10,6 @@ Brewfile*
 {{ if ne .chezmoi.os "linux" -}}
 .config/systemd
 {{ end -}}
+{{ if not (lookPath "herdr") -}}
+.claude/skills/herdr
+{{ end -}}
